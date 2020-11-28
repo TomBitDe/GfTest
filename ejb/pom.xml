@@ -34,6 +34,11 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
@@ -45,9 +50,9 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.jboss.arquillian.container</groupId>
-			<artifactId>arquillian-glassfish-embedded-3.1</artifactId>
-			<version>1.0.2</version>
+			<groupId>fish.payara.arquillian</groupId>
+			<artifactId>arquillian-payara-server-embedded</artifactId>
+			<version>2.3.1</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -60,7 +65,7 @@
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<version>1.4.191</version>
-			<scope>test</scope>
+			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 
@@ -85,7 +90,7 @@
 				<configuration>
 					<ejbVersion>3.1</ejbVersion>
 					<include>META-INF/**</include>
-					<!--  <ejbJar>/META-INF/ejb-jar.xml</ejbJar> -->
+					<!-- <ejbJar>/META-INF/ejb-jar.xml</ejbJar> -->
 					<archive>
 						<manifest>
 							<addClasspath>true</addClasspath>

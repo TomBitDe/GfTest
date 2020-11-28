@@ -10,12 +10,14 @@ import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
  * Test the second caller session bean.
  */
+@Ignore
 @RunWith(Arquillian.class)
 public class SecondCallerSessionTest {
 	private static final Logger LOG = Logger.getLogger(SecondCallerSessionTest.class);

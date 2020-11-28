@@ -38,7 +38,7 @@
         </layout>
     </appender>
     <root>
-        <level value="debug"/>
+        <level value="TRACE"/>
         <appender-ref ref="console"/>
         <!--
         <appender-ref ref="rollingFile"/>

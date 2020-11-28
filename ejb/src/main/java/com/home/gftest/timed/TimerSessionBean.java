@@ -13,7 +13,9 @@ import javax.ejb.TimerService;
 import org.apache.log4j.Logger;
 
 import com.home.gftest.ejb.ping.PingControllerBean;
+import com.home.gftest.ejb.refchange.FirstCallerSessionLocal;
 import com.home.gftest.ejb.refchange.SecondCallerSessionLocal;
+import com.home.gftest.ejb.samplesession.ControllerSession;
 
 /**
  * Implementation of a timer controlled bean.
@@ -32,7 +34,13 @@ public class TimerSessionBean {
 	PingControllerBean pingControllerBean;
 
 	@EJB
+	FirstCallerSessionLocal firstCallerSession;
+
+	@EJB
 	SecondCallerSessionLocal secondCallerSession;
+
+	@EJB
+	ControllerSession controllerSession;
 
 	@Timeout
 	public void programmaticTimeout(Timer timer) {
@@ -42,10 +50,15 @@ public class TimerSessionBean {
 
 	@Schedule(minute="*/1", hour="*")
 	public void automaticTimeout() {
+		LOG.info("--> automaticTimeout()");
+
 		this.setLastAutomaticTimeout(new Date());
-		LOG.info("Automatic timeout occured");
 		pingControllerBean.runPing();
+		firstCallerSession.call();
 		secondCallerSession.call();
+		controllerSession.control();
+
+		LOG.info("<-- automaticTimeout()");
 	}
 
 	public String getLastProgrammaticTimeout() {
