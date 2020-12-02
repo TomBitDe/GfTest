@@ -16,6 +16,7 @@ import com.home.gftest.ejb.ping.PingControllerBean;
 import com.home.gftest.ejb.refchange.FirstCallerSessionLocal;
 import com.home.gftest.ejb.refchange.SecondCallerSessionLocal;
 import com.home.gftest.ejb.samplesession.ControllerSession;
+import com.home.gftest.ejb.samplesession.ThirdSession;
 
 /**
  * Implementation of a timer controlled bean.
@@ -42,6 +43,9 @@ public class TimerSessionBean {
 	@EJB
 	ControllerSession controllerSession;
 
+	@EJB
+	ThirdSession thirdSession;
+
 	@Timeout
 	public void programmaticTimeout(Timer timer) {
 		this.setLastProgrammaticTimeout(new Date());
@@ -57,6 +61,7 @@ public class TimerSessionBean {
 		firstCallerSession.call();
 		secondCallerSession.call();
 		controllerSession.control();
+		thirdSession.businessMethod();
 
 		LOG.info("<-- automaticTimeout()");
 	}
