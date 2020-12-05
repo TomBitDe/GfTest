@@ -24,11 +24,11 @@
 		<payara.domainDir>${payara.home}/glassfish/domains</payara.domainDir>
 		<payara.domainName>domain1</payara.domainName>
 		<payara.username>admin</payara.username>
-        <payara.password></payara.password>
+		<payara.password></payara.password>
 	</properties>
 
 	<dependencies>
-        <!-- web and ejb modules -->
+		<!-- web and ejb modules -->
 		<dependency>
 			<groupId>com.home.gftest</groupId>
 			<artifactId>ejb</artifactId>
@@ -46,6 +46,11 @@
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
 		</dependency>
 	</dependencies>
@@ -87,19 +92,19 @@
 						<home>${payara.home}</home>
 					</container>
 					<configuration>
-					<type>existing</type>
-					<home>${payara.domainDir}</home>
-					<properties>
-						<cargo.glassfish.domain.name>${payara.domainName}</cargo.glassfish.domain.name>
-					</properties>
+						<type>existing</type>
+						<home>${payara.domainDir}</home>
+						<properties>
+							<cargo.glassfish.domain.name>${payara.domainName}</cargo.glassfish.domain.name>
+						</properties>
 					</configuration>
 					<ignoreFailures>true</ignoreFailures>
 					<deployables>
-					    <deployable>
-					        <groupId>com.home.gftest</groupId>
-      						<artifactId>ear</artifactId>
-      						<type>ear</type>
-					    </deployable>
+						<deployable>
+							<groupId>com.home.gftest</groupId>
+							<artifactId>ear</artifactId>
+							<type>ear</type>
+						</deployable>
 					</deployables>
 				</configuration>
 				<dependencies>
@@ -117,11 +122,11 @@
 							<goal>start</goal>
 							<goal>redeploy</goal>
 						</goals>
-					    <configuration>
+						<configuration>
 							<container>
-           			    		<timeout>180000</timeout>
+								<timeout>180000</timeout>
 							</container>
-					    </configuration>
+						</configuration>
 					</execution>
 					<execution>
 						<id>undeploy</id>
@@ -132,6 +137,6 @@
 					</execution>
 				</executions>
 			</plugin>
-	    </plugins>
+		</plugins>
 	</build>
 </project>
