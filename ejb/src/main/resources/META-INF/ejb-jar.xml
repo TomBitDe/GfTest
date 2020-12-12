@@ -12,16 +12,30 @@
 		</session>
 		<!-- The two PingWorker definitions run in Payara when deployed -->
 		<session>
-			<ejb-name>PingWorker</ejb-name>
+			<ejb-name>PingWorkerBean</ejb-name>
 			<local-bean />
 			<ejb-class>com.home.gftest.ejb.ping.PingWorkerBean</ejb-class>
 			<session-type>Stateless</session-type>
 		</session>
 		<session>
-			<ejb-name>PingProcessor</ejb-name>
+			<ejb-name>PingProcessorBean</ejb-name>
 			<local-bean />
 			<ejb-class>com.home.gftest.ejb.ping.PingWorkerBean</ejb-class>
 			<session-type>Stateless</session-type>
+		</session>
+		<session>
+			<ejb-name>PingControllerBean</ejb-name>
+			<session-type>Stateless</session-type>
+			<ejb-local-ref>
+				<ejb-ref-name>com.home.gftest.ejb.ping.PingControllerBean/pingWorker</ejb-ref-name>
+				<ejb-ref-type>Session</ejb-ref-type>
+				<ejb-link>PingWorkerBean</ejb-link>
+			</ejb-local-ref>
+			<ejb-local-ref>
+				<ejb-ref-name>com.home.gftest.ejb.ping.PingControllerBean/pingProcessor</ejb-ref-name>
+				<ejb-ref-type>Session</ejb-ref-type>
+				<ejb-link>PingProcessorBean</ejb-link>
+			</ejb-local-ref>
 		</session>
 		<!-- Override bean here -->
 		<session>

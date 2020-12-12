@@ -14,13 +14,13 @@ import org.apache.log4j.Logger;
 public class PingControllerBean {
 	private static final Logger LOG = Logger.getLogger(PingControllerBean.class);
 
-	@EJB (beanName="PingAlias")
+	@EJB(beanName="PingAlias")
 	PingWorkerBean pingAlias;
 
-	@EJB (beanName="PingWorker")
+	@EJB
 	PingWorkerBean pingWorker;
 
-	@EJB (beanName="PingProcessor")
+	@EJB
 	PingWorkerBean pingProcessor;
 
 	/**

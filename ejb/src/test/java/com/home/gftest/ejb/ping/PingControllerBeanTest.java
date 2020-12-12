@@ -20,7 +20,6 @@ import org.junit.runner.RunWith;
 /**
  * Test the ping controller bean.
  */
-@Ignore
 @RunWith(Arquillian.class)
 public class PingControllerBeanTest {
 	private static final Logger LOG = Logger.getLogger(PingControllerBeanTest.class);
