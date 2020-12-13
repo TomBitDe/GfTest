@@ -19,7 +19,9 @@ import com.home.gftest.ejb.samplesession.ControllerSession;
 import com.home.gftest.ejb.samplesession.ThirdSession;
 
 /**
- * Implementation of a timer controlled bean.
+ * Implementation of a timer controlled bean<br>
+ * <p>
+ * Call other session beans to test when running in the application server.
  */
 @Singleton
 public class TimerSessionBean {
@@ -52,6 +54,9 @@ public class TimerSessionBean {
 		LOG.info("Programmatic timeout occurred.");
 	}
 
+	/**
+	 * Call all the session bean to run them in the application server periodically
+	 */
 	@Schedule(minute="*/1", hour="*")
 	public void automaticTimeout() {
 		LOG.info("--> automaticTimeout()");

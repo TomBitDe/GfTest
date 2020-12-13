@@ -17,7 +17,7 @@ public class ControllerSessionBean implements ControllerSession {
 	private static final Logger LOG = Logger.getLogger(ControllerSessionBean.class.getName());
 
 	/**
-	 * Simple call of an other local bean
+	 * Simple call of an other local bean can be overwritten in ejb-jar.xml
 	 */
 	@EJB
 	private NewSession newSession;

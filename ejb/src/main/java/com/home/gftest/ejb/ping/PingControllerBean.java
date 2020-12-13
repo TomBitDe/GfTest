@@ -7,7 +7,9 @@ import javax.ejb.Stateless;
 import org.apache.log4j.Logger;
 
 /**
- * Session Bean implementation class PingControllerBean
+ * Session Bean implementation class PingControllerBean<br>
+ * <p>
+ * Purpose is to call local ping worker session beans.
  */
 @Stateless
 @LocalBean
@@ -32,6 +34,11 @@ public class PingControllerBean {
 		LOG.info("<-- PingControllerBean");
 	}
 
+	/**
+	 * Run the worker local session beans
+	 * 
+	 * @return pong for every called worker
+	 */
 	public String runPing() {
 		LOG.info("--> runPing");
 		LOG.info("<-- runPing");

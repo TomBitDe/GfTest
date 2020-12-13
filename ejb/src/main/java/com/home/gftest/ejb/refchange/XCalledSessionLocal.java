@@ -4,7 +4,7 @@
 package com.home.gftest.ejb.refchange;
 
 /**
- * Called Session local interface definition.
+ * Called Session local interface definition
  */
 public interface XCalledSessionLocal {
 	/**

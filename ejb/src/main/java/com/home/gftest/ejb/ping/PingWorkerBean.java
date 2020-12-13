@@ -6,7 +6,9 @@ import javax.ejb.Stateless;
 import org.apache.log4j.Logger;
 
 /**
- * Session Bean implementation class PingWorkerBean
+ * Session Bean implementation class PingWorkerBean<br>
+ * <p>
+ * Purpose is to implement just one local worker session bean that can be used in ejb-jar.xml for redefinition.
  */
 @Stateless(name = "PingAlias")
 @LocalBean
@@ -22,6 +24,13 @@ public class PingWorkerBean {
 		LOG.info("<-- PingWorkerBean");
 	}
 
+	/**
+	 * Reply with pong
+	 * 
+	 * @param who the name of the called worker session bean
+	 * 
+	 * @return pong
+	 */
 	public String ping(String who) {
 		LOG.info("--> ping (" + who + ")");
 		LOG.info("<-- ping (" + who + ")");

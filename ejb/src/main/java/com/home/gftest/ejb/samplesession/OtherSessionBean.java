@@ -7,7 +7,7 @@ import org.apache.log4j.Logger;
 
 
 /**
- *
+ *  An other session
  */
 @Stateless
 @Local(com.home.gftest.ejb.samplesession.OtherSession.class)

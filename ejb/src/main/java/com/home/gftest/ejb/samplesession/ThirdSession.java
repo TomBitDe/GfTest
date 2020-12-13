@@ -4,7 +4,7 @@ import org.apache.log4j.Logger;
 
 
 /**
- * A simple POJO class
+ * A simple POJO class session
  */
 public class ThirdSession {
 	private static final Logger LOG = Logger.getLogger(ThirdSession.class.getName());
