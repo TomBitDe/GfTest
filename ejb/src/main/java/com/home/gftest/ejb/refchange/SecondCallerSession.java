@@ -7,7 +7,7 @@ import javax.ejb.Stateless;
 import org.apache.log4j.Logger;
 
 /**
- * Session Bean implementation class FirstCallerSession
+ * Session Bean implementation class SecondCallerSession
  */
 @Stateless
 @Local(com.home.gftest.ejb.refchange.SecondCallerSessionLocal.class)

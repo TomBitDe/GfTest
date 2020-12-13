@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.home.gftest.ejb.refchange;
 
 /**

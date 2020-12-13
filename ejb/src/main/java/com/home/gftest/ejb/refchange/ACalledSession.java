@@ -6,7 +6,9 @@ import javax.ejb.Stateless;
 import org.apache.log4j.Logger;
 
 /**
- * Session Bean implementation class ACalledSession
+ * Session Bean implementation class ACalledSession<br>
+ * <p>
+ * Implements two local interfaces. CalledSessionLocal is common to all called session for overriding.
  */
 @Stateless
 @Local({CalledSessionLocal.class, ACalledSessionLocal.class})
