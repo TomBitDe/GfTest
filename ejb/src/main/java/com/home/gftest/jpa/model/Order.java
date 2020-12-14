@@ -15,7 +15,7 @@ import javax.persistence.Version;
  * The sample order class
  */
 @Entity
-@Table(name = "ORDER", schema = "test")
+@Table(name = "ORDER", schema = "ARQTEST")
 public class Order implements Serializable {
 	private static final long serialVersionUID = 6695356386904131476L;
 

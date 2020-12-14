@@ -17,6 +17,8 @@ import com.home.gftest.ejb.refchange.FirstCallerSessionLocal;
 import com.home.gftest.ejb.refchange.SecondCallerSessionLocal;
 import com.home.gftest.ejb.samplesession.ControllerSession;
 import com.home.gftest.ejb.samplesession.ThirdSession;
+import com.home.gftest.jpa.OrderManagerLocal;
+import com.home.gftest.jpa.model.Order;
 
 /**
  * Implementation of a timer controlled bean<br>
@@ -48,6 +50,9 @@ public class TimerSessionBean {
 	@EJB
 	ThirdSession thirdSession;
 
+	@EJB
+	OrderManagerLocal orderManager;
+
 	@Timeout
 	public void programmaticTimeout(Timer timer) {
 		this.setLastProgrammaticTimeout(new Date());
@@ -67,6 +72,10 @@ public class TimerSessionBean {
 		secondCallerSession.call();
 		controllerSession.control();
 		thirdSession.businessMethod();
+
+		Order order = new Order("Test customer");
+		orderManager.create(order);
+		orderManager.delete(order.getId());
 
 		LOG.info("<-- automaticTimeout()");
 	}
