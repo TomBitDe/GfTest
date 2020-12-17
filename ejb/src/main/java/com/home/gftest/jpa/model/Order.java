@@ -15,7 +15,7 @@ import javax.persistence.Version;
  * The sample order class
  */
 @Entity
-@Table(name = "ORDER", schema = "ARQTEST")
+@Table(name = "MOVEORDER") // NEVER use name="ORDER" because ORDER is a reserved keyword in SQL
 public class Order implements Serializable {
 	private static final long serialVersionUID = 6695356386904131476L;
 
