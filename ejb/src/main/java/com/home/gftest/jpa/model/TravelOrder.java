@@ -12,45 +12,45 @@ import javax.persistence.Table;
 import javax.persistence.Version;
 
 /**
- * The sample order class
+ * The sample move order class
  */
 @Entity
-@Table(name = "MOVEORDER") // NEVER use name="ORDER" because ORDER is a reserved keyword in SQL
-public class Order implements Serializable {
+@Table(name = "TRAVELORDER") // NEVER use name="ORDER" because ORDER is a reserved keyword in SQL
+public class TravelOrder implements Serializable {
 	private static final long serialVersionUID = 6695356386904131476L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private long id;
+	private Long id;
 
-	@Column(name = "CUSTOMER", nullable = false)
-	private String customer;
+	@Column(name = "DESTINATION", nullable = false)
+	private String destination;
 
 	@Version
 	private int version;
 
-	public Order() { super(); }
+	public TravelOrder() { super(); }
 
-	public Order(String customer) {
+	public TravelOrder(String destination) {
 		super();
 
-		this.customer = customer;
+		this.destination = destination;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	protected void setId(long id) {
+	protected void setId(Long id) {
 		this.id = id;
 	}
 
-	public String getCustomer() {
-		return customer;
+	public String getDestination() {
+		return destination;
 	}
 
-	public void setCustomer(String customer) {
-		this.customer = customer;
+	public void setDestination(String destination) {
+		this.destination = destination;
 	}
 
 	public int getVersion() {
@@ -63,7 +63,7 @@ public class Order implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(customer, id, version);
+		return Objects.hash(destination, id, version);
 	}
 
 	@Override
@@ -74,18 +74,18 @@ public class Order implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Order other = (Order) obj;
+		TravelOrder other = (TravelOrder) obj;
 
-		return Objects.equals(customer, other.customer) && id == other.id && version == other.version;
+		return Objects.equals(destination, other.destination) && id == other.id && version == other.version;
 	}
 
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Order [id=");
+		builder.append("TravelOrder [id=");
 		builder.append(id);
-		builder.append(", customer=");
-		builder.append(customer);
+		builder.append(", destination=");
+		builder.append(destination);
 		builder.append(", version=");
 		builder.append(version);
 		builder.append("]");

@@ -9,7 +9,7 @@ import javax.persistence.PersistenceContext;
 
 import org.apache.log4j.Logger;
 
-import com.home.gftest.jpa.model.Order;
+import com.home.gftest.jpa.model.TravelOrder;
 
 /**
  * Session Bean implementation class OrderManagerBean
@@ -33,7 +33,7 @@ public class OrderManagerBean implements OrderManagerLocal {
 	}
 
 	@Override
-	public void create(Order order) {
+	public void create(TravelOrder order) {
 		LOG.debug("--> create");
 
 		em.persist(order);
@@ -42,10 +42,10 @@ public class OrderManagerBean implements OrderManagerLocal {
 	}
 
 	@Override
-	public Order getById(long id) {
+	public TravelOrder getById(Long id) {
 		LOG.debug("--> getById(" + id + ')');
 
-		Order order = em.find(Order.class, id);
+		TravelOrder order = em.find(TravelOrder.class, id);
 
 		LOG.debug("<-- getById");
 
@@ -53,10 +53,10 @@ public class OrderManagerBean implements OrderManagerLocal {
 	}
 
 	@Override
-	public Order delete(long id) {
+	public TravelOrder delete(Long id) {
 		LOG.debug("--> delete(" + id + ')');
 
-		Order order = getById(id);
+		TravelOrder order = getById(id);
 
 		if (order != null) {
 			em.remove(order);

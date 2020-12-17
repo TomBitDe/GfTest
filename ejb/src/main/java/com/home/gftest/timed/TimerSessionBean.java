@@ -18,7 +18,7 @@ import com.home.gftest.ejb.refchange.SecondCallerSessionLocal;
 import com.home.gftest.ejb.samplesession.ControllerSession;
 import com.home.gftest.ejb.samplesession.ThirdSession;
 import com.home.gftest.jpa.OrderManagerLocal;
-import com.home.gftest.jpa.model.Order;
+import com.home.gftest.jpa.model.TravelOrder;
 
 /**
  * Implementation of a timer controlled bean<br>
@@ -73,7 +73,7 @@ public class TimerSessionBean {
 		controllerSession.control();
 		thirdSession.businessMethod();
 
-		Order order = new Order("Test customer");
+		TravelOrder order = new TravelOrder("Test customer");
 		orderManager.create(order);
 		orderManager.delete(order.getId());
 
