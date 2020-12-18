@@ -1,11 +1,15 @@
 package com.home.gftest.jpa;
 
-import com.home.gftest.jpa.model.TravelOrder;
+import java.util.List;
+
+import com.home.gftest.jpa.model.Order;
 
 public interface OrderManagerLocal {
-	public void create(TravelOrder order);
+	public void create(Order order);
 
-	public TravelOrder getById(Long id);
+	public Order getById(Long id);
 
-	public TravelOrder delete(Long id);
+	public Order delete(Long id);
+
+	public List<Order> getAll();
 }

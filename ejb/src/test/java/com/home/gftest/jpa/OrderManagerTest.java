@@ -1,8 +1,10 @@
 package com.home.gftest.jpa;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.io.File;
+import java.util.List;
 
 import javax.ejb.EJB;
 
@@ -16,10 +18,11 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import com.home.gftest.jpa.model.TravelOrder;
+import com.home.gftest.jpa.model.Order;
+import com.home.gftest.jpa.model.OrderItem;
 
 /**
- * Test the first caller session bean.
+ * Test the order manager session bean.
  */
 @RunWith(Arquillian.class)
 public class OrderManagerTest {
@@ -27,17 +30,20 @@ public class OrderManagerTest {
 
 	@EJB
 	OrderManagerLocal orderManager;
+	@EJB
+	OrderItemManagerLocal orderItemManager;
 
 	@Deployment
 	public static JavaArchive createTestArchive() {
 		JavaArchive archive = ShrinkWrap.create(JavaArchive.class, "test.jar")
-				/* Put the test-ejb-jar.xml in JARs META-INF folder as ejb-jar.xml */
+				/* Put the test-*.xml in JARs META-INF folder as *.xml */
 				.addAsManifestResource(new File("src/test/resources/META-INF/test-persistence.xml"), "persistence.xml")
 				.addAsManifestResource(new File("src/test/resources/META-INF/test-ejb-jar.xml"), "ejb-jar.xml")
 				.addAsManifestResource(new File("src/test/resources/META-INF/test-glassfish-ejb-jar.xml"), "glassfish-ejb-jar.xml")
 				.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
 				.addClasses(
-						OrderManagerLocal.class, OrderManagerBean.class
+						OrderManagerLocal.class, OrderManagerBean.class,
+						OrderItemManagerLocal.class, OrderItemManagerBean.class
 						);
 
 		System.out.println(archive.toString(true));
@@ -50,11 +56,39 @@ public class OrderManagerTest {
 	public void create() {
 		LOG.info("Test create()");
 
-		TravelOrder expOrder = new TravelOrder("FRA");
+		Order expOrder = new Order("BASF");
+		OrderItem expOrderItem1 = new OrderItem(expOrder, 10);
+		expOrder.addItem(expOrderItem1);
+		OrderItem expOrderItem2 = new OrderItem(expOrder, 500);
+		expOrder.addItem(expOrderItem2);
+		OrderItem expOrderItem3 = new OrderItem(expOrder, 70);
+		expOrder.addItem(expOrderItem3);
+		OrderItem expOrderItem4 = new OrderItem(expOrder, 12);
+		expOrder.addItem(expOrderItem4);
 
 		orderManager.create(expOrder);
-		TravelOrder order = orderManager.getById(expOrder.getId());
+		Order order = orderManager.getById(expOrder.getId());
 		assertEquals(expOrder, order);
+	}
+
+	@Test
+	public void getAllOrders() {
+		LOG.info("Test Order getAll()");
+
+		List<Order> orders = orderManager.getAll();
+		assertTrue(orders.size() == 1);
+
+		orders.forEach(elem -> {LOG.info(elem);});
+	}
+
+	@Test
+	public void getAllOrderItems() {
+		LOG.info("Test OrderItem getAll()");
+
+		List<OrderItem> orderItems = orderItemManager.getAll();
+		assertTrue(orderItems.size() == 4);
+
+		orderItems.forEach(elem -> {LOG.info(elem);});
 	}
 
 	@Test
@@ -62,10 +96,10 @@ public class OrderManagerTest {
 	public void delete() {
 		LOG.info("Test delete()");
 
-		TravelOrder expOrder = new TravelOrder("DUS");
+		Order expOrder = new Order("BAYER");
 
 		orderManager.create(expOrder);
-		TravelOrder order = orderManager.getById(expOrder.getId());
+		Order order = orderManager.getById(expOrder.getId());
 		assertEquals(expOrder, order);
 
 		order = orderManager.delete(order.getId());

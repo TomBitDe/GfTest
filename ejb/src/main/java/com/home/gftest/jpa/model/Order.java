@@ -1,40 +1,48 @@
 package com.home.gftest.jpa.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
 /**
- * The sample move order class
+ * The sample order class
  */
 @Entity
-@Table(name = "TRAVELORDER") // NEVER use name="ORDER" because ORDER is a reserved keyword in SQL
-public class TravelOrder implements Serializable {
+@Table(name = "`ORDER`") // NEVER use name="ORDER" because ORDER is a reserved keyword in SQL
+public class Order implements Serializable {
 	private static final long serialVersionUID = 6695356386904131476L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name = "ID")
 	private Long id;
 
-	@Column(name = "DESTINATION", nullable = false)
-	private String destination;
+	@Column(name = "CUSTOMER", nullable = false)
+	private String customer;
 
 	@Version
 	private int version;
 
-	public TravelOrder() { super(); }
+	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "order")
+	private Set<OrderItem> items = new HashSet<>();
 
-	public TravelOrder(String destination) {
+	public Order() { super(); }
+
+	public Order(String customer) {
 		super();
 
-		this.destination = destination;
+		this.customer = customer;
 	}
 
 	public Long getId() {
@@ -45,12 +53,12 @@ public class TravelOrder implements Serializable {
 		this.id = id;
 	}
 
-	public String getDestination() {
-		return destination;
+	public String getCustomer() {
+		return customer;
 	}
 
-	public void setDestination(String destination) {
-		this.destination = destination;
+	public void setCustomer(String customer) {
+		this.customer = customer;
 	}
 
 	public int getVersion() {
@@ -61,9 +69,22 @@ public class TravelOrder implements Serializable {
 		this.version = version;
 	}
 
+	public Set<OrderItem> getItems() {
+		return items;
+	}
+
+	public void setItems(Set<OrderItem> items) {
+		this.items = items;
+	}
+
+	public void addItem(OrderItem item) {
+		item.setOrder(this);
+		items.add(item);
+	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(destination, id, version);
+		return Objects.hash(customer, id, version);
 	}
 
 	@Override
@@ -74,18 +95,17 @@ public class TravelOrder implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		TravelOrder other = (TravelOrder) obj;
-
-		return Objects.equals(destination, other.destination) && id == other.id && version == other.version;
+		Order other = (Order) obj;
+		return Objects.equals(customer, other.customer) && Objects.equals(id, other.id) && version == other.version;
 	}
 
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("TravelOrder [id=");
+		builder.append("Order [id=");
 		builder.append(id);
-		builder.append(", destination=");
-		builder.append(destination);
+		builder.append(", customer=");
+		builder.append(customer);
 		builder.append(", version=");
 		builder.append(version);
 		builder.append("]");

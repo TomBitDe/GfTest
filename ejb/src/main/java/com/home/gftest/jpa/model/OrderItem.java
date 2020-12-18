@@ -4,24 +4,31 @@ import java.io.Serializable;
 import java.util.Objects;
 
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
 /**
- * The sample order item class
+ * The sample order item lass
  */
 @Entity
 @Table(name = "ORDERITEM")
 public class OrderItem implements Serializable {
 	private static final long serialVersionUID = 6695356386904131476L;
 
-	@EmbeddedId
-	private OrderItemPK id;
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name = "ITEM")
+	private Long item;
 
-	@Column(name = "PRODUCTCODE", nullable = false)
-	private Integer productCode;
+	@ManyToOne( targetEntity = Order.class )
+	@JoinColumn(name = "ID", nullable = false)
+	Order order;
 
 	@Column(name = "QUANTITY", nullable = false)
 	private Integer quantity;
@@ -31,28 +38,26 @@ public class OrderItem implements Serializable {
 
 	public OrderItem() { super(); }
 
-	public OrderItem(OrderItemPK id, Integer productCode, Integer quantity) {
+	public OrderItem(Order order, Integer quantity) {
 		super();
-
-		this.id = id;
-		this.productCode = productCode;
+		this.order = order;
 		this.quantity = quantity;
 	}
 
-	public OrderItemPK getId() {
-		return id;
+	public Long getItem() {
+		return item;
 	}
 
-	protected void setId(OrderItemPK id) {
-		this.id = id;
+	public void setItem(Long item) {
+		this.item = item;
 	}
 
-	public Integer getProductCode() {
-		return productCode;
+	public Order getOrder() {
+		return order;
 	}
 
-	public void setProductCode(Integer productCode) {
-		this.productCode = productCode;
+	public void setOrder(Order order) {
+		this.order = order;
 	}
 
 	public Integer getQuantity() {
@@ -73,7 +78,7 @@ public class OrderItem implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, productCode, quantity, version);
+		return Objects.hash(item, order, quantity, version);
 	}
 
 	@Override
@@ -85,17 +90,17 @@ public class OrderItem implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		OrderItem other = (OrderItem) obj;
-		return Objects.equals(id, other.id) && Objects.equals(productCode, other.productCode)
+		return Objects.equals(item, other.item) && Objects.equals(order, other.order)
 				&& Objects.equals(quantity, other.quantity) && version == other.version;
 	}
 
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("OrderItem [id=");
-		builder.append(id);
-		builder.append(", productCode=");
-		builder.append(productCode);
+		builder.append("OrderItem [item=");
+		builder.append(item);
+		builder.append(", order=");
+		builder.append(order);
 		builder.append(", quantity=");
 		builder.append(quantity);
 		builder.append(", version=");

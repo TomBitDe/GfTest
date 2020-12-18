@@ -12,16 +12,16 @@ import javax.persistence.TypedQuery;
 
 import org.apache.log4j.Logger;
 
-import com.home.gftest.jpa.model.Order;
+import com.home.gftest.jpa.model.OrderItem;
 
 /**
- * Session Bean implementation class OrderManagerBean
+ * Session Bean implementation class OrderItemManagerBean
  */
 @Stateless
-@Local(OrderManagerLocal.class)
+@Local(OrderItemManagerLocal.class)
 @TransactionAttribute(TransactionAttributeType.REQUIRED)
-public class OrderManagerBean implements OrderManagerLocal {
-	private static final Logger LOG = Logger.getLogger(OrderManagerBean.class);
+public class OrderItemManagerBean implements OrderItemManagerLocal {
+	private static final Logger LOG = Logger.getLogger(OrderItemManagerBean.class);
 
 	@PersistenceContext
 	private EntityManager em;
@@ -29,58 +29,49 @@ public class OrderManagerBean implements OrderManagerLocal {
 	/**
 	 * Default constructor.
 	 */
-	public OrderManagerBean() {
+	public OrderItemManagerBean() {
 		super();
 		LOG.debug("--> OrderManager");
 		LOG.debug("<-- OrderManager");
 	}
 
 	@Override
-	public void create(Order order) {
-		LOG.debug("--> create");
-
-		em.persist(order);
-
-		LOG.debug("<-- create");
-	}
-
-	@Override
-	public Order getById(Long id) {
+	public OrderItem getById(Long id) {
 		LOG.debug("--> getById(" + id + ')');
 
-		Order order = em.find(Order.class, id);
+		OrderItem orderItem = em.find(OrderItem.class, id);
 
 		LOG.debug("<-- getById");
 
-		return order;
+		return orderItem;
 	}
 
 	@Override
-	public Order delete(Long id) {
+	public OrderItem delete(Long id) {
 		LOG.debug("--> delete(" + id + ')');
 
-		Order order = getById(id);
+		OrderItem orderItem = getById(id);
 
-		if (order != null) {
-			em.remove(order);
+		if (orderItem != null) {
+			em.remove(orderItem);
 
-			LOG.debug("deleted: " + order);
+			LOG.debug("deleted: " + orderItem);
 		}
 		else {
 			LOG.debug(id + " not found");
 		}
-		return order;
+		return orderItem;
 	}
 
 	@Override
-	public List<Order> getAll() {
+	public List<OrderItem> getAll() {
 		LOG.debug("--> getAll()");
 
-		TypedQuery<Order> query = em.createQuery("SELECT o FROM Order o", Order.class);
-		List<Order> orders = query.getResultList();
+		TypedQuery<OrderItem> query = em.createQuery("SELECT oi FROM OrderItem oi", OrderItem.class);
+		List<OrderItem> orderItems = query.getResultList();
 
 		LOG.debug("<-- getAll()");
 
-		return orders;
+		return orderItems;
 	}
 }
