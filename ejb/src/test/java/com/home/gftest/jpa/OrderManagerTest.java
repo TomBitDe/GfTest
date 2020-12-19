@@ -1,6 +1,8 @@
 package com.home.gftest.jpa;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
@@ -51,10 +53,29 @@ public class OrderManagerTest {
 		return archive;
 	}
 
+	/**
+	 * Simple order with no reference to order items
+	 */
 	@Test
 	@InSequence(0)
 	public void create() {
 		LOG.info("Test create()");
+
+		Order expOrder = new Order("SYMRISE");
+
+		orderManager.create(expOrder);
+		Order order = orderManager.getById(expOrder.getId());
+		assertEquals(expOrder, order);
+	}
+
+	/**
+	 * Order with reference to order items
+	 * On create(expOrder) all the order items are persisted too (CascadeType.PERSIST)
+	 */
+	@Test
+	@InSequence(0)
+	public void cascade_create() {
+		LOG.info("Test cascade_create()");
 
 		Order expOrder = new Order("BASF");
 		OrderItem expOrderItem1 = new OrderItem(expOrder, 10);
@@ -76,7 +97,7 @@ public class OrderManagerTest {
 		LOG.info("Test Order getAll()");
 
 		List<Order> orders = orderManager.getAll();
-		assertTrue(orders.size() == 1);
+		assertFalse(orders.isEmpty());
 
 		orders.forEach(elem -> {LOG.info(elem);});
 	}
@@ -86,23 +107,42 @@ public class OrderManagerTest {
 		LOG.info("Test OrderItem getAll()");
 
 		List<OrderItem> orderItems = orderItemManager.getAll();
-		assertTrue(orderItems.size() == 4);
+		assertFalse(orderItems.isEmpty());
 
 		orderItems.forEach(elem -> {LOG.info(elem);});
 	}
 
 	@Test
-	@InSequence(99)
 	public void delete() {
 		LOG.info("Test delete()");
 
 		Order expOrder = new Order("BAYER");
 
 		orderManager.create(expOrder);
-		Order order = orderManager.getById(expOrder.getId());
+		Order order = orderManager.delete(expOrder);
+
 		assertEquals(expOrder, order);
 
-		order = orderManager.delete(order.getId());
-		assertEquals(expOrder, order);
+		expOrder = new Order("Curenta");
+		// No persistence before delete
+		order = orderManager.delete(expOrder);
+
+		assertNull(order);
+	}
+
+	/**
+	 * Order with reference to order items exist
+	 * On delete(elem.getId()) all the order items are deleted too (CascadeType.REMOVE)
+	 */
+	@Test
+	@InSequence(99)
+	public void cascade_delete() {
+		LOG.info("Test cascade_delete()");
+
+		List<Order> orders = orderManager.getAll();
+		orders.forEach(elem -> {orderManager.delete( elem ); });
+
+		assertTrue(orderManager.getAll().isEmpty());
+		assertTrue(orderItemManager.getAll().isEmpty());
 	}
 }

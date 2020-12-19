@@ -34,7 +34,8 @@ public class Order implements Serializable {
 	@Version
 	private int version;
 
-	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "order")
+	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE },
+			mappedBy = "order")
 	private Set<OrderItem> items = new HashSet<>();
 
 	public Order() { super(); }

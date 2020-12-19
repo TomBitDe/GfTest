@@ -9,5 +9,7 @@ public interface OrderItemManagerLocal {
 
 	public OrderItem delete(Long id);
 
+	public OrderItem delete(OrderItem orderItem);
+
 	public List<OrderItem> getAll();
 }

@@ -67,9 +67,27 @@ public class OrderManagerBean implements OrderManagerLocal {
 			LOG.debug("deleted: " + order);
 		}
 		else {
-			LOG.debug(id + " not found");
+			LOG.debug("Id <" + id + "> not found");
 		}
 		return order;
+	}
+
+	@Override
+	public Order delete(Order order) {
+		LOG.debug("--> delete(" + order + ')');
+
+		if (order != null && order.getId() != null) {
+
+			Order oldOrder = delete(order.getId());
+
+			LOG.debug("<-- delete()");
+
+			return oldOrder;
+		}
+
+		LOG.debug("<-- delete()");
+
+		return null;
 	}
 
 	@Override

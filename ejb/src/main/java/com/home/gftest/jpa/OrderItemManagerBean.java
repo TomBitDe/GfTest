@@ -58,9 +58,26 @@ public class OrderItemManagerBean implements OrderItemManagerLocal {
 			LOG.debug("deleted: " + orderItem);
 		}
 		else {
-			LOG.debug(id + " not found");
+			LOG.debug("Id <" + id + "> not found");
 		}
 		return orderItem;
+	}
+
+	@Override
+	public OrderItem delete(OrderItem orderItem) {
+		LOG.debug("--> delete(" + orderItem + ')');
+
+		if (orderItem != null && orderItem.getId() != null) {
+			OrderItem oldOrderItem = delete(orderItem.getId());
+
+			LOG.debug("<-- delete()");
+
+			return oldOrderItem;
+		}
+
+		LOG.debug("<-- delete()");
+
+		return null;
 	}
 
 	@Override

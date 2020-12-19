@@ -5,6 +5,7 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,7 +15,7 @@ import javax.persistence.Table;
 import javax.persistence.Version;
 
 /**
- * The sample order item lass
+ * The sample order id lass
  */
 @Entity
 @Table(name = "ORDERITEM")
@@ -23,12 +24,12 @@ public class OrderItem implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name = "ITEM")
-	private Long item;
+	@Column(name = "ITEM_ID") // must not be ID because of @JoinColumn(name = "ID", ...
+	private Long id;
 
-	@ManyToOne( targetEntity = Order.class )
+	@ManyToOne( targetEntity = Order.class, fetch = FetchType.LAZY) // LAZY for better performance)
 	@JoinColumn(name = "ID", nullable = false)
-	Order order;
+	private Order order;
 
 	@Column(name = "QUANTITY", nullable = false)
 	private Integer quantity;
@@ -44,12 +45,12 @@ public class OrderItem implements Serializable {
 		this.quantity = quantity;
 	}
 
-	public Long getItem() {
-		return item;
+	public Long getId() {
+		return id;
 	}
 
-	public void setItem(Long item) {
-		this.item = item;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public Order getOrder() {
@@ -78,7 +79,7 @@ public class OrderItem implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(item, order, quantity, version);
+		return Objects.hash(id, order, quantity, version);
 	}
 
 	@Override
@@ -90,15 +91,15 @@ public class OrderItem implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		OrderItem other = (OrderItem) obj;
-		return Objects.equals(item, other.item) && Objects.equals(order, other.order)
+		return Objects.equals(id, other.id) && Objects.equals(order, other.order)
 				&& Objects.equals(quantity, other.quantity) && version == other.version;
 	}
 
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("OrderItem [item=");
-		builder.append(item);
+		builder.append("OrderItem [id=");
+		builder.append(id);
 		builder.append(", order=");
 		builder.append(order);
 		builder.append(", quantity=");
