@@ -1,9 +1,11 @@
 package com.home.gftest.jpa.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -31,11 +33,23 @@ public class Component implements Serializable {
 	@Version
 	private int version;
 
-	@ManyToMany( mappedBy = "components", fetch = FetchType.LAZY )
-    private Set<Delivery> deliveries;
+	@ManyToMany( mappedBy = "components", fetch = FetchType.LAZY,
+			cascade = { CascadeType.MERGE, CascadeType.REMOVE })
+    private Set<Delivery> deliveries = new HashSet<>();
 
 	public Component() {
 		super();
+	}
+
+	public Component(Long componentId) {
+		super();
+		this.componentId = componentId;
+	}
+
+	public Component(Long componentId, String comment) {
+		super();
+		this.componentId = componentId;
+		this.comment = comment;
 	}
 
 	public Long getComponentId() {
@@ -72,7 +86,6 @@ public class Component implements Serializable {
 
 	public void addDelivery(Delivery delivery) {
 		deliveries.add(delivery);
-		delivery.addComponent(this);
 	}
 
 	@Override
@@ -104,8 +117,6 @@ public class Component implements Serializable {
 		builder.append(comment);
 		builder.append(", version=");
 		builder.append(version);
-		builder.append(", deliveries=");
-		builder.append(deliveries);
 		builder.append("]");
 		return builder.toString();
 	}
