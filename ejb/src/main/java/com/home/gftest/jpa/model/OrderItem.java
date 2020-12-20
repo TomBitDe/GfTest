@@ -15,7 +15,7 @@ import javax.persistence.Table;
 import javax.persistence.Version;
 
 /**
- * The sample order id lass
+ * The sample order item class
  */
 @Entity
 @Table(name = "ORDERITEM")
@@ -28,7 +28,7 @@ public class OrderItem implements Serializable {
 	private Long id;
 
 	@ManyToOne( targetEntity = Order.class, fetch = FetchType.LAZY) // LAZY for better performance)
-	@JoinColumn(name = "ID", nullable = false)
+	@JoinColumn(name = "ORDER_ID", nullable = false)
 	private Order order;
 
 	@Column(name = "QUANTITY", nullable = false)
@@ -84,12 +84,15 @@ public class OrderItem implements Serializable {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		}
+		if (obj == null) {
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (getClass() != obj.getClass()) {
 			return false;
+		}
 		OrderItem other = (OrderItem) obj;
 		return Objects.equals(id, other.id) && Objects.equals(order, other.order)
 				&& Objects.equals(quantity, other.quantity) && version == other.version;

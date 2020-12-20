@@ -102,6 +102,43 @@ public class OrderManagerTest {
 		orders.forEach(elem -> {LOG.info(elem);});
 	}
 
+	/**
+	 * Check if all referenced order items are also available when reading the order
+	 */
+	@Test
+	public void getOrderById() {
+		LOG.info("Test Order getById()");
+
+		List<Order> orders = orderManager.getAll();
+
+		orders.forEach(elem -> {
+			Order order = orderManager.getById(elem.getId());
+			if (order.getCustomer().equals("BASF")) {
+				assertTrue(order.getItems().size() == 4);
+			}
+		});
+	}
+
+	/**
+	 * Check if order in order item is always valid
+	 */
+	@Test
+	public void getOrderItemById() {
+		LOG.info("Test Order getById()");
+
+		List<OrderItem> orderItems = orderItemManager.getAll();
+
+		assertFalse(orderItems.isEmpty());
+
+		orderItems.forEach(elem -> {
+			assertFalse(elem.getId() == null);
+			assertFalse(elem.getOrder() == null);
+			assertFalse(elem.getQuantity() == null);
+
+			LOG.info(elem);
+		});
+	}
+
 	@Test
 	public void getAllOrderItems() {
 		LOG.info("Test OrderItem getAll()");
@@ -123,7 +160,7 @@ public class OrderManagerTest {
 
 		assertEquals(expOrder, order);
 
-		expOrder = new Order("Curenta");
+		expOrder = new Order("Currenta");
 		// No persistence before delete
 		order = orderManager.delete(expOrder);
 
