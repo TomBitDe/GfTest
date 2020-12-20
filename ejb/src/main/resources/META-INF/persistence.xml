@@ -5,6 +5,8 @@
 	<persistence-unit name="GfTest-PU">
 		<class>com.home.gftest.jpa.model.Order</class>
 		<class>com.home.gftest.jpa.model.OrderItem</class>
+		<class>com.home.gftest.jpa.model.Delivery</class>
+		<class>com.home.gftest.jpa.model.Component</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="org.h2.Driver" />
 			<property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:test" />
