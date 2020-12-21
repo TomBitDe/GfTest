@@ -79,12 +79,16 @@ public class DeliveryManagerTest {
 
 		Delivery expDelivery = new Delivery(2L, "BASF");
 		Component expComponent1 = new Component(1L, "Component 1");
+		expComponent1.addDelivery(expDelivery);
 		expDelivery.addComponent(expComponent1);
 		Component expComponent2 = new Component(2L, "Component 2");
+		expComponent2.addDelivery(expDelivery);
 		expDelivery.addComponent(expComponent2);
 		Component expComponent3 = new Component(3L, "Component 3");
+		expComponent3.addDelivery(expDelivery);
 		expDelivery.addComponent(expComponent3);
 		Component expComponent4 = new Component(4L, "Component 4");
+		expComponent4.addDelivery(expDelivery);
 		expDelivery.addComponent(expComponent4);
 
 		deliverManager.create(expDelivery);
@@ -158,6 +162,30 @@ public class DeliveryManagerTest {
 		LOG.info("Test delete()");
 
 		Delivery expDelivery = new Delivery(3L, "SYMRISE");
+		Component comp1 = new Component(11L, "Component1");
+		comp1.addDelivery(expDelivery);
+		expDelivery.addComponent(comp1);
+		Component comp2 = new Component(12L, "Component2");
+		comp2.addDelivery(expDelivery);
+		expDelivery.addComponent(comp2);
+		Component comp3 = new Component(13L, "Component3");
+		comp3.addDelivery(expDelivery);
+		expDelivery.addComponent(comp3);
+		Component comp4 = new Component(14L, "Component4");
+		comp4.addDelivery(expDelivery);
+		expDelivery.addComponent(comp4);
+		Component comp5 = new Component(15L, "Component5");
+		comp5.addDelivery(expDelivery);
+		expDelivery.addComponent(comp5);
+		Component comp6 = new Component(16L, "Component6");
+		comp6.addDelivery(expDelivery);
+		expDelivery.addComponent(comp6);
+		Component comp7 = new Component(17L, "Component7");
+		comp7.addDelivery(expDelivery);
+		expDelivery.addComponent(comp7);
+		Component comp8 = new Component(18L, "Component8");
+		comp7.addDelivery(expDelivery);
+		expDelivery.addComponent(comp8);
 
 		deliverManager.create(expDelivery);
 		Delivery delivery = deliverManager.delete(expDelivery);
