@@ -53,22 +53,28 @@ public class UserAddressTest {
 	}
 
 	/**
-	 * Simple user with no reference to address
+	 * Simple user with the mandatory reference to address
 	 */
 	@Test
 	@InSequence(0)
 	public void create() {
 		LOG.info("Test create()");
 
-		User expUser = new User("Tom", new Address("4711"));
+		Address expAddress = new Address("4711");
 
-		userAddressManager.create(expUser);
+		User expUser = new User("Tom", expAddress); // User needs the address
+
+		expAddress.setUser(expUser); // Set the bidirectional attribute in address
+
+		userAddressManager.create(expUser); // Persist the user only; address is persisted because of CASCADE
 
 		User user = userAddressManager.getById(expUser.getId());
 		assertEquals(expUser, user);
 
-		// Address user has no been set until now
-		assertNull(user.getAddress().getUser());
+		Address address = userAddressManager.getByUserId(expUser.getId());
+
+		// Address user has already been set
+		assertNotNull(address.getUser());
 
 		LOG.info(user);
 	}

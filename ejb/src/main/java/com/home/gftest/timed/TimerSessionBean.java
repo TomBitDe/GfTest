@@ -19,9 +19,12 @@ import com.home.gftest.ejb.samplesession.ControllerSession;
 import com.home.gftest.ejb.samplesession.ThirdSession;
 import com.home.gftest.jpa.DeliveryManagerLocal;
 import com.home.gftest.jpa.OrderManagerLocal;
+import com.home.gftest.jpa.UserAddressManagerLocal;
+import com.home.gftest.jpa.model.Address;
 import com.home.gftest.jpa.model.Component;
 import com.home.gftest.jpa.model.Delivery;
 import com.home.gftest.jpa.model.Order;
+import com.home.gftest.jpa.model.User;
 
 /**
  * Implementation of a timer controlled bean<br>
@@ -58,6 +61,9 @@ public class TimerSessionBean {
 
 	@EJB
 	DeliveryManagerLocal deliveryManager;
+
+	@EJB
+	UserAddressManagerLocal userAddressManager;
 
 	@Timeout
 	public void programmaticTimeout(Timer timer) {
@@ -106,11 +112,23 @@ public class TimerSessionBean {
 		comp7.addDelivery(delivery);
 		delivery.addComponent(comp7);
 		Component comp8 = new Component(8L, "Component8");
-		comp7.addDelivery(delivery);
+		comp8.addDelivery(delivery);
 		delivery.addComponent(comp8);
 
 		deliveryManager.create(delivery);
+
+		deliveryManager.getAll().forEach(elem -> { LOG.info(elem); });
+
 		deliveryManager.delete(delivery);
+
+		Address address = new Address("4711");
+		User user = new User("Dummy", address);
+		address.setUser(user);
+		userAddressManager.create(user);
+
+		userAddressManager.getAll().forEach(elem -> { LOG.info(elem); });
+
+		userAddressManager.delete(user);
 
 		LOG.info("<-- automaticTimeout()");
 	}

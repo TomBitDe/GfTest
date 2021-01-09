@@ -33,7 +33,7 @@ public class Component implements Serializable {
 	@Version
 	private int version;
 
-	@ManyToMany( mappedBy = "components", fetch = FetchType.LAZY,
+	@ManyToMany( mappedBy = "components", fetch = FetchType.EAGER,
 			cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE })
     private Set<Delivery> deliveries = new HashSet<>();
 

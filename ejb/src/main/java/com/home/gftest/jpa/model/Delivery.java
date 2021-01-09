@@ -35,8 +35,8 @@ public class Delivery implements Serializable {
 	@Version
 	private int version;
 
-	@ManyToMany( cascade = { CascadeType.PERSIST, CascadeType.MERGE },
-			fetch = FetchType.LAZY )
+	@ManyToMany( cascade = { CascadeType.ALL },
+			fetch = FetchType.EAGER )
     @JoinTable( name = "DELIVERY_COMPONENT",
         joinColumns = @JoinColumn( name = "DELIVERY_ID" ),
         inverseJoinColumns = @JoinColumn( name = "COMPONENT_ID" ) )

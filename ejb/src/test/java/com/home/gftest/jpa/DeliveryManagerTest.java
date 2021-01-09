@@ -212,6 +212,6 @@ public class DeliveryManagerTest {
 		deliveries.forEach(elem -> {deliverManager.delete( elem ); });
 
 		assertTrue(deliverManager.getAll().isEmpty());
-		assertFalse(componentManager.getAll().isEmpty());
+		assertTrue(componentManager.getAll().isEmpty());
 	}
 }
