@@ -17,8 +17,14 @@ import com.home.gftest.ejb.refchange.FirstCallerSessionLocal;
 import com.home.gftest.ejb.refchange.SecondCallerSessionLocal;
 import com.home.gftest.ejb.samplesession.ControllerSession;
 import com.home.gftest.ejb.samplesession.ThirdSession;
+import com.home.gftest.jpa.DeliveryManagerLocal;
 import com.home.gftest.jpa.OrderManagerLocal;
+import com.home.gftest.jpa.UserAddressManagerLocal;
+import com.home.gftest.jpa.model.Address;
+import com.home.gftest.jpa.model.Component;
+import com.home.gftest.jpa.model.Delivery;
 import com.home.gftest.jpa.model.Order;
+import com.home.gftest.jpa.model.User;
 
 /**
  * Implementation of a timer controlled bean<br>
@@ -53,6 +59,12 @@ public class TimerSessionBean {
 	@EJB
 	OrderManagerLocal orderManager;
 
+	@EJB
+	DeliveryManagerLocal deliveryManager;
+
+	@EJB
+	UserAddressManagerLocal userAddressManager;
+
 	@Timeout
 	public void programmaticTimeout(Timer timer) {
 		this.setLastProgrammaticTimeout(new Date());
@@ -76,6 +88,47 @@ public class TimerSessionBean {
 		Order order = new Order("Test customer");
 		orderManager.create(order);
 		orderManager.delete(order.getId());
+
+		Delivery delivery = new Delivery(1L, "BASF");
+		Component comp1 = new Component(1L, "Component1");
+		comp1.addDelivery(delivery);
+		delivery.addComponent(comp1);
+		Component comp2 = new Component(2L, "Component2");
+		comp2.addDelivery(delivery);
+		delivery.addComponent(comp2);
+		Component comp3 = new Component(3L, "Component3");
+		comp3.addDelivery(delivery);
+		delivery.addComponent(comp3);
+		Component comp4 = new Component(4L, "Component4");
+		comp4.addDelivery(delivery);
+		delivery.addComponent(comp4);
+		Component comp5 = new Component(5L, "Component5");
+		comp5.addDelivery(delivery);
+		delivery.addComponent(comp5);
+		Component comp6 = new Component(6L, "Component6");
+		comp6.addDelivery(delivery);
+		delivery.addComponent(comp6);
+		Component comp7 = new Component(7L, "Component7");
+		comp7.addDelivery(delivery);
+		delivery.addComponent(comp7);
+		Component comp8 = new Component(8L, "Component8");
+		comp8.addDelivery(delivery);
+		delivery.addComponent(comp8);
+
+		deliveryManager.create(delivery);
+
+		deliveryManager.getAll().forEach(elem -> { LOG.info(elem); });
+
+		deliveryManager.delete(delivery);
+
+		Address address = new Address("4711");
+		User user = new User("Dummy", address);
+		address.setUser(user);
+		userAddressManager.create(user);
+
+		userAddressManager.getAll().forEach(elem -> { LOG.info(elem); });
+
+		userAddressManager.delete(user);
 
 		LOG.info("<-- automaticTimeout()");
 	}

@@ -1,9 +1,11 @@
 package com.home.gftest.jpa.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -33,14 +35,40 @@ public class Delivery implements Serializable {
 	@Version
 	private int version;
 
-	@ManyToMany( fetch = FetchType.LAZY )
+	@ManyToMany( cascade = { CascadeType.ALL },
+			fetch = FetchType.EAGER )
     @JoinTable( name = "DELIVERY_COMPONENT",
         joinColumns = @JoinColumn( name = "DELIVERY_ID" ),
         inverseJoinColumns = @JoinColumn( name = "COMPONENT_ID" ) )
-    private Set<Component> components;
+    private Set<Component> components = new HashSet<>();
 
 	public Delivery() {
 		super();
+	}
+
+	public Delivery(Long deliveryId) {
+		super();
+		this.deliveryId = deliveryId;
+	}
+
+	public Delivery(Long deliveryId, String customer) {
+		super();
+		this.deliveryId = deliveryId;
+		this.customer = customer;
+	}
+
+	public Delivery(Long deliveryId, String customer, Component component) {
+		super();
+		this.deliveryId = deliveryId;
+		this.customer = customer;
+		addComponent(component);
+	}
+
+	public Delivery(Long deliveryId, String customer, Set<Component> components) {
+		super();
+		this.deliveryId = deliveryId;
+		this.customer = customer;
+		this.components = components;
 	}
 
 	public Long getDeliveryId() {
