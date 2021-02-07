@@ -19,6 +19,6 @@
  * Mandatory relationship: User has always an Address and an Address without User is not possible
  * FetchType.LAZY for better performance<br>
  * CascadeType.ALL for referential integrity<br>
- * @JoinColumn(name = "address_id", referencedColumnName = "id", <strong>nullable = false</strong>)<br>
+ * JoinColumn(name = "address_id", referencedColumnName = "id", <strong>nullable = false</strong>)<br>
  */
 package com.home.gftest.jpa.model;
