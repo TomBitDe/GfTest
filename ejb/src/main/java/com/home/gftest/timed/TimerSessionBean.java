@@ -12,6 +12,7 @@ import javax.ejb.TimerService;
 
 import org.apache.log4j.Logger;
 
+import com.home.gftest.async.AsyncControllerSession;
 import com.home.gftest.ejb.ping.PingControllerBean;
 import com.home.gftest.ejb.refchange.FirstCallerSessionLocal;
 import com.home.gftest.ejb.refchange.SecondCallerSessionLocal;
@@ -57,6 +58,9 @@ public class TimerSessionBean {
 	ThirdSession thirdSession;
 
 	@EJB
+	AsyncControllerSession asyncControllerSession;
+
+	@EJB
 	OrderManagerLocal orderManager;
 
 	@EJB
@@ -84,6 +88,9 @@ public class TimerSessionBean {
 		secondCallerSession.call();
 		controllerSession.control();
 		thirdSession.businessMethod();
+		asyncControllerSession.fireAndForget();
+		asyncControllerSession.runAsyncCall(10000);
+		asyncControllerSession.cancelAsyncCall(5000);
 
 		Order order = new Order("Test customer");
 		orderManager.create(order);

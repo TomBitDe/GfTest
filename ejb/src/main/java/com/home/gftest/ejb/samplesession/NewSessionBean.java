@@ -5,8 +5,6 @@ import javax.ejb.Stateless;
 
 import org.apache.log4j.Logger;
 
-
-
 /**
  * A new session
  */
