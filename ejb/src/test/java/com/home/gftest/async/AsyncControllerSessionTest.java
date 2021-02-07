@@ -65,4 +65,13 @@ public class AsyncControllerSessionTest {
 
 		LOG.debug("<-- cancelAsyncCallTest");
 	}
+
+	@Test
+	public void runAsyncCallWithCustomExTest() {
+		LOG.debug("--> runAsyncCallWithCustomExTest");
+
+		asyncControllerSession.runAsyncCallWithCustomEx(-1);
+
+		LOG.debug("<-- runAsyncCallWithCustomExTest");
+	}
 }

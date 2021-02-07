@@ -19,4 +19,13 @@ public interface AsyncSession {
 	 * @return the Future result as a String
 	 */
 	public Future<String> asyncControlledMethod(int duration);
+
+	/**
+	 * Controlled with exception because it is a future return
+	 *
+	 * @param duration the Sleep time inside the method to simulate long work
+	 *
+	 * @return the Future result as a String
+	 */
+	public Future<String> asyncControlledMethodWithCustomEx(int duration) throws AsyncControlledMethodException;
 }
