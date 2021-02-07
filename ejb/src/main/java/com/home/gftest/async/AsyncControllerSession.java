@@ -22,4 +22,11 @@ public interface AsyncControllerSession {
 	 * @param duration the called methods sleep duration
 	 */
 	public void cancelAsyncCall(int duration);
+
+	/**
+	 * Do the controlled async call of an async local bean with custom exception.
+	 *
+	 * @param duration the called methods sleep duration
+	 */
+	public void runAsyncCallWithCustomEx(int duration);
 }

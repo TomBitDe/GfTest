@@ -69,4 +69,21 @@ public class AsyncControllerSessionBean implements AsyncControllerSession {
 
 		LOG.info("--> cancelAsyncCall");
 	}
+
+	@Override
+	public void runAsyncCallWithCustomEx(int duration) {
+		LOG.info("--> runAsyncCallWithCustomEx");
+
+		try {
+			Future<String> future = asyncSession.asyncControlledMethodWithCustomEx(duration);
+		}
+		catch (AsyncControlledMethodException aex) {
+			LOG.error(aex.getMessage());
+
+			// Run with a DEFAULT duration
+			Future<String> future = asyncSession.asyncControlledMethod(1000);
+		}
+
+		LOG.info("--> runAsyncCallWithCustomEx");
+	}
 }

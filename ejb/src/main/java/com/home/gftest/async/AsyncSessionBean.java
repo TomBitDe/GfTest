@@ -78,4 +78,18 @@ public class AsyncSessionBean implements AsyncSession {
 
 		return new AsyncResult<>(status);
 	}
+
+	@Override
+	public Future<String> asyncControlledMethodWithCustomEx(int duration) throws AsyncControlledMethodException {
+		LOG.info("--> asyncControlledMethodWithCustomEx");
+
+		if (duration <= 0) {
+			throw new AsyncControlledMethodException("Invalid Argurment: duration [" + duration + "] <= 0");
+		}
+		Future<String> status = asyncControlledMethod(duration);
+
+		LOG.info("<-- asyncControlledMethodWithCustomEx");
+
+		return status;
+	}
 }
