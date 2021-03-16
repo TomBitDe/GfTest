@@ -1,7 +1,7 @@
 /**
  * Many bean classes for testing.<br>
  * <p>
- * The TimerSessionBean can be used to run session beans on the application server.<br>
+ * The TimerOtherSessionsBean can be used to run session beans on the application server.<br>
  * <p>
  * See the test package for JUnit test with Arquillian.<br>
  * <p>

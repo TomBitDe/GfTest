@@ -17,6 +17,8 @@ import org.apache.log4j.Logger;
 public class AsyncControllerSessionBean implements AsyncControllerSession {
 	private static final Logger LOG = Logger.getLogger(AsyncControllerSessionBean.class.getName());
 
+	private static final int DEFAULT_DURATION = 1000;
+
 	@EJB
 	AsyncSession asyncSession;
 
@@ -76,12 +78,22 @@ public class AsyncControllerSessionBean implements AsyncControllerSession {
 
 		try {
 			Future<String> future = asyncSession.asyncControlledMethodWithCustomEx(duration);
+
+			LOG.info("Future result = [" + future.get() + ']');
 		}
-		catch (AsyncControlledMethodException aex) {
+		catch (AsyncControlledMethodException | InterruptedException | ExecutionException aex) {
 			LOG.error(aex.getMessage());
 
-			// Run with a DEFAULT duration
-			Future<String> future = asyncSession.asyncControlledMethod(1000);
+			try {
+				// Run with a DEFAULT duration
+				LOG.info("Run with DEFAULT duration [" + DEFAULT_DURATION + ']');
+				Future<String> future = asyncSession.asyncControlledMethod(DEFAULT_DURATION);
+
+				LOG.info("Future result = [" + future.get() + ']');
+			}
+			catch (InterruptedException | ExecutionException e) {
+				LOG.error(e.getMessage());
+			}
 		}
 
 		LOG.info("--> runAsyncCallWithCustomEx");

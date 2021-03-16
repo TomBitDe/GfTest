@@ -1,5 +1,5 @@
 /**
- * Sample timer controlled session bean class for tests.<br>
+ * Sample timer controlled session bean classes for tests.<br>
  * <p>
  * Call other session bean for test run in the application server.<br>
  * <p>
