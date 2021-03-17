@@ -64,4 +64,39 @@ public class MsgQueueProducer1Bean implements MsgQueueProducer1 {
 		LOG.info("<-- shouldBeAbleToSendMessage");
 	}
 
+	@Override
+	public void sendManyMessages(int noMsgs) {
+		LOG.info("--> sendManyMessages");
+
+		try {
+			Connection connection = factory.createConnection();
+			LOG.info("Connection created...");
+
+			Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+			LOG.info("Session created...");
+
+			connection.start();
+			LOG.info("Connection started...");
+
+			MessageProducer producer = session.createProducer(queue1);
+			LOG.info("Message Producer created...");
+
+			Message message;
+
+			for (int idx=0; idx < noMsgs; ++idx) {
+				message = session.createTextMessage("Message [" + idx + "]");
+				LOG.info("Text Message created...");
+
+				producer.send(message);
+
+				LOG.info("Message [" +  message.getBody(String.class) + "] send");
+			}
+		}
+		catch (JMSException jmsEx) {
+			LOG.error(jmsEx.getMessage());
+		}
+
+		LOG.info("<-- sendManyMessages");
+	}
+
 }

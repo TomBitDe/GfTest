@@ -80,6 +80,7 @@ public class TimerOtherSessionsBean {
 		asyncControllerSession.cancelAsyncCall(5000);
 
 		msgQueueProducer1.shouldBeAbleToSendMessage();
+		msgQueueProducer1.sendManyMessages(10000);
 
 		LOG.info("<-- automaticTimeout()");
 	}

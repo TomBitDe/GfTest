@@ -70,4 +70,34 @@ public class InjectionTestCase extends CommonJmsUtility {
 
 		LOG.info("Message [" + message.getBody(String.class) + "] send");
 	}
+
+	@Test
+	public void sendManyMessages() throws Exception {
+		Connection connection = factory.createConnection();
+		assertNotNull(connection);
+		LOG.info("Connection created...");
+
+		Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+		assertNotNull(session);
+		LOG.info("Session created...");
+
+		connection.start();
+		LOG.info("Connection started...");
+
+		MessageProducer producer = session.createProducer(queue1);
+		assertNotNull(producer);
+		LOG.info("Message Producer created...");
+
+		Message message;
+
+		for (int idx=0; idx < 10000; ++idx) {
+			message = session.createTextMessage("Message [" + idx + "]");
+			LOG.info("Text Message created...");
+
+			producer.send(message);
+
+			LOG.info("Message [" +  message.getBody(String.class) + "] send");
+		}
+
+	}
 }
