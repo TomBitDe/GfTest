@@ -2,13 +2,7 @@ package com.home.gftest.jms;
 
 import static org.junit.Assert.assertNotNull;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.concurrent.Executors;
-import java.util.function.Consumer;
 
 import javax.annotation.Resource;
 import javax.jms.Connection;
@@ -28,34 +22,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(Arquillian.class)
-public class InjectionTestCase {
+public class InjectionTestCase extends CommonJmsUtility {
 	private static final Logger LOG = Logger.getLogger(InjectionTestCase.class);
-
-	private static boolean isWindows = System.getProperty("os.name").toLowerCase().startsWith("windows");
-
-	static {
-		ProcessBuilder builder = new ProcessBuilder();
-
-		builder.directory(new File(System.getProperty("user.home")));
-
-		if (isWindows) {
-		    builder.command("cmd.exe", "/c", "C:/Users/Tom/Programme/Payara_Server/bin/asadmin.bat create-jms-resource --enabled=true --property=Name=Queue1 --restype=javax.jms.Queue queue/Queue1");
-		}
-		else {
-		    builder.command("sh", "-c", "/Users/Tom/Programme/Payara_Server/bin/asadmin.bat create-jms-resource --enabled=true --property=Name=Queue1 --restype=javax.jms.Queue queue/Queue1");
-		}
-
-		try {
-			Process process = builder.start();
-			StreamGobbler streamGobbler = new StreamGobbler(process.getInputStream(), System.out::println);
-			Executors.newSingleThreadExecutor().submit(streamGobbler);
-			int exitCode = process.waitFor();
-			LOG.info("Exit code [" + exitCode + "]");
-		}
-		catch (IOException | InterruptedException ex) {
-			LOG.error(ex.getMessage());
-		}
-	}
 
 	@Deployment
 	public static JavaArchive createTestArchive() {
@@ -101,21 +69,5 @@ public class InjectionTestCase {
 		producer.send(message);
 
 		LOG.info("Message [" + message.getBody(String.class) + "] send");
-	}
-
-	private static class StreamGobbler implements Runnable {
-	    private InputStream inputStream;
-	    private Consumer<String> consumer;
-
-	    public StreamGobbler(InputStream inputStream, Consumer<String> consumer) {
-	        this.inputStream = inputStream;
-	        this.consumer = consumer;
-	    }
-
-	    @Override
-	    public void run() {
-	        new BufferedReader(new InputStreamReader(inputStream)).lines()
-	          .forEach(consumer);
-	    }
 	}
 }
