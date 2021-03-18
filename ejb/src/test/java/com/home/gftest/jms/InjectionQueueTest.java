@@ -22,8 +22,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(Arquillian.class)
-public class InjectionTestCase extends CommonJmsUtility {
-	private static final Logger LOG = Logger.getLogger(InjectionTestCase.class);
+public class InjectionQueueTest extends CommonJmsUtility {
+	private static final Logger LOG = Logger.getLogger(InjectionQueueTest.class);
 
 	@Deployment
 	public static JavaArchive createTestArchive() {
@@ -32,7 +32,8 @@ public class InjectionTestCase extends CommonJmsUtility {
 				.addAsManifestResource(new File("src/test/resources/META-INF/test-ejb-jar.xml"), "ejb-jar.xml")
 				.addAsManifestResource(new File("src/test/resources/META-INF/test-glassfish-ejb-jar.xml"),
 						"glassfish-ejb-jar.xml")
-				.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml").addClasses(MsgQueueConsumer1Bean.class);
+				.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
+				.addClasses(MsgQueueConsumer1Bean.class);
 
 		System.out.println(archive.toString(true));
 

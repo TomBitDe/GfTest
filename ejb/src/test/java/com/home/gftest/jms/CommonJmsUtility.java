@@ -17,6 +17,7 @@ public class CommonJmsUtility {
 	private static final String WIN_ASADMIN = "/asadmin.bat";
 	private static final String OTHER_ASADMIN = "/asadmin";
 	private static final String JMS_QUEUE_CREATE_CMD = " create-jms-resource --enabled=true --property=Name=Queue1 --restype=javax.jms.Queue queue/Queue1";
+	private static final String JMS_TOPIC_CREATE_CMD = " create-jms-resource --enabled=true --property=Name=Topic1 --restype=javax.jms.Topic topic/Topic1";
 	private static final String PAYARA_PROP = "payara.home";
 	private static final String PAYARA_ENV = "PAYARA_HOME";
 	private static final String FALLBACK_PAYARA_PATH = "";
@@ -39,20 +40,35 @@ public class CommonJmsUtility {
 			}
 		}
 
-		if (isWindows) {
-		    builder.command("cmd.exe", "/c", payaraPath + "/bin" + WIN_ASADMIN + JMS_QUEUE_CREATE_CMD);
-		}
-		else {
-		    builder.command("sh", "-c", payaraPath + "/bin" + OTHER_ASADMIN + JMS_QUEUE_CREATE_CMD);
-		}
-
-		LOG.info("Create queue with command [" + builder.command().toString() + ']');
-
 		try {
+			if (isWindows) {
+			    builder.command("cmd.exe", "/c", payaraPath + "/bin" + WIN_ASADMIN + JMS_QUEUE_CREATE_CMD);
+			}
+			else {
+			    builder.command("sh", "-c", payaraPath + "/bin" + OTHER_ASADMIN + JMS_QUEUE_CREATE_CMD);
+			}
+
+			LOG.info("Create queue with command [" + builder.command().toString() + ']');
+
 			Process process = builder.start();
 			StreamGobbler streamGobbler = new StreamGobbler(process.getInputStream(), System.out::println);
 			Executors.newSingleThreadExecutor().submit(streamGobbler);
 			int exitCode = process.waitFor();
+			LOG.info("Exit code [" + exitCode + "]");
+
+			if (isWindows) {
+				builder.command("cmd.exe", "/c", payaraPath + "/bin" + WIN_ASADMIN + JMS_TOPIC_CREATE_CMD);
+			}
+			else {
+			    builder.command("sh", "-c", payaraPath + "/bin" + OTHER_ASADMIN + JMS_TOPIC_CREATE_CMD);
+			}
+
+			LOG.info("Create queue with command [" + builder.command().toString() + ']');
+
+			process = builder.start();
+			streamGobbler = new StreamGobbler(process.getInputStream(), System.out::println);
+			Executors.newSingleThreadExecutor().submit(streamGobbler);
+			exitCode = process.waitFor();
 			LOG.info("Exit code [" + exitCode + "]");
 		}
 		catch (IOException | InterruptedException ex) {

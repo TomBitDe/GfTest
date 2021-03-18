@@ -19,6 +19,7 @@ import com.home.gftest.ejb.refchange.SecondCallerSessionLocal;
 import com.home.gftest.ejb.samplesession.ControllerSession;
 import com.home.gftest.ejb.samplesession.ThirdSession;
 import com.home.gftest.jms.MsgQueueProducer1;
+import com.home.gftest.jms.MsgTopicProducer1;
 
 /**
  * Implementation of a timer controlled bean<br>
@@ -56,6 +57,9 @@ public class TimerOtherSessionsBean {
 	@EJB
 	MsgQueueProducer1 msgQueueProducer1;
 
+	@EJB
+	MsgTopicProducer1 msgTopicProducer1;
+
 	@Timeout
 	public void programmaticTimeout(Timer timer) {
 		this.setLastProgrammaticTimeout(new Date());
@@ -81,6 +85,9 @@ public class TimerOtherSessionsBean {
 
 		msgQueueProducer1.shouldBeAbleToSendMessage();
 		msgQueueProducer1.sendManyMessages(10000);
+
+		msgTopicProducer1.sendOneMessage();
+		msgTopicProducer1.sendManyMessages(10000);
 
 		LOG.info("<-- automaticTimeout()");
 	}

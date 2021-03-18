@@ -11,32 +11,29 @@ import javax.jms.TextMessage;
 import org.apache.log4j.Logger;
 
 /**
- * Simple MDB queue text message consumer.
+ * Simple MDB topic text message consumer.
  */
 @MessageDriven(
 		activationConfig = {
-				@ActivationConfigProperty(propertyName = "subscriptionDurability", propertyValue = "Durable"),
-				@ActivationConfigProperty( propertyName = "maxSession", propertyValue = "15"),
-				@ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue"),
+				@ActivationConfigProperty(propertyName = "subscriptionDurability", propertyValue = "NonDurable"),
+				@ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Topic"),
+				@ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "topic/Topic1"),
+				@ActivationConfigProperty(propertyName = "messageSelector", propertyValue = "type = 0"),
 				@ActivationConfigProperty(propertyName = "acknowledgeMode", propertyValue = "Auto-acknowledge")
-		},
-		mappedName = "queue/Queue1")
-public class MsgQueueConsumer1Bean implements MessageListener {
-	private static final Logger LOG = Logger.getLogger(MsgQueueConsumer1Bean.class);
+		})
+public class MsgTopicConsumerEvenNumberBean implements MessageListener {
+	private static final Logger LOG = Logger.getLogger(MsgTopicConsumerEvenNumberBean.class);
 
     /**
      * Default constructor.
      */
-    public MsgQueueConsumer1Bean() {
+    public MsgTopicConsumerEvenNumberBean() {
 		super();
-		LOG.info("--> MsgQueueConsumer1Bean");
-		LOG.info("<-- MsgQueueConsumer1Bean");
+		LOG.info("--> MsgTopicConsumerEvenNumberBean");
+		LOG.info("<-- MsgTopicConsumerEvenNumberBean");
     }
 
-	/**
-     * @see MessageListener#onMessage(Message)
-     */
-    @Override
+	@Override
 	public void onMessage(Message message) {
     	try
         {
@@ -54,5 +51,5 @@ public class MsgQueueConsumer1Bean implements MessageListener {
         	LOG.fatal("Error on message processing: " + jex.getMessage(), jex );
             throw new EJBException ("Error on message processing: " + jex.getMessage(), jex );
         }
-    }
+	}
 }
