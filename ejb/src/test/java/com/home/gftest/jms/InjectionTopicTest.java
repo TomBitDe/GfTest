@@ -21,6 +21,9 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+/**
+ * On this topic two MDBs are listening. See the setObjectProperty("type", 0 or 1) for details.
+ */
 @RunWith(Arquillian.class)
 public class InjectionTopicTest extends CommonJmsUtility {
 	private static final Logger LOG = Logger.getLogger(InjectionTopicTest.class);

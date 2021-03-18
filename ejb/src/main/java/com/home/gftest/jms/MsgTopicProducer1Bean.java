@@ -14,7 +14,9 @@ import javax.jms.Topic;
 import org.apache.log4j.Logger;
 
 /**
- * Simple topic text message producer session bean.
+ * Simple topic text message producer session bean.<br>
+ * <p>
+ * Special is setObjectProperty("type", 0 or 1). See details in the code.
  */
 @Stateless
 @Local(com.home.gftest.jms.MsgTopicProducer1.class)

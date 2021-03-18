@@ -40,6 +40,7 @@ public class CommonJmsUtility {
 			}
 		}
 
+		// Each command separate is a must
 		try {
 			if (isWindows) {
 			    builder.command("cmd.exe", "/c", payaraPath + "/bin" + WIN_ASADMIN + JMS_QUEUE_CREATE_CMD);
@@ -63,10 +64,9 @@ public class CommonJmsUtility {
 			    builder.command("sh", "-c", payaraPath + "/bin" + OTHER_ASADMIN + JMS_TOPIC_CREATE_CMD);
 			}
 
-			LOG.info("Create queue with command [" + builder.command().toString() + ']');
+			LOG.info("Create topic with command [" + builder.command().toString() + ']');
 
 			process = builder.start();
-			streamGobbler = new StreamGobbler(process.getInputStream(), System.out::println);
 			Executors.newSingleThreadExecutor().submit(streamGobbler);
 			exitCode = process.waitFor();
 			LOG.info("Exit code [" + exitCode + "]");

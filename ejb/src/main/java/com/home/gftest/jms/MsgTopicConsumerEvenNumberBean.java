@@ -11,7 +11,9 @@ import javax.jms.TextMessage;
 import org.apache.log4j.Logger;
 
 /**
- * Simple MDB topic text message consumer.
+ * Simple MDB topic text message consumer.<br>
+ * <p>
+ * Consume messages of type = 0 only.
  */
 @MessageDriven(
 		activationConfig = {
