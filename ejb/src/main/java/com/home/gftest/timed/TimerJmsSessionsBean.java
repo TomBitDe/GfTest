@@ -12,21 +12,17 @@ import javax.ejb.TimerService;
 
 import org.apache.log4j.Logger;
 
-import com.home.gftest.async.AsyncControllerSession;
-import com.home.gftest.ejb.ping.PingControllerBean;
-import com.home.gftest.ejb.refchange.FirstCallerSessionLocal;
-import com.home.gftest.ejb.refchange.SecondCallerSessionLocal;
-import com.home.gftest.ejb.samplesession.ControllerSession;
-import com.home.gftest.ejb.samplesession.ThirdSession;
+import com.home.gftest.jms.MsgQueueProducer1;
+import com.home.gftest.jms.MsgTopicProducer1;
 
 /**
  * Implementation of a timer controlled bean<br>
  * <p>
- * Call OTHER session beans to test when running in the application server.
+ * Call JMS session beans to test when running in the application server.
  */
 @Singleton
-public class TimerOtherSessionsBean {
-	private static final Logger LOG = Logger.getLogger(TimerOtherSessionsBean.class);
+public class TimerJmsSessionsBean {
+	private static final Logger LOG = Logger.getLogger(TimerJmsSessionsBean.class);
 
 	private Date lastProgrammaticTimeout;
 	private Date lastAutomaticTimeout;
@@ -35,22 +31,10 @@ public class TimerOtherSessionsBean {
 	TimerService timerService;
 
 	@EJB
-	PingControllerBean pingControllerBean;
+	MsgQueueProducer1 msgQueueProducer1;
 
 	@EJB
-	FirstCallerSessionLocal firstCallerSession;
-
-	@EJB
-	SecondCallerSessionLocal secondCallerSession;
-
-	@EJB
-	ControllerSession controllerSession;
-
-	@EJB
-	ThirdSession thirdSession;
-
-	@EJB
-	AsyncControllerSession asyncControllerSession;
+	MsgTopicProducer1 msgTopicProducer1;
 
 	@Timeout
 	public void programmaticTimeout(Timer timer) {
@@ -61,19 +45,17 @@ public class TimerOtherSessionsBean {
 	/**
 	 * Call all the session beans to run them in the application server periodically
 	 */
-	@Schedule(minute="*/1", hour="*")
+	@Schedule(minute="*/2", hour="*")
 	public void automaticTimeout() {
 		LOG.info("--> automaticTimeout()");
 
 		this.setLastAutomaticTimeout(new Date());
-		pingControllerBean.runPing();
-		firstCallerSession.call();
-		secondCallerSession.call();
-		controllerSession.control();
-		thirdSession.businessMethod();
-		asyncControllerSession.fireAndForget();
-		asyncControllerSession.runAsyncCall(10000);
-		asyncControllerSession.cancelAsyncCall(5000);
+
+		msgQueueProducer1.shouldBeAbleToSendMessage();
+		msgQueueProducer1.sendManyMessages(100);
+
+		msgTopicProducer1.sendOneMessage();
+		msgTopicProducer1.sendManyMessages(100);
 
 		LOG.info("<-- automaticTimeout()");
 	}

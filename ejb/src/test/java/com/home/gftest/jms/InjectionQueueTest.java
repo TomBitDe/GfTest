@@ -91,7 +91,7 @@ public class InjectionQueueTest extends CommonJmsUtility {
 
 		Message message;
 
-		for (int idx=0; idx < 10000; ++idx) {
+		for (int idx=0; idx < 100; ++idx) {
 			message = session.createTextMessage("Message [" + idx + "]");
 			LOG.info("Text Message created...");
 
