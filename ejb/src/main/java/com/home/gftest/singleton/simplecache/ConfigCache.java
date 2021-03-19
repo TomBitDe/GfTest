@@ -1,7 +1,7 @@
 package com.home.gftest.singleton.simplecache;
 
 /**
- * Prop Cache interface definition.
+ * Configuration Cache interface definition.
  */
 public interface ConfigCache {
 	/**

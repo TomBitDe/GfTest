@@ -22,12 +22,20 @@ public class ConfigCacheBean implements ConfigCache {
 
 	private CacheDataProvider cachDataProvider = new CacheDataFromProperties();
 
+	/**
+	 * Populate the cache data for the application timer controlled
+	 */
 	@Schedule(minute = "*/2", hour = "*", persistent = false)
 	@PostConstruct
 	private void populateCache() {
 		cache = createFreshCache();
 	}
 
+	/**
+	 * Load the data for the cache
+	 *
+	 * @return the data map for the cache
+	 */
 	private Map<String, String> createFreshCache() {
 		LOG.debug("--> createFreshCache");
 

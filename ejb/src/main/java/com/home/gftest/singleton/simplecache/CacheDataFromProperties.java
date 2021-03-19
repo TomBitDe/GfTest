@@ -8,6 +8,10 @@ import java.util.Properties;
 
 import org.apache.log4j.Logger;
 
+/**
+ * Load data for a cache from a properties file.<br>
+ * Since this are application global data the file name is 'globals.properties'.<br>
+ */
 public class CacheDataFromProperties implements CacheDataProvider {
 	private static final Logger LOG = Logger.getLogger(CacheDataFromProperties.class);
 	private static final String GLOBAL_PROPS = "globals.properties";
