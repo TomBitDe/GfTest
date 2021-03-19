@@ -14,6 +14,7 @@ import org.apache.log4j.Logger;
 
 import com.home.gftest.jms.MsgQueueProducer1;
 import com.home.gftest.jms.MsgTopicProducer1;
+import com.home.gftest.singleton.simplecache.ConfigCache;
 
 /**
  * Implementation of a timer controlled bean<br>
@@ -29,6 +30,9 @@ public class TimerJmsSessionsBean {
 
 	@Resource
 	TimerService timerService;
+
+	@EJB
+	ConfigCache configCache;
 
 	@EJB
 	MsgQueueProducer1 msgQueueProducer1;
@@ -52,10 +56,10 @@ public class TimerJmsSessionsBean {
 		this.setLastAutomaticTimeout(new Date());
 
 		msgQueueProducer1.shouldBeAbleToSendMessage();
-		msgQueueProducer1.sendManyMessages(100);
+		msgQueueProducer1.sendManyMessages(Integer.valueOf(configCache.getData("QueueMsgNum", "66")));
 
 		msgTopicProducer1.sendOneMessage();
-		msgTopicProducer1.sendManyMessages(100);
+		msgTopicProducer1.sendManyMessages(Integer.valueOf(configCache.getData("TopicMsgNum", "77")));
 
 		LOG.info("<-- automaticTimeout()");
 	}
