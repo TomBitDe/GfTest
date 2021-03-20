@@ -6,12 +6,17 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
+import javax.ejb.Local;
+import javax.ejb.Stateless;
+
 import org.apache.log4j.Logger;
 
 /**
  * Load data for a cache from a properties file.<br>
  * Since this are application global data the file name is 'globals.properties'.<br>
  */
+@Stateless
+@Local(com.home.gftest.singleton.simplecache.CacheDataProvider.class)
 public class CacheDataFromProperties implements CacheDataProvider {
 	private static final Logger LOG = Logger.getLogger(CacheDataFromProperties.class);
 	private static final String GLOBAL_PROPS = "globals.properties";

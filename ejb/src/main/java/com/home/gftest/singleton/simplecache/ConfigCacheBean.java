@@ -47,10 +47,6 @@ public class ConfigCacheBean implements ConfigCache {
 	private Map<String, String> createFreshCache() {
 		LOG.debug("--> createFreshCache");
 
-		if (cacheDataProvider == null) {
-			cacheDataProvider = new CacheDataFromProperties();
-		}
-
 		Map<String, String> map = cacheDataProvider.loadCacheData();
 
 		LOG.debug("<-- createFreshCache");
