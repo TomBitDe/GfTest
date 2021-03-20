@@ -21,8 +21,8 @@ public class CacheDataFromProperties implements CacheDataProvider {
 	 */
 	public CacheDataFromProperties() {
 		super();
-		LOG.info("--> CacheDataFromProperties");
-		LOG.info("<-- CacheDataFromProperties");
+		LOG.debug("--> CacheDataFromProperties");
+		LOG.debug("<-- CacheDataFromProperties");
 	}
 
 	@Override

@@ -3,6 +3,7 @@ package com.home.gftest.singleton.simplecache;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.Lock;
 import javax.ejb.LockType;
@@ -20,7 +21,14 @@ public class ConfigCacheBean implements ConfigCache {
 
 	private Map<String, String> cache;
 
-	private CacheDataProvider cachDataProvider = new CacheDataFromProperties();
+	@EJB
+	private CacheDataProvider cacheDataProvider;
+
+	public ConfigCacheBean() {
+		super();
+		LOG.debug("--> ConfigCacheBean");
+		LOG.debug("<-- ConfigCacheBean");
+	}
 
 	/**
 	 * Populate the cache data for the application timer controlled
@@ -39,7 +47,11 @@ public class ConfigCacheBean implements ConfigCache {
 	private Map<String, String> createFreshCache() {
 		LOG.debug("--> createFreshCache");
 
-		Map<String, String> map = cachDataProvider.loadCacheData();
+		if (cacheDataProvider == null) {
+			cacheDataProvider = new CacheDataFromProperties();
+		}
+
+		Map<String, String> map = cacheDataProvider.loadCacheData();
 
 		LOG.debug("<-- createFreshCache");
 
