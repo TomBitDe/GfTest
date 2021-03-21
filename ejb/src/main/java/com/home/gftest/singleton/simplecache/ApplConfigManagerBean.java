@@ -3,6 +3,7 @@ package com.home.gftest.singleton.simplecache;
 import java.util.List;
 
 import javax.ejb.Local;
+import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -19,8 +20,9 @@ import com.home.gftest.singleton.simplecache.model.ApplConfig;
  */
 @Stateless
 @Local(ApplConfigManager.class)
+@Remote(ApplConfigService.class)
 @TransactionAttribute(TransactionAttributeType.SUPPORTS)
-public class ApplConfigManagerBean implements ApplConfigManager {
+public class ApplConfigManagerBean implements ApplConfigManager, ApplConfigService {
 	private static final Logger LOG = Logger.getLogger(ApplConfigManagerBean.class);
 
 	@PersistenceContext
@@ -47,4 +49,58 @@ public class ApplConfigManagerBean implements ApplConfigManager {
 		return configList;
 	}
 
+	@Override
+	public List<ApplConfig> getContent() {
+		LOG.debug("--> getContent()");
+
+		List<ApplConfig> configList = getAll();
+
+		LOG.debug("<-- getContent()");
+
+		return configList;
+	}
+
+	@Override
+	public ApplConfig getById(String keyVal) {
+		LOG.debug("--> getById(" + keyVal + ')');
+
+		ApplConfig applConfigItem = em.find(ApplConfig.class, keyVal);
+
+		LOG.debug("<-- getById");
+
+		return applConfigItem;
+	}
+
+	@Override
+	public ApplConfig create(ApplConfig config) {
+		LOG.debug("--> create");
+
+		em.persist(config);
+
+		LOG.debug("<-- create");
+
+		return getById(config.getKeyVal());
+	}
+
+	@Override
+	public ApplConfig delete(String keyVal) {
+		LOG.debug("--> delete(" + keyVal + ')');
+
+		ApplConfig config = em.find(ApplConfig.class, keyVal);
+
+		if (config != null) {
+			em.remove(config);
+
+			LOG.debug("deleted: " + config);
+		}
+		else {
+			LOG.debug("Key value <" + keyVal + "> not found");
+		}
+		return config;
+    }
+
+	@Override
+	public int count() {
+		return getAll().size();
+	}
 }

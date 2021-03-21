@@ -8,11 +8,13 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Version;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * Entity implementation class for Entity: ApplConfig
  *
  */
+@XmlRootElement(name = "ApplConfig")
 @Entity
 @Table(name="APPL_CONFIG")
 public class ApplConfig implements Serializable {
