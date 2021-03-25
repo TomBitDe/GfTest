@@ -9,6 +9,7 @@ import javax.ejb.Stateless;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.OPTIONS;
+import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -49,6 +50,35 @@ public class ApplConfigRestService {
 
         return response;
     }
+
+    /**
+     * Get a list of application configuration entries.
+     *
+     * @param offset the position to start fetching
+     * @param count  the number of fetches to do
+     *
+     * @return the configuration list based on offset and count
+     */
+    @PermitAll
+    @GET
+    @Path("/Content/{offset}/{count}")
+    @Produces({MediaType.APPLICATION_XML})
+    public Response getContent(@PathParam("offset") String offset, @PathParam("count") String count) {
+        int intOffset = Integer.valueOf(offset);
+        int intCount = Integer.valueOf(count);
+
+        // Get the AirportVOs from the remote call as a List
+        List<ApplConfig> applConfigList = applConfigService.getContent(intOffset, intCount);
+
+        GenericEntity<List<ApplConfig>> content
+                = new GenericEntity<List<ApplConfig>>(new ArrayList<ApplConfig>(applConfigList)) {
+        };
+
+        Response response = Response.ok(content).build();
+
+        return response;
+    }
+
 
 	/**
      * Get a configuration entry by its key value.
@@ -132,6 +162,30 @@ public class ApplConfigRestService {
     }
 
     /**
+     * Update an application configuration entry.
+     *
+     * @param key the access key of the entry
+     * @param value the new value of the configuration entry
+     *
+     * @return the data of the updated entry or an empty response in case it failed
+     */
+    @PermitAll
+    @POST
+    @Path("/Entry/{key}/{value}")
+    @Produces({MediaType.APPLICATION_XML})
+    public Response update(@PathParam("key") String key,
+                           @PathParam("value") String value) {
+
+        ApplConfig entry = applConfigService.update(new ApplConfig(key, value));
+
+        Response response;
+
+        response = Response.ok().entity(entry).build();
+
+        return response;
+    }
+
+    /**
      * Delete an application configuration entry.
      *
      * @param key the key of the entry to delete
@@ -152,7 +206,23 @@ public class ApplConfigRestService {
     }
 
     /**
+     * Trigger a refresh of the cache data.
+     *
+     * @return the text "Refresh"
+     */
+    @GET
+    @Path("/Refresh")
+    @Produces({MediaType.TEXT_PLAIN})
+    public Response refresh() {
+        applConfigService.refresh();
+
+        return Response.ok("Refresh").build();
+    }
+
+    /**
      * Just check if the REST service is available.
+     *
+     * @return the text "Pong"
      */
     @GET
     @Path("/Ping")

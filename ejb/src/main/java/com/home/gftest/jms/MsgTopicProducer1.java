@@ -10,6 +10,8 @@ public interface MsgTopicProducer1 {
 	public void sendOneMessage();
 	/**
 	 * Send an amount of simple text messages
+	 *
+	 * @param noMsgs the amount of messages to send
 	 */
 	public void sendManyMessages(int noMsgs);
 }

@@ -10,6 +10,8 @@ public interface MsgQueueProducer1 {
 	public void shouldBeAbleToSendMessage();
 	/**
 	 * Send an amount of simple text messages
+	 *
+	 * @param noMsgs the amount of messages to send
 	 */
 	public void sendManyMessages(int noMsgs);
 }

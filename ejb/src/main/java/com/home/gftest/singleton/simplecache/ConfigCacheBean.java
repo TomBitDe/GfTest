@@ -31,12 +31,28 @@ public class ConfigCacheBean implements ConfigCache {
 	}
 
 	/**
+	 * Refresh the cache data REST controlled
+	 */
+	@Override
+	public void refresh() {
+		LOG.debug("--> refresh");
+
+		cache = createFreshCache();
+
+		LOG.debug("<-- refresh");
+	}
+
+	/**
 	 * Populate the cache data for the application timer controlled
 	 */
 	@Schedule(minute = "*/2", hour = "*", persistent = false)
 	@PostConstruct
 	private void populateCache() {
+		LOG.debug("--> populateCache");
+
 		cache = createFreshCache();
+
+		LOG.debug("<-- populateCache");
 	}
 
 	/**
@@ -48,6 +64,14 @@ public class ConfigCacheBean implements ConfigCache {
 		LOG.debug("--> createFreshCache");
 
 		Map<String, String> map = cacheDataProvider.loadCacheData();
+
+		LOG.info("-------- Cache data --------");
+		if (map.isEmpty()) {
+			LOG.info("EMPTY!");
+		}
+		else {
+			map.forEach((k,v) -> LOG.info("Key=[" + k + "] Value=[" + v + ']'));
+		}
 
 		LOG.debug("<-- createFreshCache");
 

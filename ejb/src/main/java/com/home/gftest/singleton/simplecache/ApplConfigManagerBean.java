@@ -2,6 +2,7 @@ package com.home.gftest.singleton.simplecache;
 
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
@@ -28,6 +29,9 @@ public class ApplConfigManagerBean implements ApplConfigManager, ApplConfigServi
 	@PersistenceContext
 	private EntityManager em;
 
+	@EJB
+	ConfigCache configCache;
+
     /**
      * Default constructor.
      */
@@ -41,7 +45,7 @@ public class ApplConfigManagerBean implements ApplConfigManager, ApplConfigServi
 	public List<ApplConfig> getAll() {
 		LOG.debug("--> getAll()");
 
-		TypedQuery<ApplConfig> query = em.createQuery("SELECT a FROM ApplConfig a", ApplConfig.class);
+		TypedQuery<ApplConfig> query = em.createQuery("SELECT a FROM ApplConfig a ORDER BY a.keyVal", ApplConfig.class);
 		List<ApplConfig> configList = query.getResultList();
 
 		LOG.debug("<-- getAll()");
@@ -56,6 +60,28 @@ public class ApplConfigManagerBean implements ApplConfigManager, ApplConfigServi
 		List<ApplConfig> configList = getAll();
 
 		LOG.debug("<-- getContent()");
+
+		return configList;
+	}
+
+	@Override
+	public List<ApplConfig> getContent(int offset, int count) {
+		LOG.debug("--> getContent(" + offset + ", " + count + ")");
+
+        if (offset < 0) {
+            throw new IllegalArgumentException("offset < 0");
+        }
+        if (count < 1) {
+            throw new IllegalArgumentException("count < 1");
+        }
+
+        TypedQuery<ApplConfig> query = em.createQuery("select a FROM ApplConfig a ORDER BY a.keyVal", ApplConfig.class);
+        query.setFirstResult(offset);
+        query.setMaxResults(count);
+
+        List<ApplConfig> configList = query.getResultList();
+
+		LOG.debug("<-- getContent(" + offset + ", " + count + ")");
 
 		return configList;
 	}
@@ -81,6 +107,19 @@ public class ApplConfigManagerBean implements ApplConfigManager, ApplConfigServi
 
 		return getById(config.getKeyVal());
 	}
+	@Override
+	public ApplConfig update(ApplConfig config) {
+		LOG.debug("--> update");
+
+		ApplConfig entry = getById(config.getKeyVal());
+		if (entry != null) {
+			entry.setParamVal(config.getParamVal());
+		}
+
+		LOG.debug("<-- update");
+
+		return entry;
+	}
 
 	@Override
 	public ApplConfig delete(String keyVal) {
@@ -102,5 +141,10 @@ public class ApplConfigManagerBean implements ApplConfigManager, ApplConfigServi
 	@Override
 	public int count() {
 		return getAll().size();
+	}
+
+	@Override
+	public void refresh() {
+		configCache.refresh();
 	}
 }

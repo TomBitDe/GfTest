@@ -42,4 +42,9 @@ public interface ConfigCache {
 	 * @return defaultVal if the value for the given key does not exist else the value
 	 */
 	public long getData(String key, long defaultVal);
+
+	/**
+	 * Refresh the cache data from source
+	 */
+	public void refresh();
 }

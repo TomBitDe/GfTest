@@ -32,6 +32,14 @@ curl -X GET -i http://localhost:8080/war/rest/ApplConfigRestService/Entry/aaa
 echo=
 echo ----------------------------------------------------------------------
 
+curl -X POST -i http://localhost:8080/war/rest/ApplConfigRestService/Entry/aaa/TestX
+echo=
+echo ----------------------------------------------------------------------
+
+curl -X GET -i http://localhost:8080/war/rest/ApplConfigRestService/Entry/aaa
+echo=
+echo ----------------------------------------------------------------------
+
 curl -X DELETE -i http://localhost:8080/war/rest/ApplConfigRestService/Entry/aaa
 curl -X DELETE -i http://localhost:8080/war/rest/ApplConfigRestService/Entry/bbb
 curl -X DELETE -i http://localhost:8080/war/rest/ApplConfigRestService/Entry/ccc
@@ -45,6 +53,12 @@ curl -X PUT -i http://localhost:8080/war/rest/ApplConfigRestService/Entry/ddd/Te
 curl -X GET -i http://localhost:8080/war/rest/ApplConfigRestService/Content
 curl -X GET -i http://localhost:8080/war/rest/ApplConfigRestService/Count
 
+curl -X GET -i http://localhost:8080/war/rest/ApplConfigRestService/Content/0/1
+curl -X GET -i http://localhost:8080/war/rest/ApplConfigRestService/Content/2/2
+echo=
+echo ----------------------------------------------------------------------
+
+curl -X GET -i http://localhost:8080/war/rest/ApplConfigRestService/Refresh
 echo=
 echo ----------------------------------------------------------------------
 
