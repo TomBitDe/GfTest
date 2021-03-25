@@ -21,7 +21,10 @@ curl -X PUT -i http://localhost:8080/war/rest/ApplConfigRestService/Entry/ooo/Te
 
 curl -X GET -i http://localhost:8080/war/rest/ApplConfigRestService/Content
 curl -X GET -i http://localhost:8080/war/rest/ApplConfigRestService/Count
+echo=
+echo ----------------------------------------------------------------------
 
+curl -X GET -i http://localhost:8080/war/rest/ApplConfigRestService/Refresh
 echo=
 echo ----------------------------------------------------------------------
 

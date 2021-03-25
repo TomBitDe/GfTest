@@ -21,7 +21,10 @@ curl -X DELETE -i http://localhost:8080/war/rest/ApplConfigRestService/Entry/ooo
 
 curl -X GET -i http://localhost:8080/war/rest/ApplConfigRestService/Content
 curl -X GET -i http://localhost:8080/war/rest/ApplConfigRestService/Count
+echo=
+echo ----------------------------------------------------------------------
 
+curl -X GET -i http://localhost:8080/war/rest/ApplConfigRestService/Refresh
 echo=
 echo ----------------------------------------------------------------------
 
