@@ -1,6 +1,6 @@
 package com.home.gftest.singleton.simplecache;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertNotNull;
 
 import java.io.File;
 import java.util.Map;
@@ -29,8 +29,10 @@ public class CacheDataFromDbTableTest {
 				.addAsManifestResource(new File("src/test/resources/META-INF/test-glassfish-ejb-jar.xml"),
 						"glassfish-ejb-jar.xml")
 				.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
-				.addClasses(CacheDataProvider.class, CacheDataFromDbTable.class,
-						ApplConfigManager.class, ApplConfigManagerBean.class);
+				.addClasses(ApplConfigManager.class, ApplConfigService.class, ApplConfigManagerBean.class
+						,ConfigCache.class, ConfigCacheBean.class
+						,CacheDataProvider.class
+						,CacheDataFromProperties.class);
 
 		System.out.println(archive.toString(true));
 
@@ -46,7 +48,8 @@ public class CacheDataFromDbTableTest {
 		LOG.debug("--> loadCacheDataTest");
 
 		Map<String, String> configMap = cacheDataProvider.loadCacheData();
-		assertTrue(configMap.isEmpty());
+		// Not known if db or properties is the source. So test only the following
+		assertNotNull(configMap);
 
 		LOG.debug("<-- loadCacheDataTest");
 	}

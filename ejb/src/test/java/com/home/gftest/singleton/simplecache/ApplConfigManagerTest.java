@@ -31,7 +31,10 @@ public class ApplConfigManagerTest {
 				.addAsManifestResource(new File("src/test/resources/META-INF/test-glassfish-ejb-jar.xml"),
 						"glassfish-ejb-jar.xml")
 				.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
-				.addClasses(ApplConfigManager.class, ApplConfigManagerBean.class);
+				.addClasses(ApplConfigManager.class, ApplConfigService.class, ApplConfigManagerBean.class
+						,ConfigCache.class, ConfigCacheBean.class
+						,CacheDataProvider.class
+						,CacheDataFromProperties.class);
 
 		System.out.println(archive.toString(true));
 
