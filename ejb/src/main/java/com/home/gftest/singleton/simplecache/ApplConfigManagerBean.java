@@ -12,7 +12,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.home.gftest.singleton.simplecache.model.ApplConfig;
 
@@ -24,7 +25,7 @@ import com.home.gftest.singleton.simplecache.model.ApplConfig;
 @Remote(ApplConfigService.class)
 @TransactionAttribute(TransactionAttributeType.SUPPORTS)
 public class ApplConfigManagerBean implements ApplConfigManager, ApplConfigService {
-	private static final Logger LOG = Logger.getLogger(ApplConfigManagerBean.class);
+	private static final Logger LOG = LogManager.getLogger(ApplConfigManagerBean.class);
 
 	@PersistenceContext
 	private EntityManager em;

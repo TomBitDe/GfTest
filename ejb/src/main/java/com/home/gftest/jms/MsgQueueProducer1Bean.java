@@ -11,7 +11,8 @@ import javax.jms.MessageProducer;
 import javax.jms.Queue;
 import javax.jms.Session;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * Simple queue text message producer session bean.
@@ -19,7 +20,7 @@ import org.apache.log4j.Logger;
 @Stateless
 @Local(com.home.gftest.jms.MsgQueueProducer1.class)
 public class MsgQueueProducer1Bean implements MsgQueueProducer1 {
-	private static final Logger LOG = Logger.getLogger(MsgQueueProducer1Bean.class.getName());
+	private static final Logger LOG = LogManager.getLogger(MsgQueueProducer1Bean.class.getName());
 
 	@Resource(lookup = "jms/__defaultConnectionFactory")
 	private ConnectionFactory factory;

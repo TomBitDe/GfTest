@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="error" strict="true"
+	name="XMLConfigTest" packages="org.apache.logging.log4j.test">
+	<Properties>
+		<Property name="logpath">../logs</Property>
+	</Properties>
+
+	<Appenders>
+		<Appender type="Console" name="STDOUT">
+			<Layout type="PatternLayout" pattern="[%highlight{%-5level}] %p %C{1.}.%M() - %msg%n%throwable{short.lineNumber}" />" />
+		</Appender>
+		<Appender type="File" name="FileAll" fileName="${logpath}/GfTest-All.log" immediateFlush="false" append="false">
+			<PatternLayout pattern="[%highlight{%-5level}] %d %p %C{1.}.%M() - %msg%n%throwable{short.lineNumber}" />
+		</Appender>
+		<Appender type="File" name="FilePart" fileName="${logpath}/GfTest-Part.log" immediateFlush="false" append="false">>
+			<PatternLayout pattern="[%highlight{%-5level}] %d %p %C{1.}.%M() - %msg%n%throwable{short.lineNumber}" />
+		</Appender>
+	</Appenders>
+
+	<Loggers>
+		<Logger name="com.home.gftest.singleton" level="trace" additivity="false">
+			<AppenderRef ref="FilePart" />
+		</Logger>
+
+		<Logger name="com.home.gftest" level="error" additivity="false">
+			<AppenderRef ref="FileAll" />
+		</Logger>
+
+		<Root level="error">
+		    <AppenderRef ref="STDOUT" />
+			<AppenderRef ref="FileAll" />
+			<AppenderRef ref="FilePart" />
+		    <!--
+			-->
+		</Root>
+	</Loggers>
+
+</Configuration>

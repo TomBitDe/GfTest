@@ -4,7 +4,8 @@ import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * Session Bean implementation class PingControllerBean<br>
@@ -14,7 +15,7 @@ import org.apache.log4j.Logger;
 @Stateless
 @LocalBean
 public class PingControllerBean {
-	private static final Logger LOG = Logger.getLogger(PingControllerBean.class);
+	private static final Logger LOG = LogManager.getLogger(PingControllerBean.class);
 
 	@EJB(beanName="PingAlias")
 	PingWorkerBean pingAlias;
@@ -36,7 +37,7 @@ public class PingControllerBean {
 
 	/**
 	 * Run the worker local session beans
-	 * 
+	 *
 	 * @return pong for every called worker
 	 */
 	public String runPing() {

@@ -8,7 +8,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.home.gftest.jpa.model.Component;
 
@@ -18,7 +19,7 @@ import com.home.gftest.jpa.model.Component;
 @Stateless
 @Local(ComponentManagerLocal.class)
 public class ComponentManagerBean implements ComponentManagerLocal {
-	private static final Logger LOG = Logger.getLogger(ComponentManagerBean.class);
+	private static final Logger LOG = LogManager.getLogger(ComponentManagerBean.class);
 
 	@PersistenceContext
 	private EntityManager em;

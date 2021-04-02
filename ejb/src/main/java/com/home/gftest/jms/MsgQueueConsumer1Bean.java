@@ -8,7 +8,8 @@ import javax.jms.Message;
 import javax.jms.MessageListener;
 import javax.jms.TextMessage;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * Simple MDB queue text message consumer.
@@ -22,7 +23,7 @@ import org.apache.log4j.Logger;
 		},
 		mappedName = "queue/Queue1")
 public class MsgQueueConsumer1Bean implements MessageListener {
-	private static final Logger LOG = Logger.getLogger(MsgQueueConsumer1Bean.class);
+	private static final Logger LOG = LogManager.getLogger(MsgQueueConsumer1Bean.class);
 
     /**
      * Default constructor.

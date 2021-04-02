@@ -4,7 +4,8 @@ import static org.junit.Assert.assertTrue;
 
 import javax.inject.Inject;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -17,7 +18,7 @@ import org.junit.runner.RunWith;
  */
 @RunWith(Arquillian.class)
 public class OtherSessionBeanTest {
-	private static final Logger LOG = Logger.getLogger(OtherSessionBeanTest.class);
+	private static final Logger LOG = LogManager.getLogger(OtherSessionBeanTest.class);
 
 	/**
 	 * OtherSessionBean has a the standard local interface OtherSession. No problem then with @Inject...

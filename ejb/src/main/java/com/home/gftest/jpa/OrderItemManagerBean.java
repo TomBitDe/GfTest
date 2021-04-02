@@ -10,7 +10,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.home.gftest.jpa.model.OrderItem;
 
@@ -21,7 +22,7 @@ import com.home.gftest.jpa.model.OrderItem;
 @Local(OrderItemManagerLocal.class)
 @TransactionAttribute(TransactionAttributeType.REQUIRED)
 public class OrderItemManagerBean implements OrderItemManagerLocal {
-	private static final Logger LOG = Logger.getLogger(OrderItemManagerBean.class);
+	private static final Logger LOG = LogManager.getLogger(OrderItemManagerBean.class);
 
 	@PersistenceContext
 	private EntityManager em;

@@ -1,13 +1,14 @@
 package com.home.gftest.ejb.samplesession;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 
 /**
  * A simple POJO class session
  */
 public class ThirdSession {
-	private static final Logger LOG = Logger.getLogger(ThirdSession.class.getName());
+	private static final Logger LOG = LogManager.getLogger(ThirdSession.class.getName());
 
 	public ThirdSession() {
 		super();

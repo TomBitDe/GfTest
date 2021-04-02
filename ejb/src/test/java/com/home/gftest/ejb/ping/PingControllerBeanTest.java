@@ -6,7 +6,8 @@ import java.io.File;
 
 import javax.ejb.EJB;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.Archive;
@@ -21,7 +22,7 @@ import org.junit.runner.RunWith;
  */
 @RunWith(Arquillian.class)
 public class PingControllerBeanTest {
-	private static final Logger LOG = Logger.getLogger(PingControllerBeanTest.class);
+	private static final Logger LOG = LogManager.getLogger(PingControllerBeanTest.class);
 
 	@EJB
 	PingControllerBean pingControllerBean;

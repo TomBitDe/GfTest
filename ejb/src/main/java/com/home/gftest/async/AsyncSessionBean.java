@@ -9,7 +9,8 @@ import javax.ejb.Local;
 import javax.ejb.SessionContext;
 import javax.ejb.Stateless;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * A session with async business methods.
@@ -17,7 +18,7 @@ import org.apache.log4j.Logger;
 @Stateless
 @Local(com.home.gftest.async.AsyncSession.class)
 public class AsyncSessionBean implements AsyncSession {
-	private static final Logger LOG = Logger.getLogger(AsyncSessionBean.class.getName());
+	private static final Logger LOG = LogManager.getLogger(AsyncSessionBean.class.getName());
 
 	private static final int TIMEOUT = 10000; // 10 seconds
 

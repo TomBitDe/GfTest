@@ -11,13 +11,14 @@ import javax.json.JsonObject;
 import javax.json.spi.JsonProvider;
 import javax.websocket.Session;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.home.gftest.war.websocket.model.Device;
 
 @ApplicationScoped
 public class DeviceSessionHandler {
-	private static final Logger LOG = Logger.getLogger(DeviceSessionHandler.class);
+	private static final Logger LOG = LogManager.getLogger(DeviceSessionHandler.class);
 
 	private int deviceId = 0;
     private final Set<Session> sessions = new HashSet<>();

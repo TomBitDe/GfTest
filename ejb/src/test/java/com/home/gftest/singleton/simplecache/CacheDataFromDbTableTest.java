@@ -7,7 +7,8 @@ import java.util.Map;
 
 import javax.ejb.EJB;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -18,7 +19,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(Arquillian.class)
 public class CacheDataFromDbTableTest {
-	private static final Logger LOG = Logger.getLogger(CacheDataFromDbTableTest.class);
+	private static final Logger LOG = LogManager.getLogger(CacheDataFromDbTableTest.class);
 
 	@Deployment
 	public static JavaArchive createTestArchive() {

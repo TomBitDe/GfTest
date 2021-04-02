@@ -10,7 +10,8 @@ import java.util.List;
 
 import javax.ejb.EJB;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.junit.InSequence;
@@ -28,7 +29,7 @@ import com.home.gftest.jpa.model.OrderItem;
  */
 @RunWith(Arquillian.class)
 public class OrderManagerTest {
-	private static final Logger LOG = Logger.getLogger(OrderManagerTest.class);
+	private static final Logger LOG = LogManager.getLogger(OrderManagerTest.class);
 
 	@EJB
 	OrderManagerLocal orderManager;

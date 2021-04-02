@@ -12,7 +12,8 @@ import javax.jms.MessageProducer;
 import javax.jms.Queue;
 import javax.jms.Session;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -23,7 +24,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(Arquillian.class)
 public class InjectionQueueTest extends CommonJmsUtility {
-	private static final Logger LOG = Logger.getLogger(InjectionQueueTest.class);
+	private static final Logger LOG = LogManager.getLogger(InjectionQueueTest.class);
 
 	@Deployment
 	public static JavaArchive createTestArchive() {

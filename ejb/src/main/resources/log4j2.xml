@@ -2,7 +2,7 @@
 <Configuration status="debug" strict="true"
 	name="XMLConfigTest" packages="org.apache.logging.log4j.test">
 	<Properties>
-		<Property name="filename">target/test.log</Property>
+		<Property name="filename">../logs/GfTest.log</Property>
 	</Properties>
 	<Filter type="ThresholdFilter" level="trace" />
 
@@ -27,20 +27,18 @@
 			</Filters>
 		</Appender>
 		<Appender type="File" name="File" fileName="${filename}">
-			<Layout type="PatternLayout">
-				<Pattern>%d %p %C{1.} [%t] %m%n</Pattern>
-			</Layout>
+			<Layout type="PatternLayout" pattern="%d %p %C{1.} [%t] %m%n" />
 		</Appender>
 	</Appenders>
 
 	<Loggers>
-		<Logger name="com.home.gftest.ejb.samplesession.ControllerSession" level="debug"
+		<Logger name="com.home.gftest.ejb" level="info"
 			additivity="false">
-			<AppenderRef ref="STDOUT" />
+			<AppenderRef ref="File" />
 		</Logger>
 
 		<Root level="trace">
-			<AppenderRef ref="STDOUT" />
+			<AppenderRef ref="File" />
 		</Root>
 	</Loggers>
 

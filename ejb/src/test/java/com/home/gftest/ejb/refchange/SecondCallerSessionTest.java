@@ -4,7 +4,8 @@ import java.io.File;
 
 import javax.ejb.EJB;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -18,7 +19,7 @@ import org.junit.runner.RunWith;
  */
 @RunWith(Arquillian.class)
 public class SecondCallerSessionTest {
-	private static final Logger LOG = Logger.getLogger(SecondCallerSessionTest.class);
+	private static final Logger LOG = LogManager.getLogger(SecondCallerSessionTest.class);
 
 	@EJB
 	SecondCallerSessionLocal callerSession;

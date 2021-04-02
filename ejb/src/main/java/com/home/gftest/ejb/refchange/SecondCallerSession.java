@@ -4,7 +4,8 @@ import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * Session Bean implementation class SecondCallerSession
@@ -12,7 +13,7 @@ import org.apache.log4j.Logger;
 @Stateless
 @Local(com.home.gftest.ejb.refchange.SecondCallerSessionLocal.class)
 public class SecondCallerSession implements SecondCallerSessionLocal {
-	public static final Logger LOG = Logger.getLogger(SecondCallerSession.class);
+	public static final Logger LOG = LogManager.getLogger(SecondCallerSession.class);
 
 	/**
 	 * Two beans implement the CalledSessionLocal interface.

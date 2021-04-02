@@ -11,7 +11,8 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.junit.InSequence;
@@ -30,7 +31,7 @@ import com.home.gftest.jpa.model.User;
  */
 @RunWith(Arquillian.class)
 public class UserAddressTest {
-	private static final Logger LOG = Logger.getLogger(UserAddressTest.class);
+	private static final Logger LOG = LogManager.getLogger(UserAddressTest.class);
 
 	@EJB
 	private UserAddressManagerLocal userAddressManager;

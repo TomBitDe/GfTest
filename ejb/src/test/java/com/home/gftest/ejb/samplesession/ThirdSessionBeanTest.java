@@ -4,7 +4,8 @@ import static org.junit.Assert.assertTrue;
 
 import javax.inject.Inject;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -18,7 +19,7 @@ import org.junit.runner.RunWith;
  */
 @RunWith(Arquillian.class)
 public class ThirdSessionBeanTest {
-	private static final Logger LOG = Logger.getLogger(ThirdSessionBeanTest.class);
+	private static final Logger LOG = LogManager.getLogger(ThirdSessionBeanTest.class);
 
 	/**
 	 * Here @Inject works, but @EJB fails. ThirdSession has a local-bean definition in ejb-jar.xml

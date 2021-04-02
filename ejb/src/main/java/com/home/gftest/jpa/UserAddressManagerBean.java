@@ -10,7 +10,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.home.gftest.jpa.model.Address;
 import com.home.gftest.jpa.model.User;
@@ -19,7 +20,7 @@ import com.home.gftest.jpa.model.User;
 @Local(UserAddressManagerLocal.class)
 @TransactionAttribute(TransactionAttributeType.REQUIRED)
 public class UserAddressManagerBean implements UserAddressManagerLocal {
-	private static final Logger LOG = Logger.getLogger(UserAddressManagerBean.class);
+	private static final Logger LOG = LogManager.getLogger(UserAddressManagerBean.class);
 
 	@PersistenceContext
 	private EntityManager em;

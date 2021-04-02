@@ -3,7 +3,8 @@ package com.home.gftest.ejb.refchange;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * Session Bean implementation class ACalledSession<br>
@@ -13,7 +14,7 @@ import org.apache.log4j.Logger;
 @Stateless
 @Local({CalledSessionLocal.class, ACalledSessionLocal.class})
 public class ACalledSession implements CalledSessionLocal {
-	public static final Logger LOG = Logger.getLogger(ACalledSession.class);
+	public static final Logger LOG = LogManager.getLogger(ACalledSession.class);
 
 	/**
 	 * Default constructor.

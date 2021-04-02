@@ -10,7 +10,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.home.gftest.jpa.model.Delivery;
 
@@ -21,7 +22,7 @@ import com.home.gftest.jpa.model.Delivery;
 @Local(DeliveryManagerLocal.class)
 @TransactionAttribute(TransactionAttributeType.REQUIRED)
 public class DeliveryManagerBean implements DeliveryManagerLocal {
-	private static final Logger LOG = Logger.getLogger(DeliveryManagerBean.class);
+	private static final Logger LOG = LogManager.getLogger(DeliveryManagerBean.class);
 
 	@PersistenceContext
 	private EntityManager em;

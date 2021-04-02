@@ -7,7 +7,8 @@ import java.util.List;
 
 import javax.ejb.EJB;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -20,7 +21,7 @@ import com.home.gftest.singleton.simplecache.model.ApplConfig;
 
 @RunWith(Arquillian.class)
 public class ApplConfigManagerTest {
-	private static final Logger LOG = Logger.getLogger(ApplConfigManagerTest.class);
+	private static final Logger LOG = LogManager.getLogger(ApplConfigManagerTest.class);
 
 	@Deployment
 	public static JavaArchive createTestArchive() {

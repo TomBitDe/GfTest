@@ -10,7 +10,8 @@ import javax.ejb.Timeout;
 import javax.ejb.Timer;
 import javax.ejb.TimerService;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.home.gftest.jms.MsgQueueProducer1;
 import com.home.gftest.jms.MsgTopicProducer1;
@@ -23,7 +24,7 @@ import com.home.gftest.singleton.simplecache.ConfigCache;
  */
 @Singleton
 public class TimerJmsSessionsBean {
-	private static final Logger LOG = Logger.getLogger(TimerJmsSessionsBean.class);
+	private static final Logger LOG = LogManager.getLogger(TimerJmsSessionsBean.class);
 
 	private Date lastProgrammaticTimeout;
 	private Date lastAutomaticTimeout;

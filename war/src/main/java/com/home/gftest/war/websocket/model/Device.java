@@ -1,9 +1,10 @@
 package com.home.gftest.war.websocket.model;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Device {
-	private static final Logger LOG = Logger.getLogger(Device.class);
+	private static final Logger LOG = LogManager.getLogger(Device.class);
 
     private int id;
     private String name;

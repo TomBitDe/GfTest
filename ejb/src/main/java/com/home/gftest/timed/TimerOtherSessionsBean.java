@@ -10,7 +10,8 @@ import javax.ejb.Timeout;
 import javax.ejb.Timer;
 import javax.ejb.TimerService;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.home.gftest.async.AsyncControllerSession;
 import com.home.gftest.ejb.ping.PingControllerBean;
@@ -26,7 +27,7 @@ import com.home.gftest.ejb.samplesession.ThirdSession;
  */
 @Singleton
 public class TimerOtherSessionsBean {
-	private static final Logger LOG = Logger.getLogger(TimerOtherSessionsBean.class);
+	private static final Logger LOG = LogManager.getLogger(TimerOtherSessionsBean.class);
 
 	private Date lastProgrammaticTimeout;
 	private Date lastAutomaticTimeout;

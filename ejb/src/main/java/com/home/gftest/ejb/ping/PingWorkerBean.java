@@ -3,7 +3,8 @@ package com.home.gftest.ejb.ping;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * Session Bean implementation class PingWorkerBean<br>
@@ -13,7 +14,7 @@ import org.apache.log4j.Logger;
 @Stateless(name = "PingAlias")
 @LocalBean
 public class PingWorkerBean {
-	private static final Logger LOG = Logger.getLogger(PingWorkerBean.class);
+	private static final Logger LOG = LogManager.getLogger(PingWorkerBean.class);
 
 	/**
 	 * Default constructor.
@@ -26,9 +27,9 @@ public class PingWorkerBean {
 
 	/**
 	 * Reply with pong
-	 * 
+	 *
 	 * @param who the name of the called worker session bean
-	 * 
+	 *
 	 * @return pong
 	 */
 	public String ping(String who) {

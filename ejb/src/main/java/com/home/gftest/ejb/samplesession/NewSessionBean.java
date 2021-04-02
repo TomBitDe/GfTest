@@ -3,7 +3,8 @@ package com.home.gftest.ejb.samplesession;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * A new session
@@ -11,7 +12,7 @@ import org.apache.log4j.Logger;
 @Stateless
 @Local(com.home.gftest.ejb.samplesession.NewSession.class)
 public class NewSessionBean implements NewSession {
-	private static final Logger LOG = Logger.getLogger(NewSessionBean.class.getName());
+	private static final Logger LOG = LogManager.getLogger(NewSessionBean.class.getName());
 
 	public NewSessionBean() {
 		super();

@@ -11,13 +11,14 @@ import javax.ejb.Schedule;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 @Startup
 @Local(ConfigCache.class)
 @Singleton
 public class ConfigCacheBean implements ConfigCache {
-	private static final Logger LOG = Logger.getLogger(ConfigCacheBean.class);
+	private static final Logger LOG = LogManager.getLogger(ConfigCacheBean.class);
 
 	private Map<String, String> cache;
 

@@ -8,7 +8,8 @@ import javax.jms.Message;
 import javax.jms.MessageListener;
 import javax.jms.TextMessage;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * Simple MDB topic text message consumer.<br>
@@ -24,7 +25,7 @@ import org.apache.log4j.Logger;
 				@ActivationConfigProperty(propertyName = "acknowledgeMode", propertyValue = "Auto-acknowledge")
 		})
 public class MsgTopicConsumerOddNumberBean implements MessageListener {
-	private static final Logger LOG = Logger.getLogger(MsgTopicConsumerOddNumberBean.class);
+	private static final Logger LOG = LogManager.getLogger(MsgTopicConsumerOddNumberBean.class);
 
     /**
      * Default constructor.

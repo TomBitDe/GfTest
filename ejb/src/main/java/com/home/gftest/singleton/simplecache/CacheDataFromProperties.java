@@ -9,7 +9,8 @@ import java.util.Properties;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * Load data for a cache from a properties file.<br>
@@ -18,7 +19,7 @@ import org.apache.log4j.Logger;
 @Stateless
 @Local(com.home.gftest.singleton.simplecache.CacheDataProvider.class)
 public class CacheDataFromProperties implements CacheDataProvider {
-	private static final Logger LOG = Logger.getLogger(CacheDataFromProperties.class);
+	private static final Logger LOG = LogManager.getLogger(CacheDataFromProperties.class);
 	private static final String GLOBAL_PROPS = "globals.properties";
 
 	/**

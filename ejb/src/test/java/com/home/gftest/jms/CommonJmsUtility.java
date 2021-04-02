@@ -8,10 +8,11 @@ import java.io.InputStreamReader;
 import java.util.concurrent.Executors;
 import java.util.function.Consumer;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class CommonJmsUtility {
-	private static final Logger LOG = Logger.getLogger(CommonJmsUtility.class);
+	private static final Logger LOG = LogManager.getLogger(CommonJmsUtility.class);
 
 	private static boolean isWindows = System.getProperty("os.name").toLowerCase().startsWith("windows");
 	private static final String WIN_ASADMIN = "/asadmin.bat";

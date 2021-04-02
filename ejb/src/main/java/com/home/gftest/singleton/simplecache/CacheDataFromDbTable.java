@@ -8,7 +8,8 @@ import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.home.gftest.singleton.simplecache.model.ApplConfig;
 
@@ -19,7 +20,7 @@ import com.home.gftest.singleton.simplecache.model.ApplConfig;
 @Stateless
 @Local(com.home.gftest.singleton.simplecache.CacheDataProvider.class)
 public class CacheDataFromDbTable implements CacheDataProvider {
-	private static final Logger LOG = Logger.getLogger(CacheDataFromDbTable.class);
+	private static final Logger LOG = LogManager.getLogger(CacheDataFromDbTable.class);
 
 	@EJB
 	ApplConfigManager applConfigManager;

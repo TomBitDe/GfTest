@@ -14,7 +14,7 @@
 		<shrinkwrap.resolvers.version>3.1.4</shrinkwrap.resolvers.version>
 		<arquillian.version>1.6.0.Final</arquillian.version>
 		<h2.version>1.4.200</h2.version>
-		<log4j.version>1.2.17</log4j.version>
+		<log4j.version>2.14.1</log4j.version>
 	</properties>
 
 	<dependencyManagement>
@@ -36,9 +36,11 @@
 				<scope>import</scope>
 			</dependency>
 			<dependency>
-				<groupId>log4j</groupId>
-				<artifactId>log4j</artifactId>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-bom</artifactId>
 				<version>${log4j.version}</version>
+				<scope>import</scope>
+				<type>pom</type>
 			</dependency>
 			<dependency>
 				<groupId>com.h2database</groupId>

@@ -14,14 +14,15 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.home.gftest.war.websocket.model.Device;
 
 @ApplicationScoped
 @ServerEndpoint("/actions")
 public class DeviceWebSocketServer {
-	private static final Logger LOG = Logger.getLogger(DeviceWebSocketServer.class);
+	private static final Logger LOG = LogManager.getLogger(DeviceWebSocketServer.class);
 
     @Inject
     private DeviceSessionHandler sessionHandler;

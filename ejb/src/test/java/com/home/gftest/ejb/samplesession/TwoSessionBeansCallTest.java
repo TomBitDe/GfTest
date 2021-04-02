@@ -7,7 +7,8 @@ import java.io.File;
 import javax.ejb.EJB;
 import javax.inject.Inject;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -21,7 +22,7 @@ import org.junit.runner.RunWith;
  */
 @RunWith(Arquillian.class)
 public class TwoSessionBeansCallTest {
-	private static final Logger LOG = Logger.getLogger(TwoSessionBeansCallTest.class);
+	private static final Logger LOG = LogManager.getLogger(TwoSessionBeansCallTest.class);
 
 	/**
 	 * Here @EJB works because ControllerSessionBean has a standard local interface ControllerSession.

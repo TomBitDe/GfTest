@@ -7,7 +7,8 @@ import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * Local session bean to control an other local session bean containing async business methods.
@@ -15,7 +16,7 @@ import org.apache.log4j.Logger;
 @Local(com.home.gftest.async.AsyncControllerSession.class)
 @Stateless
 public class AsyncControllerSessionBean implements AsyncControllerSession {
-	private static final Logger LOG = Logger.getLogger(AsyncControllerSessionBean.class.getName());
+	private static final Logger LOG = LogManager.getLogger(AsyncControllerSessionBean.class.getName());
 
 	private static final int DEFAULT_DURATION = 1000;
 

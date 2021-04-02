@@ -11,7 +11,8 @@ import javax.jms.MessageProducer;
 import javax.jms.Session;
 import javax.jms.Topic;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * Simple topic text message producer session bean.<br>
@@ -21,7 +22,7 @@ import org.apache.log4j.Logger;
 @Stateless
 @Local(com.home.gftest.jms.MsgTopicProducer1.class)
 public class MsgTopicProducer1Bean implements MsgTopicProducer1 {
-	private static final Logger LOG = Logger.getLogger(MsgTopicProducer1Bean.class);
+	private static final Logger LOG = LogManager.getLogger(MsgTopicProducer1Bean.class);
 
 	@Resource(lookup = "jms/__defaultConnectionFactory")
 	private ConnectionFactory factory;
