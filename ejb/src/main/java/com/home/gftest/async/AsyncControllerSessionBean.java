@@ -34,7 +34,7 @@ public class AsyncControllerSessionBean implements AsyncControllerSession {
 
 		asyncSession.asyncFireAndForgetMethod();
 
-		LOG.info("--> fireAndForget");
+		LOG.info("<-- fireAndForget");
 	}
 
 	@Override
@@ -55,7 +55,7 @@ public class AsyncControllerSessionBean implements AsyncControllerSession {
 			LOG.error(iex.getMessage());
 		}
 
-		LOG.info("--> runAsyncCall");
+		LOG.info("<-- runAsyncCall");
 	}
 
 
@@ -69,7 +69,7 @@ public class AsyncControllerSessionBean implements AsyncControllerSession {
 
 		LOG.info("Cancel returned [" + ret + ']');
 
-		LOG.info("--> cancelAsyncCall");
+		LOG.info("<-- cancelAsyncCall");
 	}
 
 	@Override
@@ -96,6 +96,6 @@ public class AsyncControllerSessionBean implements AsyncControllerSession {
 			}
 		}
 
-		LOG.info("--> runAsyncCallWithCustomEx");
+		LOG.info("<-- runAsyncCallWithCustomEx");
 	}
 }
