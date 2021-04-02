@@ -38,7 +38,7 @@
         </layout>
     </appender>
     
-    <logger name="com.home.gftest.ejb" additivity="false">
+    <logger name="com.home.gftest.war.websocket" additivity="false">
         <level value="INFO" />
         <appender-ref ref="RollingFile" />
     </logger>
