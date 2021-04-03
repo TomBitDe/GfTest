@@ -22,15 +22,15 @@
 			<AppenderRef ref="FilePart" />
 		</Logger>
 
-		<Logger name="com.home.gftest" level="error" additivity="false">
+		<Logger name="com.home.gftest" level="debug" additivity="false">
 			<AppenderRef ref="FileAll" />
 		</Logger>
 
 		<Root level="info">
 		    <AppenderRef ref="STDOUT" />
+		    <!--
 			<AppenderRef ref="FileAll" />
 			<AppenderRef ref="FilePart" />
-		    <!--
 			-->
 		</Root>
 	</Loggers>
