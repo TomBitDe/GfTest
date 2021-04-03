@@ -37,7 +37,7 @@ public class ApplConfigManagerTest {
 						,CacheDataProvider.class
 						,CacheDataFromProperties.class);
 
-		System.out.println(archive.toString(true));
+		LOG.debug(archive.toString(true));
 
 		return archive;
 	}

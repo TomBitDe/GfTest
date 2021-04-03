@@ -35,7 +35,7 @@ public class AsyncControllerSessionTest {
 						AsyncSession.class, AsyncSessionBean.class,
 						AsyncControllerSession.class, AsyncControllerSessionBean.class);
 
-		System.out.println(archive.toString(true));
+		LOG.debug(archive.toString(true));
 
 		return archive;
 	}

@@ -7,13 +7,13 @@
 
 	<Appenders>
 		<Appender type="Console" name="STDOUT">
-			<Layout type="PatternLayout" pattern="[%highlight{%-5level}] %p %C{1.}.%M() - %msg%n%throwable{short.lineNumber}" />" />
+			<Layout type="PatternLayout" pattern="%d{HH:mm:ss,SSS} [%highlight{%-5level}] %C{1.}.%M() - %msg%n%throwable{short.lineNumber}" />
 		</Appender>
-		<Appender type="File" name="FileAll" fileName="${logpath}/GfTest-All.log" immediateFlush="false" append="false">
-			<PatternLayout pattern="[%highlight{%-5level}] %d %p %C{1.}.%M() - %msg%n%throwable{short.lineNumber}" />
+		<Appender type="File" name="FileAll" fileName="${logpath}/GfTest-All.log" immediateFlush="true" append="true">
+			<Layout type="PatternLayout" pattern="%d{yyyy.MM.dd HH:mm:ss,SSS} [%highlight{%-5level}] %C{1.}.%M() - %msg%n%throwable{short.lineNumber}" />
 		</Appender>
-		<Appender type="File" name="FilePart" fileName="${logpath}/GfTest-Part.log" immediateFlush="false" append="false">>
-			<PatternLayout pattern="[%highlight{%-5level}] %d %p %C{1.}.%M() - %msg%n%throwable{short.lineNumber}" />
+		<Appender type="File" name="FilePart" fileName="${logpath}/GfTest-Part.log" immediateFlush="true" append="true">
+			<Layout type="PatternLayout" pattern="%d{yyyy.MM.dd HH:mm:ss,SSS} [%highlight{%-5level}] %C{1.}.%M() - %msg%n%throwable{short.lineNumber}" />
 		</Appender>
 	</Appenders>
 
@@ -26,7 +26,7 @@
 			<AppenderRef ref="FileAll" />
 		</Logger>
 
-		<Root level="error">
+		<Root level="info">
 		    <AppenderRef ref="STDOUT" />
 			<AppenderRef ref="FileAll" />
 			<AppenderRef ref="FilePart" />

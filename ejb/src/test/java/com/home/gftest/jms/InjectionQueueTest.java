@@ -36,7 +36,7 @@ public class InjectionQueueTest extends CommonJmsUtility {
 				.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
 				.addClasses(MsgQueueConsumer1Bean.class);
 
-		System.out.println(archive.toString(true));
+		LOG.debug(archive.toString(true));
 
 		return archive;
 	}

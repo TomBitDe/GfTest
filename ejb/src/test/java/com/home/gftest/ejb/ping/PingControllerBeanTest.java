@@ -39,7 +39,7 @@ public class PingControllerBeanTest {
 						, PingWorkerBean.class
 						);
 
-		System.out.println(archive.toString(true));
+		LOG.debug(archive.toString(true));
 
 		return archive;
 	}

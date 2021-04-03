@@ -40,7 +40,7 @@ public class InjectionTopicTest extends CommonJmsUtility {
 				.addClasses(MsgTopicConsumerEvenNumberBean.class,
 						MsgTopicConsumerOddNumberBean.class);
 
-		System.out.println(archive.toString(true));
+		LOG.debug(archive.toString(true));
 
 		return archive;
 	}

@@ -36,7 +36,7 @@ public class ConfigCacheFromPropertiesTest {
 						CacheDataProvider.class, CacheDataFromProperties.class,
 						ApplConfigManager.class, ApplConfigManagerBean.class);
 
-		System.out.println(archive.toString(true));
+		LOG.debug(archive.toString(true));
 
 		return archive;
 	}

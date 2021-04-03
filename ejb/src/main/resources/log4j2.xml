@@ -1,44 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="debug" strict="true"
+<Configuration status="error" strict="true"
 	name="XMLConfigTest" packages="org.apache.logging.log4j.test">
 	<Properties>
-		<Property name="filename">../logs/GfTest.log</Property>
+		<Property name="logpath">../logs</Property>
 	</Properties>
-	<Filter type="ThresholdFilter" level="trace" />
 
 	<Appenders>
 		<Appender type="Console" name="STDOUT">
-			<Layout type="PatternLayout" pattern="%m MDC%X%n" />
-			<Filters>
-				<Filter type="MarkerFilter" marker="FLOW" onMatch="DENY"
-					onMismatch="NEUTRAL" />
-				<Filter type="MarkerFilter" marker="EXCEPTION" onMatch="DENY"
-					onMismatch="ACCEPT" />
-			</Filters>
+			<Layout type="PatternLayout" pattern="%d{HH:mm:ss,SSS} [%highlight{%-5level}] %C{1.}.%M() - %msg%n%throwable{short.lineNumber}" />
 		</Appender>
-		<Appender type="Console" name="FLOW">
-			<Layout type="PatternLayout" pattern="%C{1}.%M %m %ex%n" /><!-- 
-				class and line number -->
-			<Filters>
-				<Filter type="MarkerFilter" marker="FLOW" onMatch="ACCEPT"
-					onMismatch="NEUTRAL" />
-				<Filter type="MarkerFilter" marker="EXCEPTION"
-					onMatch="ACCEPT" onMismatch="DENY" />
-			</Filters>
+		<Appender type="File" name="FileAll" fileName="${logpath}/GfTest-All.log" immediateFlush="true" append="true">
+			<Layout type="PatternLayout" pattern="%d{yyyy.MM.dd HH:mm:ss,SSS} [%highlight{%-5level}] %C{1.}.%M() - %msg%n%throwable{short.lineNumber}" />
 		</Appender>
-		<Appender type="File" name="File" fileName="${filename}">
-			<Layout type="PatternLayout" pattern="%d %p %C{1.} [%t] %m%n" />
+		<Appender type="File" name="FilePart" fileName="${logpath}/GfTest-Part.log" immediateFlush="true" append="true">
+			<Layout type="PatternLayout" pattern="%d{yyyy.MM.dd HH:mm:ss,SSS} [%highlight{%-5level}] %C{1.}.%M() - %msg%n%throwable{short.lineNumber}" />
 		</Appender>
 	</Appenders>
 
 	<Loggers>
-		<Logger name="com.home.gftest.ejb" level="info"
-			additivity="false">
-			<AppenderRef ref="File" />
+		<Logger name="com.home.gftest.singleton" level="trace" additivity="false">
+			<AppenderRef ref="FilePart" />
 		</Logger>
 
-		<Root level="trace">
-			<AppenderRef ref="File" />
+		<Logger name="com.home.gftest" level="error" additivity="false">
+			<AppenderRef ref="FileAll" />
+		</Logger>
+
+		<Root level="info">
+		    <AppenderRef ref="STDOUT" />
+			<AppenderRef ref="FileAll" />
+			<AppenderRef ref="FilePart" />
+		    <!--
+			-->
 		</Root>
 	</Loggers>
 

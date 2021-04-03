@@ -47,7 +47,7 @@ public class TwoSessionBeansCallTest {
 						, NewSession.class, NewSessionBean.class
 						, ThirdSession.class);
 
-		System.out.println(archive.toString(true));
+		LOG.debug(archive.toString(true));
 
 		return archive;
 	}
