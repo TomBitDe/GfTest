@@ -18,7 +18,7 @@ import org.apache.logging.log4j.Logger;
 import com.home.gftest.singleton.simplecache.model.ApplConfig;
 
 /**
- * Session Bean implementation class ApplConfigManagerBean
+ * Session Bean implementation class ApplConfigManagerBean.
  */
 @Stateless
 @Local(ApplConfigManager.class)

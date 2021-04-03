@@ -14,6 +14,9 @@ import javax.ejb.Startup;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+/**
+ * Config Cash access providing class.
+ */
 @Startup
 @Local(ConfigCache.class)
 @Singleton
@@ -57,7 +60,7 @@ public class ConfigCacheBean implements ConfigCache {
 	}
 
 	/**
-	 * Load the data for the cache
+	 * Load the data into the cache
 	 *
 	 * @return the data map for the cache
 	 */

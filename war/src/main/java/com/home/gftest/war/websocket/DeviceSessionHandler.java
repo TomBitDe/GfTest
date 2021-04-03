@@ -16,6 +16,9 @@ import org.apache.logging.log4j.Logger;
 
 import com.home.gftest.war.websocket.model.Device;
 
+/**
+ * Handle the Web Socket session and the entity that has to be controlled.
+ */
 @ApplicationScoped
 public class DeviceSessionHandler {
 	private static final Logger LOG = LogManager.getLogger(DeviceSessionHandler.class);
@@ -24,6 +27,11 @@ public class DeviceSessionHandler {
     private final Set<Session> sessions = new HashSet<>();
     private final Set<Device> devices = new HashSet<>();
 
+    /**
+     * Add a session to the Set of controlled sessions
+     *
+     * @param session the session to handle
+     */
     public void addSession(Session session) {
     	LOG.debug("--> addSession");
 
@@ -36,6 +44,11 @@ public class DeviceSessionHandler {
     	LOG.debug("<-- addSession");
     }
 
+    /**
+     * Remove a session from the Set of controlled sessions
+     *
+     * @param session the session to handle
+     */
     public void removeSession(Session session) {
     	LOG.debug("--> removeSession");
 
@@ -44,6 +57,11 @@ public class DeviceSessionHandler {
     	LOG.debug("<-- removeSession");
     }
 
+    /**
+     * Get a list of all managed entities
+     *
+     * @return the entities (Devices)
+     */
     public List<Device> getDevices() {
     	LOG.debug("--> getDevices");
 
@@ -51,6 +69,11 @@ public class DeviceSessionHandler {
         return new ArrayList<>(devices);
     }
 
+    /**
+     * Add an entity (Device) to the set of managed entities
+     *
+     * @param device the entity to add
+     */
     public void addDevice(Device device) {
     	LOG.debug("--> addDevice");
 
@@ -63,6 +86,11 @@ public class DeviceSessionHandler {
         LOG.debug("<-- addDevice");
     }
 
+    /**
+     * Remove an entity (Device) from the set of managed entities
+     *
+     * @param id the id of the entity to remove
+     */
     public void removeDevice(int id) {
     	LOG.debug("--> removeDevice");
 
@@ -80,6 +108,11 @@ public class DeviceSessionHandler {
         LOG.debug("<-- removeDevice");
     }
 
+    /**
+     * Switch the entity (Device) on/off
+     *
+     * @param id the id of the entity to change its internal state
+     */
     public void toggleDevice(int id) {
     	LOG.debug("--> toggleDevice");
 
@@ -102,6 +135,13 @@ public class DeviceSessionHandler {
         LOG.debug("<-- toggleDevice");
     }
 
+    /**
+     * Get the entity (Device) by its id
+     *
+     * @param id the id to use
+     *
+     * @return the matching entity (Device) or null in case of no match
+     */
     private Device getDeviceById(int id) {
     	LOG.debug("--> getDeviceById");
 
@@ -118,6 +158,13 @@ public class DeviceSessionHandler {
         return null;
     }
 
+    /**
+     * Create a JSON object out of an entity (Device) for further processing
+     *
+     * @param device the given entity (Device)
+     *
+     * @return the related JSON object
+     */
     private JsonObject createAddMessage(Device device) {
     	LOG.debug("--> createAddMessage");
 
@@ -136,6 +183,11 @@ public class DeviceSessionHandler {
         return addMessage;
     }
 
+    /**
+     * Send a JSON object to all connected sessions
+     *
+     * @param message the JSON object to send
+     */
     private void sendToAllConnectedSessions(JsonObject message) {
     	LOG.debug("--> sendToAllConnectedSessions");
 
@@ -146,6 +198,12 @@ public class DeviceSessionHandler {
         LOG.debug("<-- sendToAllConnectedSessions");
     }
 
+    /**
+     * Send a JSON object to a specific session
+     *
+     * @param session the given session
+     * @param message the JSON object to send
+     */
     private void sendToSession(Session session, JsonObject message) {
     	LOG.debug("--> sendToSession");
 

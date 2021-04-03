@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Show the JNDI content
+ * Show the JNDI content.
  */
 public class JndiContextServlet extends HttpServlet {
    private static final long serialVersionUID = 1L;
@@ -44,6 +44,13 @@ public class JndiContextServlet extends HttpServlet {
       }
    }
 
+   /**
+    * Do print the JNDI context as HTML for the browser
+    *
+    * @param writer a writer to use
+    * @param ctx the context ( InitialContext() ) to work on
+    * @param name prefix for the printout
+    */
    public void printJndiContextAsHtmlList( PrintWriter writer, Context ctx, String name )
    {
       writer.println( "<ul>" );

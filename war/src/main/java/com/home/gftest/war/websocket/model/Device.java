@@ -3,6 +3,9 @@ package com.home.gftest.war.websocket.model;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+/**
+ * This is the entity that is manipulated via the Web Socket test sample.
+ */
 public class Device {
 	private static final Logger LOG = LogManager.getLogger(Device.class);
 

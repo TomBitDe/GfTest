@@ -19,6 +19,11 @@ import org.apache.logging.log4j.Logger;
 
 import com.home.gftest.war.websocket.model.Device;
 
+/**
+ * The Web Socket Server handles all the general tasks of a Web Socket implementation.<br>
+ * <p>
+ * The session handler is injected and the session is controlled from here.<br>
+ */
 @ApplicationScoped
 @ServerEndpoint("/actions")
 public class DeviceWebSocketServer {
@@ -27,6 +32,11 @@ public class DeviceWebSocketServer {
     @Inject
     private DeviceSessionHandler sessionHandler;
 
+    /**
+     * On open add the session using the session handler
+     *
+     * @param session the given session
+     */
 	@OnOpen
 	public void open(Session session) {
 		LOG.debug("--> open");
@@ -36,6 +46,11 @@ public class DeviceWebSocketServer {
 		LOG.debug("<-- open");
 	}
 
+	/**
+	 * On close remove the session using the session handler
+	 *
+	 * @param session the given session
+	 */
 	@OnClose
 	public void close(Session session) {
 		LOG.debug("--> close");
@@ -45,11 +60,22 @@ public class DeviceWebSocketServer {
 		LOG.debug("<-- close");
 	}
 
+	/**
+	 * On error log the error message
+	 *
+	 * @param error the error
+	 */
 	@OnError
 	public void onError(Throwable error) {
 		LOG.fatal(error);
 	}
 
+	/**
+	 * On message dispatch to the related method in the session handler
+	 *
+	 * @param message the received message to use for dispatching
+	 * @param session the given session
+	 */
 	@OnMessage
 	public void handleMessage(String message, Session session) {
 		LOG.debug("--> handleMessage");
