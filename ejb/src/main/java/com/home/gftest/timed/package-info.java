@@ -3,6 +3,6 @@
  * <p>
  * Call other session bean for test run in the application server.<br>
  * <p>
- * This is a sample for a timed bean injecting @Resource TimeService.
+ * This is a sample for a timed bean injecting \@Resource TimeService.
  */
 package com.home.gftest.timed;
