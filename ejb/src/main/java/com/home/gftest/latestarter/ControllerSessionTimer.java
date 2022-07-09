@@ -8,6 +8,7 @@ import javax.ejb.Timeout;
 import javax.ejb.TimerConfig;
 import javax.ejb.TimerService;
 import javax.enterprise.inject.Instance;
+import javax.enterprise.inject.UnsatisfiedResolutionException;
 import javax.inject.Inject;
 
 import org.apache.logging.log4j.LogManager;
@@ -22,9 +23,10 @@ import com.home.gftest.ejb.samplesession.ControllerSession;
 public class ControllerSessionTimer {
 	private static final Logger LOG = LogManager.getLogger(ControllerSessionTimer.class);
 	private static final String EVERY = "*";
+	private static final String DEFAULT_RUNS_SECS = "*/8";
 
 	@Inject
-	private Instance<String> refererRuns;
+	private Instance<String> controllerSessionRuns;
 
 	@Resource
 	TimerService timerService;
@@ -36,9 +38,17 @@ public class ControllerSessionTimer {
 		LOG.info("--> initializeTimer");
 
 		ScheduleExpression expression = new ScheduleExpression();
+		String secs;
 
-		// Every 8 seconds
-		expression.year(EVERY).month(EVERY).dayOfMonth(EVERY).hour(EVERY).minute(EVERY).second("*/8");
+		try {
+		    secs = controllerSessionRuns.get();
+		}
+		catch (UnsatisfiedResolutionException ex) {
+			LOG.error(ex.getMessage());
+			secs = DEFAULT_RUNS_SECS;
+			LOG.info("Use DEFAULT value [" + secs + "] now...");
+		}
+		expression.year(EVERY).month(EVERY).dayOfMonth(EVERY).hour(EVERY).minute(EVERY).second(secs);
 
 		TimerConfig timerConfig = new TimerConfig();
 		timerConfig.setPersistent(false);
