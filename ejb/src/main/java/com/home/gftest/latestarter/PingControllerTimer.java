@@ -14,6 +14,7 @@ import javax.inject.Inject;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.home.gftest.configurator.base.Configurable;
 import com.home.gftest.ejb.ping.PingControllerBean;
 
 /**
@@ -25,7 +26,7 @@ public class PingControllerTimer {
 	private static final String EVERY = "*";
 	private static final String DEFAULT_RUNS_SECS = "*/5";
 
-	@Inject
+	@Inject @Configurable("pingControllerRuns")
 	private Instance<String> pingControllerRuns;
 
 	@Resource
@@ -42,6 +43,7 @@ public class PingControllerTimer {
 
 		try {
 			secs = pingControllerRuns.get();
+			LOG.info("Got injected configuration [" + secs + "] ...");
 		}
 		catch (UnsatisfiedResolutionException ex) {
 			LOG.error(ex.getMessage());

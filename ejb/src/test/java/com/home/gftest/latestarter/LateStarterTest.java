@@ -15,6 +15,7 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import com.home.gftest.configurator.base.Configurator;
 import com.home.gftest.ejb.ping.PingControllerBean;
 import com.home.gftest.ejb.ping.PingWorkerBean;
 import com.home.gftest.ejb.samplesession.ControllerSession;
@@ -37,7 +38,8 @@ public class LateStarterTest {
 				.addAsManifestResource(new File("src/test/resources/META-INF/test-ejb-jar.xml"), "ejb-jar.xml")
 				.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
 				.addClasses(
-						LateStarter.class
+						Configurator.class
+						, LateStarter.class
 						, PingControllerTimer.class
 						, PingControllerBean.class, PingWorkerBean.class
 						, ControllerSessionTimer.class

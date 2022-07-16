@@ -14,6 +14,7 @@ import javax.inject.Inject;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.home.gftest.configurator.base.NotConfiguredException;
 import com.home.gftest.ejb.samplesession.ControllerSession;
 
 /**
@@ -42,11 +43,17 @@ public class ControllerSessionTimer {
 
 		try {
 		    secs = controllerSessionRuns.get();
+			LOG.info("Got injected configuration [" + secs + "] ...");
+		}
+		catch (NotConfiguredException ncex) {
+			LOG.error(ncex.getMessage());
+			secs = DEFAULT_RUNS_SECS;
+			LOG.warn("Use DEFAULT value [" + secs + "] now...");
 		}
 		catch (UnsatisfiedResolutionException ex) {
 			LOG.error(ex.getMessage());
 			secs = DEFAULT_RUNS_SECS;
-			LOG.info("Use DEFAULT value [" + secs + "] now...");
+			LOG.warn("Use DEFAULT value [" + secs + "] now...");
 		}
 		expression.year(EVERY).month(EVERY).dayOfMonth(EVERY).hour(EVERY).minute(EVERY).second(secs);
 
