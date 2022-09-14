@@ -1,5 +1,5 @@
 /**
- * The sample entity classes.<br>
+ * The sample database entity classes.<br>
  * <p>
  * <strong>Order - OrderItem</strong><br>
  * <p>
