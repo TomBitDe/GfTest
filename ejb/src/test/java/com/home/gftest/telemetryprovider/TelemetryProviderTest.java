@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 import java.io.File;
 
 import javax.ejb.EJB;
+import javax.ejb.EJBException;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -22,7 +23,7 @@ import com.home.gftest.telemetryprovider.monitoring.entity.MonitoringRessource;
 import com.home.gftest.telemetryprovider.monitoring.entity.PerformanceAuditor;
 
 /**
- * Test the LateStarter.
+ * Test the GoodMorning in TelemetryProvider.
  */
 @RunWith(Arquillian.class)
 public class TelemetryProviderTest {
@@ -53,14 +54,25 @@ public class TelemetryProviderTest {
 	 * Just call method say of GoodMorning
 	 */
 	@Test
-	public void testGoodMorning() {
-		LOG.info("--> testGoodMorning");
+	public void testGoodMorningSay() {
+		LOG.info("--> testGoodMorningSay()");
 
 		goodMorning.say();
 
 		assertTrue(true);
 
-		LOG.info("<-- testGoodMorning");
+		LOG.info("<-- testGoodMorningSay()");
 	}
 
+	/**
+	 * Call method tooEarly of GoodMorming to throw an exception
+	 */
+	@Test(expected = EJBException.class)
+	public void testGoodMorningTooEarly() {
+		LOG.info("--> testGoodMorningTooEarly()");
+
+		goodMorning.tooEarly();
+
+		LOG.info("<-- testGoodMorningTooEarly()");
+	}
 }
