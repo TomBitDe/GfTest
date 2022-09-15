@@ -23,6 +23,8 @@ import org.junit.runner.RunWith;
 
 import com.home.gftest.jpa.model.Component;
 import com.home.gftest.jpa.model.Delivery;
+import com.home.gftest.telemetryprovider.monitoring.entity.MonitoringRessource;
+import com.home.gftest.telemetryprovider.monitoring.entity.PerformanceAuditor;
 
 /**
  * Test the delivery manager session bean.
@@ -46,7 +48,9 @@ public class DeliveryManagerTest {
 				.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
 				.addClasses(
 						DeliveryManagerLocal.class, DeliveryManagerBean.class,
-						ComponentManagerLocal.class, ComponentManagerBean.class
+						ComponentManagerLocal.class, ComponentManagerBean.class,
+						PerformanceAuditor.class,
+						MonitoringRessource.class
 						);
 
 		LOG.debug(archive.toString(true));

@@ -22,6 +22,9 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import com.home.gftest.telemetryprovider.monitoring.entity.MonitoringRessource;
+import com.home.gftest.telemetryprovider.monitoring.entity.PerformanceAuditor;
+
 @RunWith(Arquillian.class)
 public class InjectionQueueTest extends CommonJmsUtility {
 	private static final Logger LOG = LogManager.getLogger(InjectionQueueTest.class);
@@ -34,7 +37,11 @@ public class InjectionQueueTest extends CommonJmsUtility {
 				.addAsManifestResource(new File("src/test/resources/META-INF/test-glassfish-ejb-jar.xml"),
 						"glassfish-ejb-jar.xml")
 				.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
-				.addClasses(MsgQueueConsumer1Bean.class);
+				.addClasses(
+						MsgQueueConsumer1Bean.class,
+						PerformanceAuditor.class,
+						MonitoringRessource.class
+		                );
 
 		LOG.debug(archive.toString(true));
 

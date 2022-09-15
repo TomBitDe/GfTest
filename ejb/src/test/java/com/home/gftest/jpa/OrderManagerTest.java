@@ -23,6 +23,8 @@ import org.junit.runner.RunWith;
 
 import com.home.gftest.jpa.model.Order;
 import com.home.gftest.jpa.model.OrderItem;
+import com.home.gftest.telemetryprovider.monitoring.entity.MonitoringRessource;
+import com.home.gftest.telemetryprovider.monitoring.entity.PerformanceAuditor;
 
 /**
  * Test the order manager session bean.
@@ -46,7 +48,9 @@ public class OrderManagerTest {
 				.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
 				.addClasses(
 						OrderManagerLocal.class, OrderManagerBean.class,
-						OrderItemManagerLocal.class, OrderItemManagerBean.class
+						OrderItemManagerLocal.class, OrderItemManagerBean.class,
+						PerformanceAuditor.class,
+						MonitoringRessource.class
 						);
 
 		LOG.debug(archive.toString(true));

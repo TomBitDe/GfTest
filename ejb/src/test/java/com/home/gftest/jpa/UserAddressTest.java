@@ -25,6 +25,8 @@ import org.junit.runner.RunWith;
 
 import com.home.gftest.jpa.model.Address;
 import com.home.gftest.jpa.model.User;
+import com.home.gftest.telemetryprovider.monitoring.entity.MonitoringRessource;
+import com.home.gftest.telemetryprovider.monitoring.entity.PerformanceAuditor;
 
 /**
  * Test the user address manager session bean.
@@ -45,7 +47,9 @@ public class UserAddressTest {
 				.addAsManifestResource(new File("src/test/resources/META-INF/test-glassfish-ejb-jar.xml"), "glassfish-ejb-jar.xml")
 				.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
 				.addClasses(
-						UserAddressManagerLocal.class, UserAddressManagerBean.class
+						UserAddressManagerLocal.class, UserAddressManagerBean.class,
+						PerformanceAuditor.class,
+						MonitoringRessource.class
 						);
 
 		LOG.debug(archive.toString(true));
