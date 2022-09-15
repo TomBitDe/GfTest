@@ -19,6 +19,7 @@ import com.home.gftest.ejb.refchange.FirstCallerSessionLocal;
 import com.home.gftest.ejb.refchange.SecondCallerSessionLocal;
 import com.home.gftest.ejb.samplesession.ControllerSession;
 import com.home.gftest.ejb.samplesession.ThirdSession;
+import com.home.gftest.telemetryprovider.monitoring.entity.GoodMorning;
 
 /**
  * Implementation of a timer controlled bean<br>
@@ -53,6 +54,9 @@ public class TimerOtherSessionsBean {
 	@EJB
 	AsyncControllerSession asyncControllerSession;
 
+	@EJB
+	GoodMorning goodMorning;
+
 	@Timeout
 	public void programmaticTimeout(Timer timer) {
 		this.setLastProgrammaticTimeout(new Date());
@@ -75,6 +79,8 @@ public class TimerOtherSessionsBean {
 		asyncControllerSession.fireAndForget();
 		asyncControllerSession.runAsyncCall(10000);
 		asyncControllerSession.cancelAsyncCall(5000);
+		goodMorning.say();
+		goodMorning.tooEarly();
 
 		LOG.info("<-- automaticTimeout()");
 	}
