@@ -42,7 +42,7 @@ public class JndiTree {
 	 * @return the JNDI tree context
 	 */
 	@GET
-	@Path("treeastext")
+	@Path("treeAsText")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String getJndiTreeAsText() {
 		StringBuffer buffer = new StringBuffer();
@@ -60,7 +60,7 @@ public class JndiTree {
 	 * @return the related JNDI tree context entries
 	 */
 	@GET
-	@Path("treeastext/{key}")
+	@Path("treeAsText/{key}")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String getEntryAsText(@PathParam("key") String key) {
 
