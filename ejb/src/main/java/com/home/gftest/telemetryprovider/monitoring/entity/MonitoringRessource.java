@@ -59,6 +59,7 @@ public class MonitoringRessource implements MonitoringRessourceMXBean {
     private SessionContext sc;
 
     @GET
+    @Path("slowestMethods/{max}")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public List<Invocation> getSlowestMethods(@QueryParam("max") @DefaultValue("50") int maxResult) {
     	List<Invocation> list = new ArrayList<>(methods.values());
@@ -204,6 +205,7 @@ public class MonitoringRessource implements MonitoringRessourceMXBean {
 
     @Override
     @DELETE
+	@Path("clear")
     public void clear() {
         methods.clear();
         exceptionCount.set(0);
