@@ -85,8 +85,12 @@ public class Configurator implements ConfiguratorMXBean {
 	}
 
 	@Override
-    @PermitAll
+	public Map<String, String> getConfigurationMap() {
+		return this.configuration;
+	}
+
 	@GET
+    @PermitAll
 	public String getConfiguration() {
 		return this.configuration.toString();
 	}

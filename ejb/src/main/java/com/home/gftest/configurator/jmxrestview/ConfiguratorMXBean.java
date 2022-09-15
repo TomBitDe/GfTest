@@ -1,5 +1,7 @@
 package com.home.gftest.configurator.jmxrestview;
 
+import java.util.Map;
+
 public interface ConfiguratorMXBean {
-	String getConfiguration();
+	Map<String, String> getConfigurationMap();
 }
