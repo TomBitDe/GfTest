@@ -17,7 +17,7 @@ public class PingWorkerBean {
 	private static final Logger LOG = LogManager.getLogger(PingWorkerBean.class);
 
 	/**
-	 * Default constructor.
+	 * Default constructor
 	 */
 	public PingWorkerBean() {
 		super();

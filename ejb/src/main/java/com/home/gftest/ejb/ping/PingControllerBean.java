@@ -27,7 +27,7 @@ public class PingControllerBean {
 	PingWorkerBean pingProcessor;
 
 	/**
-	 * Default constructor.
+	 * Default constructor
 	 */
 	public PingControllerBean() {
 		super();
