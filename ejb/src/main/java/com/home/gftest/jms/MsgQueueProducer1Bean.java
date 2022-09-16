@@ -3,7 +3,6 @@ package com.home.gftest.jms;
 import javax.annotation.Resource;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
-import javax.interceptor.Interceptors;
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
 import javax.jms.JMSException;
@@ -15,14 +14,12 @@ import javax.jms.Session;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.home.gftest.telemetryprovider.monitoring.entity.PerformanceAuditor;
-
 /**
  * Simple queue text message producer session bean.
  */
 @Stateless
 @Local(com.home.gftest.jms.MsgQueueProducer1.class)
-@Interceptors(PerformanceAuditor.class)
+//@Interceptors(PerformanceAuditor.class)
 public class MsgQueueProducer1Bean implements MsgQueueProducer1 {
 	private static final Logger LOG = LogManager.getLogger(MsgQueueProducer1Bean.class.getName());
 

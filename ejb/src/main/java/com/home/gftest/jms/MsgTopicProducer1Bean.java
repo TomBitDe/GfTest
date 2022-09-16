@@ -3,7 +3,6 @@ package com.home.gftest.jms;
 import javax.annotation.Resource;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
-import javax.interceptor.Interceptors;
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
 import javax.jms.JMSException;
@@ -15,8 +14,6 @@ import javax.jms.Topic;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.home.gftest.telemetryprovider.monitoring.entity.PerformanceAuditor;
-
 /**
  * Simple topic text message producer session bean.<br>
  * <p>
@@ -24,7 +21,7 @@ import com.home.gftest.telemetryprovider.monitoring.entity.PerformanceAuditor;
  */
 @Stateless
 @Local(com.home.gftest.jms.MsgTopicProducer1.class)
-@Interceptors(PerformanceAuditor.class)
+//@Interceptors(PerformanceAuditor.class)
 public class MsgTopicProducer1Bean implements MsgTopicProducer1 {
 	private static final Logger LOG = LogManager.getLogger(MsgTopicProducer1Bean.class);
 
