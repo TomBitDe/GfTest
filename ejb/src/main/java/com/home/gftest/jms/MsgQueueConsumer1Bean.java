@@ -30,8 +30,8 @@ public class MsgQueueConsumer1Bean implements MessageListener {
      */
     public MsgQueueConsumer1Bean() {
 		super();
-		LOG.info("--> MsgQueueConsumer1Bean");
-		LOG.info("<-- MsgQueueConsumer1Bean");
+		LOG.trace("--> MsgQueueConsumer1Bean");
+		LOG.trace("<-- MsgQueueConsumer1Bean");
     }
 
 	/**
@@ -41,7 +41,7 @@ public class MsgQueueConsumer1Bean implements MessageListener {
 	public void onMessage(Message message) {
     	try
         {
-            LOG.info("onMessage: Message of Type [" + message.getClass().toString() + "] received");
+            LOG.trace("onMessage: Message of Type [" + message.getClass().toString() + "] received");
             if (message instanceof TextMessage) {
                 TextMessage textMessage = (TextMessage) message;
                 LOG.info("TextMessage contains this text: [" + textMessage.getText() + ']');

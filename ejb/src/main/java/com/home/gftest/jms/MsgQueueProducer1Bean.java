@@ -34,13 +34,13 @@ public class MsgQueueProducer1Bean implements MsgQueueProducer1 {
 
 	public MsgQueueProducer1Bean() {
 		super();
-		LOG.info("--> MsgQueueProducer1Bean");
-		LOG.info("<-- MsgQueueProducer1Bean");
+		LOG.trace("--> MsgQueueProducer1Bean");
+		LOG.trace("<-- MsgQueueProducer1Bean");
 	}
 
 	@Override
 	public void shouldBeAbleToSendMessage() {
-		LOG.info("--> shouldBeAbleToSendMessage");
+		LOG.trace("--> shouldBeAbleToSendMessage");
 
 		try {
 			Connection connection = factory.createConnection();
@@ -66,12 +66,12 @@ public class MsgQueueProducer1Bean implements MsgQueueProducer1 {
 			LOG.error(jmsEx.getMessage());
 		}
 
-		LOG.info("<-- shouldBeAbleToSendMessage");
+		LOG.trace("<-- shouldBeAbleToSendMessage");
 	}
 
 	@Override
 	public void sendManyMessages(int noMsgs) {
-		LOG.info("--> sendManyMessages");
+		LOG.trace("--> sendManyMessages");
 
 		try {
 			Connection connection = factory.createConnection();
@@ -101,7 +101,6 @@ public class MsgQueueProducer1Bean implements MsgQueueProducer1 {
 			LOG.error(jmsEx.getMessage());
 		}
 
-		LOG.info("<-- sendManyMessages");
+		LOG.trace("<-- sendManyMessages");
 	}
-
 }

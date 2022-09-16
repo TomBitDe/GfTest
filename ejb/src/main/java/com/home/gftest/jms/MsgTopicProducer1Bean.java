@@ -36,13 +36,13 @@ public class MsgTopicProducer1Bean implements MsgTopicProducer1 {
 
 	public MsgTopicProducer1Bean() {
 		super();
-		LOG.info("--> MsgTopicProducer1Bean");
-		LOG.info("<-- MsgTopicProducer1Bean");
+		LOG.trace("--> MsgTopicProducer1Bean");
+		LOG.trace("<-- MsgTopicProducer1Bean");
 	}
 
 	@Override
 	public void sendOneMessage() {
-		LOG.info("--> sendOneMessage");
+		LOG.trace("--> sendOneMessage");
 
 		try {
 			Connection connection = factory.createConnection();
@@ -72,12 +72,12 @@ public class MsgTopicProducer1Bean implements MsgTopicProducer1 {
 			LOG.error(jmsEx.getMessage());
 		}
 
-		LOG.info("<-- sendOneMessage");
+		LOG.trace("<-- sendOneMessage");
 	}
 
 	@Override
 	public void sendManyMessages(int noMsgs) {
-		LOG.info("--> sendManyMessages");
+		LOG.trace("--> sendManyMessages");
 
 		try {
 			Connection connection = factory.createConnection();
@@ -109,7 +109,6 @@ public class MsgTopicProducer1Bean implements MsgTopicProducer1 {
 			LOG.error(jmsEx.getMessage());
 		}
 
-		LOG.info("<-- sendManyMessages");
+		LOG.trace("<-- sendManyMessages");
 	}
-
 }

@@ -32,15 +32,15 @@ public class MsgTopicConsumerEvenNumberBean implements MessageListener {
      */
     public MsgTopicConsumerEvenNumberBean() {
 		super();
-		LOG.info("--> MsgTopicConsumerEvenNumberBean");
-		LOG.info("<-- MsgTopicConsumerEvenNumberBean");
+		LOG.trace("--> MsgTopicConsumerEvenNumberBean");
+		LOG.trace("<-- MsgTopicConsumerEvenNumberBean");
     }
 
 	@Override
 	public void onMessage(Message message) {
     	try
         {
-            LOG.info("onMessage: Message of Type [" + message.getClass().toString() + "] received");
+            LOG.trace("onMessage: Message of Type [" + message.getClass().toString() + "] received");
             if (message instanceof TextMessage) {
                 TextMessage textMessage = (TextMessage) message;
                 LOG.info("TextMessage contains this text: [" + textMessage.getText() + ']');

@@ -32,15 +32,15 @@ public class MsgTopicConsumerOddNumberBean implements MessageListener {
      */
     public MsgTopicConsumerOddNumberBean() {
 		super();
-		LOG.info("--> MsgTopicConsumerOddNumberBean");
-		LOG.info("<-- MsgTopicConsumerOddNumberBean");
+		LOG.trace("--> MsgTopicConsumerOddNumberBean");
+		LOG.trace("<-- MsgTopicConsumerOddNumberBean");
     }
 
 	@Override
 	public void onMessage(Message message) {
     	try
         {
-            LOG.info("onMessage: Message of Type [" + message.getClass().toString() + "] received");
+            LOG.trace("onMessage: Message of Type [" + message.getClass().toString() + "] received");
             if (message instanceof TextMessage) {
                 TextMessage textMessage = (TextMessage) message;
                 LOG.info("TextMessage contains this text: [" + textMessage.getText() + ']');
