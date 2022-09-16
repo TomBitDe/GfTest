@@ -26,7 +26,7 @@
 			<AppenderRef ref="FileAll" />
 		</Logger>
 
-		<Root level="trace">
+		<Root level="info">
 		    <AppenderRef ref="STDOUT" />
 			<AppenderRef ref="FileAll" />
 			<AppenderRef ref="FilePart" />
