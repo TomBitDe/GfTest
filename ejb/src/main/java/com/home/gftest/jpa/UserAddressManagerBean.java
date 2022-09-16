@@ -30,22 +30,22 @@ public class UserAddressManagerBean implements UserAddressManagerLocal {
 
 	public UserAddressManagerBean() {
 		super();
-		LOG.debug("--> UserAddressManager");
-		LOG.debug("<-- UserAddressManager");
+		LOG.trace("--> UserAddressManager");
+		LOG.trace("<-- UserAddressManager");
 	}
 
 	@Override
 	public void create(User user) {
-		LOG.debug("--> create");
+		LOG.trace("--> create");
 
 		em.persist(user);
 
-		LOG.debug("<-- create");
+		LOG.trace("<-- create");
 	}
 
 	@Override
 	public User delete(Long id) {
-		LOG.debug("--> delete(" + id + ')');
+		LOG.trace("--> delete(" + id + ')');
 
 		User user = getById(id);
 
@@ -57,80 +57,82 @@ public class UserAddressManagerBean implements UserAddressManagerLocal {
 		else {
 			LOG.debug("Id <" + id + "> not found");
 		}
+		LOG.trace("<-- delete(" + id + ')');
+
 		return user;
 	}
 
 	@Override
 	public User delete(User user) {
-		LOG.debug("--> delete(" + user + ')');
+		LOG.trace("--> delete(" + user + ')');
 
 		if (user != null && user.getId() != null) {
 
 			User oldUser = delete(user.getId());
 
-			LOG.debug("<-- delete()");
+			LOG.trace("<-- delete()");
 
 			return oldUser;
 		}
 
-		LOG.debug("<-- delete()");
+		LOG.trace("<-- delete()");
 
 		return null;
 	}
 
 	@Override
 	public User getById(Long id) {
-		LOG.debug("--> getById(" + id + ')');
+		LOG.trace("--> getById(" + id + ')');
 
 		User user = em.find(User.class, id);
 
-		LOG.debug("<-- getById");
+		LOG.trace("<-- getById");
 
 		return user;
 	}
 
 	@Override
 	public List<User> getAll() {
-		LOG.debug("--> getAll()");
+		LOG.trace("--> getAll()");
 
 		TypedQuery<User> query = em.createQuery("SELECT u FROM User u", User.class);
 		List<User> users = query.getResultList();
 
-		LOG.debug("<-- getAll()");
+		LOG.trace("<-- getAll()");
 
 		return users;
 	}
 
 	@Override
 	public Address getByUserId(Long id) {
-		LOG.debug("--> getByUserId(" + id + ')');
+		LOG.trace("--> getByUserId(" + id + ')');
 
 		User user = em.find(User.class, id);
 
-		LOG.debug("<-- getByUserId");
+		LOG.trace("<-- getByUserId");
 
 		return user.getAddress();
 	}
 
 	@Override
 	public Address getByUser(User user) {
-		LOG.debug("--> getByUser(" + user + ')');
+		LOG.trace("--> getByUser(" + user + ')');
 
 		Address address = getByUserId(user.getId());
 
-		LOG.debug("<-- getByUser");
+		LOG.trace("<-- getByUser");
 
 		return address;
 	}
 
 	@Override
 	public void setUserInAddress(User user) {
-		LOG.debug("--> setUserInAddress(" + user + ')');
+		LOG.trace("--> setUserInAddress(" + user + ')');
 
 		Address address = getByUserId(user.getId());
 
 		address.setUser(user);
 
-		LOG.debug("<-- setUserInAddress");
+		LOG.trace("<-- setUserInAddress");
 	}
 }

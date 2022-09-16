@@ -32,8 +32,8 @@ public class ComponentManagerBean implements ComponentManagerLocal {
      */
     public ComponentManagerBean() {
 		super();
-		LOG.debug("--> ComponentManager");
-		LOG.debug("<-- ComponentManager");
+		LOG.trace("--> ComponentManager");
+		LOG.trace("<-- ComponentManager");
     }
 
 	/**
@@ -41,7 +41,7 @@ public class ComponentManagerBean implements ComponentManagerLocal {
      */
     @Override
 	public Component delete(Component component) {
-		LOG.debug("--> delete(" + component + ')');
+		LOG.trace("--> delete(" + component + ')');
 
 		if (component != null && component.getComponentId() != null) {
 
@@ -52,7 +52,7 @@ public class ComponentManagerBean implements ComponentManagerLocal {
 			return oldComponent;
 		}
 
-		LOG.debug("<-- delete()");
+		LOG.trace("<-- delete()");
 
 		return null;
     }
@@ -62,11 +62,11 @@ public class ComponentManagerBean implements ComponentManagerLocal {
      */
     @Override
 	public Component getById(Long componentId) {
-		LOG.debug("--> getById(" + componentId + ')');
+		LOG.trace("--> getById(" + componentId + ')');
 
 		Component component = em.find(Component.class, componentId);
 
-		LOG.debug("<-- getById");
+		LOG.trace("<-- getById");
 
 		return component;
     }
@@ -76,11 +76,11 @@ public class ComponentManagerBean implements ComponentManagerLocal {
      */
     @Override
 	public void create(Component component) {
-		LOG.debug("--> create");
+		LOG.trace("--> create");
 
 		em.persist(component);
 
-		LOG.debug("<-- create");
+		LOG.trace("<-- create");
     }
 
 	/**
@@ -88,7 +88,7 @@ public class ComponentManagerBean implements ComponentManagerLocal {
      */
     @Override
 	public Component delete(Long componentId) {
-		LOG.debug("--> delete(" + componentId + ')');
+		LOG.trace("--> delete(" + componentId + ')');
 
 		Component component = getById(componentId);
 
@@ -100,6 +100,8 @@ public class ComponentManagerBean implements ComponentManagerLocal {
 		else {
 			LOG.debug("Id <" + componentId + "> not found");
 		}
+		LOG.trace("<-- delete(" + componentId + ')');
+
 		return component;
     }
 
@@ -108,12 +110,12 @@ public class ComponentManagerBean implements ComponentManagerLocal {
      */
     @Override
 	public List<Component> getAll() {
-		LOG.debug("--> getAll()");
+		LOG.trace("--> getAll()");
 
 		TypedQuery<Component> query = em.createQuery("SELECT c FROM Component c", Component.class);
 		List<Component> component = query.getResultList();
 
-		LOG.debug("<-- getAll()");
+		LOG.trace("<-- getAll()");
 
 		return component;
     }

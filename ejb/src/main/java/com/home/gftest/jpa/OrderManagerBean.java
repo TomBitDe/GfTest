@@ -35,33 +35,33 @@ public class OrderManagerBean implements OrderManagerLocal {
 	 */
 	public OrderManagerBean() {
 		super();
-		LOG.debug("--> OrderManager");
-		LOG.debug("<-- OrderManager");
+		LOG.trace("--> OrderManager");
+		LOG.trace("<-- OrderManager");
 	}
 
 	@Override
 	public void create(Order order) {
-		LOG.debug("--> create");
+		LOG.trace("--> create");
 
 		em.persist(order);
 
-		LOG.debug("<-- create");
+		LOG.trace("<-- create");
 	}
 
 	@Override
 	public Order getById(Long id) {
-		LOG.debug("--> getById(" + id + ')');
+		LOG.trace("--> getById(" + id + ')');
 
 		Order order = em.find(Order.class, id);
 
-		LOG.debug("<-- getById");
+		LOG.trace("<-- getById");
 
 		return order;
 	}
 
 	@Override
 	public Order delete(Long id) {
-		LOG.debug("--> delete(" + id + ')');
+		LOG.trace("--> delete(" + id + ')');
 
 		Order order = getById(id);
 
@@ -73,35 +73,37 @@ public class OrderManagerBean implements OrderManagerLocal {
 		else {
 			LOG.debug("Id <" + id + "> not found");
 		}
+		LOG.trace("<-- delete(" + id + ')');
+
 		return order;
 	}
 
 	@Override
 	public Order delete(Order order) {
-		LOG.debug("--> delete(" + order + ')');
+		LOG.trace("--> delete(" + order + ')');
 
 		if (order != null && order.getId() != null) {
 
 			Order oldOrder = delete(order.getId());
 
-			LOG.debug("<-- delete()");
+			LOG.trace("<-- delete()");
 
 			return oldOrder;
 		}
 
-		LOG.debug("<-- delete()");
+		LOG.trace("<-- delete()");
 
 		return null;
 	}
 
 	@Override
 	public List<Order> getAll() {
-		LOG.debug("--> getAll()");
+		LOG.trace("--> getAll()");
 
 		TypedQuery<Order> query = em.createQuery("SELECT o FROM Order o", Order.class);
 		List<Order> orders = query.getResultList();
 
-		LOG.debug("<-- getAll()");
+		LOG.trace("<-- getAll()");
 
 		return orders;
 	}

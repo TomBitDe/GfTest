@@ -35,22 +35,22 @@ public class DeliveryManagerBean implements DeliveryManagerLocal {
      */
     public DeliveryManagerBean() {
 		super();
-		LOG.debug("--> DeliveryManager");
-		LOG.debug("<-- DeliveryManager");
+		LOG.trace("--> DeliveryManager");
+		LOG.trace("<-- DeliveryManager");
     }
 
 	@Override
 	public void create(Delivery delivery) {
-		LOG.debug("--> create");
+		LOG.trace("--> create");
 
 		em.persist(delivery);
 
-		LOG.debug("<-- create");
+		LOG.trace("<-- create");
 	}
 
 	@Override
 	public Delivery delete(Long deliveryId) {
-		LOG.debug("--> delete(" + deliveryId + ')');
+		LOG.trace("--> delete(" + deliveryId + ')');
 
 		Delivery delivery = getById(deliveryId);
 
@@ -62,46 +62,48 @@ public class DeliveryManagerBean implements DeliveryManagerLocal {
 		else {
 			LOG.debug("Id <" + deliveryId + "> not found");
 		}
+		LOG.trace("<-- delete(" + deliveryId + ')');
+
 		return delivery;
 	}
 
 	@Override
 	public Delivery delete(Delivery delivery) {
-		LOG.debug("--> delete(" + delivery + ')');
+		LOG.trace("--> delete(" + delivery + ')');
 
 		if (delivery != null && delivery.getDeliveryId() != null) {
 
 			Delivery oldDelivery = delete(delivery.getDeliveryId());
 
-			LOG.debug("<-- delete()");
+			LOG.trace("<-- delete()");
 
 			return oldDelivery;
 		}
 
-		LOG.debug("<-- delete()");
+		LOG.trace("<-- delete()");
 
 		return null;
 	}
 
 	@Override
 	public Delivery getById(Long id) {
-		LOG.debug("--> getById(" + id + ')');
+		LOG.trace("--> getById(" + id + ')');
 
 		Delivery delivery = em.find(Delivery.class, id);
 
-		LOG.debug("<-- getById");
+		LOG.trace("<-- getById");
 
 		return delivery;
 	}
 
 	@Override
 	public List<Delivery> getAll() {
-		LOG.debug("--> getAll()");
+		LOG.trace("--> getAll()");
 
 		TypedQuery<Delivery> query = em.createQuery("SELECT d FROM Delivery d", Delivery.class);
 		List<Delivery> deliveries = query.getResultList();
 
-		LOG.debug("<-- getAll()");
+		LOG.trace("<-- getAll()");
 
 		return deliveries;
 	}
