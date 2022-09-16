@@ -30,8 +30,8 @@ public class ConfigCacheBean implements ConfigCache {
 
 	public ConfigCacheBean() {
 		super();
-		LOG.debug("--> ConfigCacheBean");
-		LOG.debug("<-- ConfigCacheBean");
+		LOG.trace("--> ConfigCacheBean");
+		LOG.trace("<-- ConfigCacheBean");
 	}
 
 	/**
@@ -39,11 +39,11 @@ public class ConfigCacheBean implements ConfigCache {
 	 */
 	@Override
 	public void refresh() {
-		LOG.debug("--> refresh");
+		LOG.trace("--> refresh");
 
 		cache = createFreshCache();
 
-		LOG.debug("<-- refresh");
+		LOG.trace("<-- refresh");
 	}
 
 	/**
@@ -52,11 +52,11 @@ public class ConfigCacheBean implements ConfigCache {
 	@Schedule(minute = "*/2", hour = "*", persistent = false)
 	@PostConstruct
 	private void populateCache() {
-		LOG.debug("--> populateCache");
+		LOG.trace("--> populateCache");
 
 		cache = createFreshCache();
 
-		LOG.debug("<-- populateCache");
+		LOG.trace("<-- populateCache");
 	}
 
 	/**
@@ -65,7 +65,7 @@ public class ConfigCacheBean implements ConfigCache {
 	 * @return the data map for the cache
 	 */
 	private Map<String, String> createFreshCache() {
-		LOG.debug("--> createFreshCache");
+		LOG.trace("--> createFreshCache");
 
 		Map<String, String> map = cacheDataProvider.loadCacheData();
 
@@ -77,7 +77,7 @@ public class ConfigCacheBean implements ConfigCache {
 			map.forEach((k,v) -> LOG.info("Key=[" + k + "] Value=[" + v + ']'));
 		}
 
-		LOG.debug("<-- createFreshCache");
+		LOG.trace("<-- createFreshCache");
 
 		return map;
 	}
@@ -85,11 +85,11 @@ public class ConfigCacheBean implements ConfigCache {
 	@Override
 	@Lock(LockType.READ)
 	public String getData(String key) {
-		LOG.debug("Key=[" + key + ']');
+		LOG.trace("Key=[" + key + ']');
 
 		String val = cache.get(key);
 
-		LOG.debug("Value=[" + val + ']');
+		LOG.trace("Value=[" + val + ']');
 
 	    return val;
 	}
@@ -97,7 +97,7 @@ public class ConfigCacheBean implements ConfigCache {
 	@Override
 	@Lock(LockType.READ)
 	public String getData(String key, String defaultValue) {
-		LOG.debug("Key=[" + key + "] DefaultValue=[" + defaultValue + ']');
+		LOG.trace("Key=[" + key + "] DefaultValue=[" + defaultValue + ']');
 
 		String val = cache.get(key);
 
@@ -105,7 +105,7 @@ public class ConfigCacheBean implements ConfigCache {
 			val = defaultValue;
 		}
 
-		LOG.debug("Value=[" + val + ']');
+		LOG.trace("Value=[" + val + ']');
 
 	    return val;
 	}
@@ -113,7 +113,7 @@ public class ConfigCacheBean implements ConfigCache {
 	@Override
 	@Lock(LockType.READ)
 	public int getData(String key, int defaultValue) {
-		LOG.debug("Key=[" + key + "] DefaultValue=[" + defaultValue + ']');
+		LOG.trace("Key=[" + key + "] DefaultValue=[" + defaultValue + ']');
 
 		int val;
 
@@ -124,7 +124,7 @@ public class ConfigCacheBean implements ConfigCache {
 			val = defaultValue;
 		}
 
-		LOG.debug("Value=[" + val + ']');
+		LOG.trace("Value=[" + val + ']');
 
 	    return val;
 	}
@@ -132,7 +132,7 @@ public class ConfigCacheBean implements ConfigCache {
 	@Override
 	@Lock(LockType.READ)
 	public long getData(String key, long defaultValue) {
-		LOG.debug("Key=[" + key + "] DefaultValue=[" + defaultValue + ']');
+		LOG.trace("Key=[" + key + "] DefaultValue=[" + defaultValue + ']');
 
 		long val;
 
@@ -143,7 +143,7 @@ public class ConfigCacheBean implements ConfigCache {
 			val = defaultValue;
 		}
 
-		LOG.debug("Value=[" + val + ']');
+		LOG.trace("Value=[" + val + ']');
 
 	    return val;
 	}

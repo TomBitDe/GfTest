@@ -27,13 +27,13 @@ public class CacheDataFromProperties implements CacheDataProvider {
 	 */
 	public CacheDataFromProperties() {
 		super();
-		LOG.debug("--> CacheDataFromProperties");
-		LOG.debug("<-- CacheDataFromProperties");
+		LOG.trace("--> CacheDataFromProperties");
+		LOG.trace("<-- CacheDataFromProperties");
 	}
 
 	@Override
 	public Map<String, String> loadCacheData() {
-		LOG.debug("--> loadCacheData");
+		LOG.trace("--> loadCacheData");
 
 		Map<String, String> map = new HashMap<>();
 
@@ -66,7 +66,7 @@ public class CacheDataFromProperties implements CacheDataProvider {
 			}
 		}
 
-		LOG.debug("<-- loadCacheData");
+		LOG.trace("<-- loadCacheData");
 
 		return map;
 	}

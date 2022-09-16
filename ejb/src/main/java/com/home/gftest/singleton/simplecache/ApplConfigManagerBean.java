@@ -38,36 +38,36 @@ public class ApplConfigManagerBean implements ApplConfigManager, ApplConfigServi
      */
     public ApplConfigManagerBean() {
 		super();
-		LOG.debug("--> ApplConfigManagerBean");
-		LOG.debug("<-- ApplConfigManagerBean");
+		LOG.trace("--> ApplConfigManagerBean");
+		LOG.trace("<-- ApplConfigManagerBean");
     }
 
 	@Override
 	public List<ApplConfig> getAll() {
-		LOG.debug("--> getAll()");
+		LOG.trace("--> getAll()");
 
 		TypedQuery<ApplConfig> query = em.createQuery("SELECT a FROM ApplConfig a ORDER BY a.keyVal", ApplConfig.class);
 		List<ApplConfig> configList = query.getResultList();
 
-		LOG.debug("<-- getAll()");
+		LOG.trace("<-- getAll()");
 
 		return configList;
 	}
 
 	@Override
 	public List<ApplConfig> getContent() {
-		LOG.debug("--> getContent()");
+		LOG.trace("--> getContent()");
 
 		List<ApplConfig> configList = getAll();
 
-		LOG.debug("<-- getContent()");
+		LOG.trace("<-- getContent()");
 
 		return configList;
 	}
 
 	@Override
 	public List<ApplConfig> getContent(int offset, int count) {
-		LOG.debug("--> getContent(" + offset + ", " + count + ")");
+		LOG.trace("--> getContent(" + offset + ", " + count + ")");
 
         if (offset < 0) {
             throw new IllegalArgumentException("offset < 0");
@@ -82,49 +82,49 @@ public class ApplConfigManagerBean implements ApplConfigManager, ApplConfigServi
 
         List<ApplConfig> configList = query.getResultList();
 
-		LOG.debug("<-- getContent(" + offset + ", " + count + ")");
+		LOG.trace("<-- getContent(" + offset + ", " + count + ")");
 
 		return configList;
 	}
 
 	@Override
 	public ApplConfig getById(String keyVal) {
-		LOG.debug("--> getById(" + keyVal + ')');
+		LOG.trace("--> getById(" + keyVal + ')');
 
 		ApplConfig applConfigItem = em.find(ApplConfig.class, keyVal);
 
-		LOG.debug("<-- getById");
+		LOG.trace("<-- getById");
 
 		return applConfigItem;
 	}
 
 	@Override
 	public ApplConfig create(ApplConfig config) {
-		LOG.debug("--> create");
+		LOG.trace("--> create");
 
 		em.persist(config);
 
-		LOG.debug("<-- create");
+		LOG.trace("<-- create");
 
 		return getById(config.getKeyVal());
 	}
 	@Override
 	public ApplConfig update(ApplConfig config) {
-		LOG.debug("--> update");
+		LOG.trace("--> update");
 
 		ApplConfig entry = getById(config.getKeyVal());
 		if (entry != null) {
 			entry.setParamVal(config.getParamVal());
 		}
 
-		LOG.debug("<-- update");
+		LOG.trace("<-- update");
 
 		return entry;
 	}
 
 	@Override
 	public ApplConfig delete(String keyVal) {
-		LOG.debug("--> delete(" + keyVal + ')');
+		LOG.trace("--> delete(" + keyVal + ')');
 
 		ApplConfig config = em.find(ApplConfig.class, keyVal);
 
@@ -136,6 +136,8 @@ public class ApplConfigManagerBean implements ApplConfigManager, ApplConfigServi
 		else {
 			LOG.debug("Key value <" + keyVal + "> not found");
 		}
+		LOG.trace("<-- delete(" + keyVal + ')');
+
 		return config;
     }
 

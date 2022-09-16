@@ -30,13 +30,13 @@ public class CacheDataFromDbTable implements CacheDataProvider {
 	 */
 	public CacheDataFromDbTable() {
 		super();
-		LOG.debug("--> CacheDataFromDbTable");
-		LOG.debug("<-- CacheDataFromDbTable");
+		LOG.trace("--> CacheDataFromDbTable");
+		LOG.trace("<-- CacheDataFromDbTable");
 	}
 
 	@Override
 	public Map<String, String> loadCacheData() {
-		LOG.debug("--> loadCacheData");
+		LOG.trace("--> loadCacheData");
 
 		Map<String, String> map = new HashMap<>();
 
@@ -47,7 +47,7 @@ public class CacheDataFromDbTable implements CacheDataProvider {
 		}
 		LOG.info("Global configurations = " + map);
 
-		LOG.debug("<-- loadCacheData");
+		LOG.trace("<-- loadCacheData");
 
 		return map;
 	}
