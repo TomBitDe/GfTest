@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.ejb.Local;
 import javax.ejb.Stateless;
-import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -13,14 +12,14 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.home.gftest.jpa.model.Component;
-import com.home.gftest.telemetryprovider.monitoring.entity.PerformanceAuditor;
 
 /**
  * Session Bean implementation class ComponentManagerBean
  */
 @Stateless
 @Local(ComponentManagerLocal.class)
-@Interceptors(PerformanceAuditor.class)
+//@TransactionAttribute(TransactionAttributeType.REQUIRED)
+//@Interceptors(PerformanceAuditor.class)
 public class ComponentManagerBean implements ComponentManagerLocal {
 	private static final Logger LOG = LogManager.getLogger(ComponentManagerBean.class);
 
