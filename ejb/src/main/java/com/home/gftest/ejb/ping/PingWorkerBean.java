@@ -21,8 +21,8 @@ public class PingWorkerBean {
 	 */
 	public PingWorkerBean() {
 		super();
-		LOG.info("--> PingWorkerBean");
-		LOG.info("<-- PingWorkerBean");
+		LOG.trace("--> PingWorkerBean");
+		LOG.trace("<-- PingWorkerBean");
 	}
 
 	/**
@@ -33,8 +33,8 @@ public class PingWorkerBean {
 	 * @return pong
 	 */
 	public String ping(String who) {
-		LOG.info("--> ping (" + who + ")");
-		LOG.info("<-- ping (" + who + ")");
+		LOG.trace("--> ping (" + who + ")");
+		LOG.trace("<-- ping (" + who + ")");
 
 		return "pong";
 	}

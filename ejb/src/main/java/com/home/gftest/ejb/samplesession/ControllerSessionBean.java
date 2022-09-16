@@ -25,17 +25,17 @@ public class ControllerSessionBean implements ControllerSession {
 
 	public ControllerSessionBean() {
 		super();
-		LOG.info("--> ControllerSessionBean");
-		LOG.info("<-- ControllerSessionBean");
+		LOG.trace("--> ControllerSessionBean");
+		LOG.trace("<-- ControllerSessionBean");
 	}
 
 	@Override
 	public boolean control() {
-		LOG.info("--> control");
+		LOG.trace("--> control");
 
 		boolean ret = newSession.businessMethod();
 
-		LOG.info("--> control");
+		LOG.trace("--> control");
 
 		return ret;
 	}

@@ -27,8 +27,8 @@ public class SecondCallerSession implements SecondCallerSessionLocal {
 	 */
 	public SecondCallerSession() {
 		super();
-		LOG.info("--> SecondCallerSession");
-		LOG.info("<-- SecondCallerSession");
+		LOG.trace("--> SecondCallerSession");
+		LOG.trace("<-- SecondCallerSession");
 	}
 
 	/**
@@ -36,10 +36,10 @@ public class SecondCallerSession implements SecondCallerSessionLocal {
 	 */
 	@Override
 	public void call() {
-		LOG.info("--> call");
+		LOG.trace("--> call");
 
 		calledSession.called();
 
-		LOG.info("<-- call");
+		LOG.trace("<-- call");
 	}
 }

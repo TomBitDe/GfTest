@@ -17,19 +17,19 @@ public class OtherSessionBean implements OtherSession {
 
 	public OtherSessionBean() {
 		super();
-		LOG.info("--> OtherSessionBean");
-		LOG.info("<-- OtherSessionBean");
+		LOG.trace("--> OtherSessionBean");
+		LOG.trace("<-- OtherSessionBean");
 	}
 
 	@Override
 	public boolean businessMethod() {
 		boolean ret = false;
 
-		LOG.info("--> businessMethod");
+		LOG.trace("--> businessMethod");
 
 		ret = true;
 
-		LOG.info("<-- businessMethod");
+		LOG.trace("<-- businessMethod");
 
 		return ret;
 	}

@@ -16,19 +16,19 @@ public class NewSessionBean implements NewSession {
 
 	public NewSessionBean() {
 		super();
-		LOG.info("--> NewSessionBean");
-		LOG.info("<-- NewSessionBean");
+		LOG.trace("--> NewSessionBean");
+		LOG.trace("<-- NewSessionBean");
 	}
 
 	@Override
 	public boolean businessMethod() {
 		boolean ret = false;
 
-		LOG.info("--> businessMethod");
+		LOG.trace("--> businessMethod");
 
 		ret = true;
 
-		LOG.info("<-- businessMethod");
+		LOG.trace("<-- businessMethod");
 
 		return ret;
 	}

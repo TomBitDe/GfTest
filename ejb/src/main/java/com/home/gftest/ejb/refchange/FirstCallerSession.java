@@ -27,8 +27,8 @@ public class FirstCallerSession implements FirstCallerSessionLocal {
 	 */
 	public FirstCallerSession() {
 		super();
-		LOG.info("--> FirstCallerSession");
-		LOG.info("<-- FirstCallerSession");
+		LOG.trace("--> FirstCallerSession");
+		LOG.trace("<-- FirstCallerSession");
 	}
 
 	/**
@@ -36,10 +36,10 @@ public class FirstCallerSession implements FirstCallerSessionLocal {
 	 */
 	@Override
 	public void call() {
-		LOG.info("--> call");
+		LOG.trace("--> call");
 
 		calledSession.called();
 
-		LOG.info("<-- call");
+		LOG.trace("<-- call");
 	}
 }

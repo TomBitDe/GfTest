@@ -31,8 +31,8 @@ public class PingControllerBean {
 	 */
 	public PingControllerBean() {
 		super();
-		LOG.info("--> PingControllerBean");
-		LOG.info("<-- PingControllerBean");
+		LOG.trace("--> PingControllerBean");
+		LOG.trace("<-- PingControllerBean");
 	}
 
 	/**
@@ -41,8 +41,8 @@ public class PingControllerBean {
 	 * @return pong for every called worker
 	 */
 	public String runPing() {
-		LOG.info("--> runPing");
-		LOG.info("<-- runPing");
+		LOG.trace("--> runPing");
+		LOG.trace("<-- runPing");
 
 		return pingAlias.ping("PingAlias") + pingWorker.ping("PingWorker") + pingProcessor.ping("PingProcessor");
 	}

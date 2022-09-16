@@ -22,8 +22,8 @@ public class XCalledSession implements CalledSessionLocal {
 	public XCalledSession() {
 		super();
 
-		LOG.info("--> XCalledSession");
-		LOG.info("<-- XCalledSession");
+		LOG.trace("--> XCalledSession");
+		LOG.trace("<-- XCalledSession");
 	}
 
 	/**
@@ -31,7 +31,7 @@ public class XCalledSession implements CalledSessionLocal {
 	 */
 	@Override
 	public void called() {
-		LOG.info("--> called");
-		LOG.info("<-- called");
+		LOG.trace("--> called");
+		LOG.trace("<-- called");
 	}
 }

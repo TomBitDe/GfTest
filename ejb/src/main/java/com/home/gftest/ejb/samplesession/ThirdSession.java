@@ -12,18 +12,18 @@ public class ThirdSession {
 
 	public ThirdSession() {
 		super();
-		LOG.info("--> ThirdSession");
-		LOG.info("<-- ThirdSession");
+		LOG.trace("--> ThirdSession");
+		LOG.trace("<-- ThirdSession");
 	}
 
 	public boolean businessMethod() {
 		boolean ret = false;
 
-		LOG.info("--> businessMethod");
+		LOG.trace("--> businessMethod");
 
 		ret = true;
 
-		LOG.info("<-- businessMethod");
+		LOG.trace("<-- businessMethod");
 
 		return ret;
 	}
