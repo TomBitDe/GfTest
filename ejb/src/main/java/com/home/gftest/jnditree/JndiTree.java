@@ -131,7 +131,7 @@ public class JndiTree {
 			}
 		}
 		catch (NamingException ex) {
-			System.err.println(ex.getLocalizedMessage());
+			LOG.fatal(ex.getLocalizedMessage());
 		}
 	}
 }
