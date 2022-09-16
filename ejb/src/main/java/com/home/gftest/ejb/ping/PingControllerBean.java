@@ -3,9 +3,12 @@ package com.home.gftest.ejb.ping;
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
+import javax.interceptor.Interceptors;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import com.home.gftest.telemetryprovider.monitoring.entity.PerformanceAuditor;
 
 /**
  * Session Bean implementation class PingControllerBean<br>
@@ -14,6 +17,7 @@ import org.apache.logging.log4j.Logger;
  */
 @Stateless
 @LocalBean
+@Interceptors(PerformanceAuditor.class)
 public class PingControllerBean {
 	private static final Logger LOG = LogManager.getLogger(PingControllerBean.class);
 

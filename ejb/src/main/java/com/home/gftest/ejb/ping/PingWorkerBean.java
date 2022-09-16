@@ -2,9 +2,12 @@ package com.home.gftest.ejb.ping;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
+import javax.interceptor.Interceptors;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import com.home.gftest.telemetryprovider.monitoring.entity.PerformanceAuditor;
 
 /**
  * Session Bean implementation class PingWorkerBean<br>
@@ -13,6 +16,7 @@ import org.apache.logging.log4j.Logger;
  */
 @Stateless(name = "PingAlias")
 @LocalBean
+@Interceptors(PerformanceAuditor.class)
 public class PingWorkerBean {
 	private static final Logger LOG = LogManager.getLogger(PingWorkerBean.class);
 
@@ -33,8 +37,8 @@ public class PingWorkerBean {
 	 * @return pong
 	 */
 	public String ping(String who) {
-		LOG.trace("--> ping (" + who + ")");
-		LOG.trace("<-- ping (" + who + ")");
+		LOG.info("--> ping (" + who + ")");
+		LOG.info("<-- ping (" + who + ")");
 
 		return "pong";
 	}

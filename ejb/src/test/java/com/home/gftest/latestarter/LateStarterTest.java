@@ -22,6 +22,8 @@ import com.home.gftest.ejb.samplesession.ControllerSession;
 import com.home.gftest.ejb.samplesession.ControllerSessionBean;
 import com.home.gftest.ejb.samplesession.NewSession;
 import com.home.gftest.ejb.samplesession.NewSessionBean;
+import com.home.gftest.telemetryprovider.monitoring.entity.MonitoringRessource;
+import com.home.gftest.telemetryprovider.monitoring.entity.PerformanceAuditor;
 
 /**
  * Test the LateStarter.
@@ -44,7 +46,10 @@ public class LateStarterTest {
 						, PingControllerBean.class, PingWorkerBean.class
 						, ControllerSessionTimer.class
 						, ControllerSession.class, ControllerSessionBean.class
-						, NewSession.class, NewSessionBean.class
+						, NewSession.class, NewSessionBean.class,
+						PerformanceAuditor.class,
+						MonitoringRessource.class
+
 						);
 
 		LOG.debug(archive.toString(true));
