@@ -68,7 +68,7 @@ public class TimerOtherSessionsBean {
 	 */
 	@Schedule(minute="*/1", hour="*")
 	public void automaticTimeout() {
-		LOG.info("--> automaticTimeout()");
+		LOG.trace("--> automaticTimeout()");
 
 		this.setLastAutomaticTimeout(new Date());
 		pingControllerBean.runPing();
@@ -82,7 +82,7 @@ public class TimerOtherSessionsBean {
 		goodMorning.say();
 		goodMorning.tooEarly();
 
-		LOG.info("<-- automaticTimeout()");
+		LOG.trace("<-- automaticTimeout()");
 	}
 
 	public String getLastProgrammaticTimeout() {

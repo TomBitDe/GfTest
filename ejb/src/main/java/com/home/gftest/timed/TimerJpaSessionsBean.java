@@ -57,7 +57,7 @@ public class TimerJpaSessionsBean {
 	 */
 	@Schedule(minute="*/2", hour="*")
 	public void automaticTimeout() {
-		LOG.info("--> automaticTimeout()");
+		LOG.trace("--> automaticTimeout()");
 
 		this.setLastAutomaticTimeout(new Date());
 
@@ -106,7 +106,7 @@ public class TimerJpaSessionsBean {
 
 		userAddressManager.delete(user);
 
-		LOG.info("<-- automaticTimeout()");
+		LOG.trace("<-- automaticTimeout()");
 	}
 
 	public String getLastProgrammaticTimeout() {

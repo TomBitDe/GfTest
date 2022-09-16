@@ -52,7 +52,7 @@ public class TimerJmsSessionsBean {
 	 */
 	@Schedule(minute="*/2", hour="*")
 	public void automaticTimeout() {
-		LOG.info("--> automaticTimeout()");
+		LOG.trace("--> automaticTimeout()");
 
 		this.setLastAutomaticTimeout(new Date());
 
@@ -62,7 +62,7 @@ public class TimerJmsSessionsBean {
 		msgTopicProducer1.sendOneMessage();
 		msgTopicProducer1.sendManyMessages(Integer.valueOf(configCache.getData("TopicMsgNum", "77")));
 
-		LOG.info("<-- automaticTimeout()");
+		LOG.trace("<-- automaticTimeout()");
 	}
 
 	public String getLastProgrammaticTimeout() {
