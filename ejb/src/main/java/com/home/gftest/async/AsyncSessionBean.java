@@ -27,14 +27,14 @@ public class AsyncSessionBean implements AsyncSession {
 
 	public AsyncSessionBean() {
 		super();
-		LOG.info("--> AsyncSessionBean");
-		LOG.info("<-- AsyncSessionBean");
+		LOG.trace("--> AsyncSessionBean");
+		LOG.trace("<-- AsyncSessionBean");
 	}
 
 	@Override
 	@Asynchronous
 	public void asyncFireAndForgetMethod() {
-		LOG.info("--> asyncFireAndForgetMethod");
+		LOG.trace("--> asyncFireAndForgetMethod");
 
 		try {
 			LOG.info("Sleep " + TIMEOUT + " now...");
@@ -45,13 +45,13 @@ public class AsyncSessionBean implements AsyncSession {
 		}
 		LOG.info("... Wakeup");
 
-		LOG.info("<-- asyncFireAndForgetMethod");
+		LOG.trace("<-- asyncFireAndForgetMethod");
 	}
 
 	@Override
 	@Asynchronous
 	public Future<String> asyncControlledMethod(int duration) {
-		LOG.info("--> asyncControlledMethod");
+		LOG.trace("--> asyncControlledMethod");
 
 		String status;
 
@@ -75,21 +75,21 @@ public class AsyncSessionBean implements AsyncSession {
 			status = "Wakeup";
 		}
 
-		LOG.info("<-- asyncControlledMethod");
+		LOG.trace("<-- asyncControlledMethod");
 
 		return new AsyncResult<>(status);
 	}
 
 	@Override
 	public Future<String> asyncControlledMethodWithCustomEx(int duration) throws AsyncControlledMethodException {
-		LOG.info("--> asyncControlledMethodWithCustomEx");
+		LOG.trace("--> asyncControlledMethodWithCustomEx");
 
 		if (duration <= 0) {
 			throw new AsyncControlledMethodException("Invalid Argurment: duration [" + duration + "] <= 0");
 		}
 		Future<String> status = asyncControlledMethod(duration);
 
-		LOG.info("<-- asyncControlledMethodWithCustomEx");
+		LOG.trace("<-- asyncControlledMethodWithCustomEx");
 
 		return status;
 	}

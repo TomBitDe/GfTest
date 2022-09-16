@@ -25,22 +25,22 @@ public class AsyncControllerSessionBean implements AsyncControllerSession {
 
 	public AsyncControllerSessionBean() {
 		super();
-		LOG.info("--> AsyncControllerSessionBean");
-		LOG.info("<-- AsyncControllerSessionBean");
+		LOG.trace("--> AsyncControllerSessionBean");
+		LOG.trace("<-- AsyncControllerSessionBean");
 	}
 
 	@Override
 	public void fireAndForget() {
-		LOG.info("--> fireAndForget");
+		LOG.trace("--> fireAndForget");
 
 		asyncSession.asyncFireAndForgetMethod();
 
-		LOG.info("<-- fireAndForget");
+		LOG.trace("<-- fireAndForget");
 	}
 
 	@Override
 	public void runAsyncCall(int duration) {
-		LOG.info("--> runAsyncCall");
+		LOG.trace("--> runAsyncCall");
 
 		Future<String> future = asyncSession.asyncControlledMethod(duration);
 
@@ -56,13 +56,13 @@ public class AsyncControllerSessionBean implements AsyncControllerSession {
 			LOG.error(iex.getMessage());
 		}
 
-		LOG.info("<-- runAsyncCall");
+		LOG.trace("<-- runAsyncCall");
 	}
 
 
 	@Override
 	public void cancelAsyncCall(int duration) {
-		LOG.info("--> cancelAsyncCall");
+		LOG.trace("--> cancelAsyncCall");
 
 		Future<String> future = asyncSession.asyncControlledMethod(duration);
 
@@ -70,12 +70,12 @@ public class AsyncControllerSessionBean implements AsyncControllerSession {
 
 		LOG.info("Cancel returned [" + ret + ']');
 
-		LOG.info("<-- cancelAsyncCall");
+		LOG.trace("<-- cancelAsyncCall");
 	}
 
 	@Override
 	public void runAsyncCallWithCustomEx(int duration) {
-		LOG.info("--> runAsyncCallWithCustomEx");
+		LOG.trace("--> runAsyncCallWithCustomEx");
 
 		try {
 			Future<String> future = asyncSession.asyncControlledMethodWithCustomEx(duration);
@@ -97,6 +97,6 @@ public class AsyncControllerSessionBean implements AsyncControllerSession {
 			}
 		}
 
-		LOG.info("<-- runAsyncCallWithCustomEx");
+		LOG.trace("<-- runAsyncCallWithCustomEx");
 	}
 }
