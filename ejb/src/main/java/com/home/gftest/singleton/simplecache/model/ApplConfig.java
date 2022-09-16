@@ -96,6 +96,4 @@ public class ApplConfig implements Serializable {
 
 		return builder.toString();
 	}
-
-
 }
