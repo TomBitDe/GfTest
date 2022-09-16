@@ -36,7 +36,7 @@ public class PingControllerTimer {
 	PingControllerBean pingController;
 
 	public void initializeTimer() {
-		LOG.info("--> initializeTimer");
+		LOG.trace("--> initializeTimer");
 
 		ScheduleExpression expression = new ScheduleExpression();
 		String secs;
@@ -57,16 +57,15 @@ public class PingControllerTimer {
 
 		timerService.createCalendarTimer(expression, timerConfig);
 
-		LOG.info("<-- initializeTimer");
+		LOG.trace("<-- initializeTimer");
 	}
 
 	@Timeout
 	public void ping() {
-		LOG.info("--> ping");
+		LOG.trace("--> ping");
 
 		LOG.info("\t Result of runPing() = [" + pingController.runPing() + ']');
 
-		LOG.info("<-- ping");
+		LOG.trace("<-- ping");
 	}
-
 }

@@ -43,33 +43,33 @@ public class LateStarter {
 
 	@PostConstruct
 	public void initializeTimer() {
-		LOG.info("--> initializeTimer");
+		LOG.trace("--> initializeTimer");
 
 		TimerConfig config = new TimerConfig();
 		config.setPersistent(false);
 		LOG.info("StartDelay = " + startDelay + " [msec.]");
 		this.timer = timerService.createSingleActionTimer(startDelay, config);
 
-		LOG.info("<-- initializeTimer");
+		LOG.trace("<-- initializeTimer");
 	}
 
 	@Timeout
 	public void startLater() {
-		LOG.info("--> startLater");
+		LOG.trace("--> startLater");
 
 		pingControllerTimer.initializeTimer();
 
 		controllerSessionTimer.initializeTimer();
 
-		LOG.info("<-- startLater");
+		LOG.trace("<-- startLater");
 	}
 
 	@PreDestroy
 	public void cleanupTimer() {
-		LOG.info("--> cleanupTimer");
+		LOG.trace("--> cleanupTimer");
 
 		this.timer.cancel();
 
-		LOG.info("<-- cleanupTimer");
+		LOG.trace("<-- cleanupTimer");
 	}
 }

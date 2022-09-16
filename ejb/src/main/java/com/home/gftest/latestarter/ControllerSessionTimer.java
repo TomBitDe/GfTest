@@ -36,7 +36,7 @@ public class ControllerSessionTimer {
 	ControllerSession controllerSession;
 
 	public void initializeTimer() {
-		LOG.info("--> initializeTimer");
+		LOG.trace("--> initializeTimer");
 
 		ScheduleExpression expression = new ScheduleExpression();
 		String secs;
@@ -62,16 +62,16 @@ public class ControllerSessionTimer {
 
 		timerService.createCalendarTimer(expression, timerConfig);
 
-		LOG.info("<-- initializeTimer");
+		LOG.trace("<-- initializeTimer");
 	}
 
 	@Timeout
 	public void control() {
-		LOG.info("--> control");
+		LOG.trace("--> control");
 
 		LOG.info("\t Result of control() = [" + controllerSession.control() + ']');
 
-		LOG.info("<-- control");
+		LOG.trace("<-- control");
 	}
 
 }
