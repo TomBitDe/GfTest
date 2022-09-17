@@ -6,15 +6,13 @@ import javax.interceptor.Interceptors;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.home.gftest.timed.TimerOtherSessionsBean;
-
 /**
  * This is only a sample how to integrate the PerformanceAuditor.
  */
 @Stateless
 @Interceptors(PerformanceAuditor.class)
 public class GoodMorning {
-	private static final Logger LOG = LogManager.getLogger(TimerOtherSessionsBean.class);
+	private static final Logger LOG = LogManager.getLogger(GoodMorning.class);
 	/**
 	 * Method say should have a duration of 200
 	 */
