@@ -9,4 +9,3 @@ The ear deployment on Payara Server will be successful if the user/password is c
 For results look in the logs folder:
 - GfTest-All.log
 - GfTest-Part.log
-
