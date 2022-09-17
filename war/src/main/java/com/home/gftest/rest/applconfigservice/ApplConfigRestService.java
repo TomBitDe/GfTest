@@ -3,7 +3,6 @@ package com.home.gftest.rest.applconfigservice;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.security.PermitAll;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ws.rs.DELETE;
@@ -35,7 +34,6 @@ public class ApplConfigRestService {
      *
      * @return the configuration list
      */
-    @PermitAll
     @GET
     @Path("/Content")
     @Produces({MediaType.APPLICATION_XML})
@@ -59,7 +57,6 @@ public class ApplConfigRestService {
      *
      * @return the configuration list based on offset and count
      */
-    @PermitAll
     @GET
     @Path("/Content/{offset}/{count}")
     @Produces({MediaType.APPLICATION_XML})
@@ -87,7 +84,6 @@ public class ApplConfigRestService {
      *
      * @return the matching configuration entry
      */
-    @PermitAll
     @GET
     @Path("/Entry/{key}")
     @Produces({MediaType.APPLICATION_XML})
@@ -106,7 +102,6 @@ public class ApplConfigRestService {
      *
      * @return true if the configuration entry exists otherwise false
      */
-    @PermitAll
     @GET
     @Path("/Exists/{key}")
     @Produces({MediaType.APPLICATION_XML})
@@ -125,7 +120,6 @@ public class ApplConfigRestService {
      *
      * @return the number of entries
      */
-    @PermitAll
     @GET
     @Path("/Count")
     @Produces({MediaType.APPLICATION_XML})
@@ -145,7 +139,6 @@ public class ApplConfigRestService {
      *
      * @return the data of the created entry
      */
-    @PermitAll
     @PUT
     @Path("/Entry/{key}/{value}")
     @Produces({MediaType.APPLICATION_XML})
@@ -169,7 +162,6 @@ public class ApplConfigRestService {
      *
      * @return the data of the updated entry or an empty response in case it failed
      */
-    @PermitAll
     @POST
     @Path("/Entry/{key}/{value}")
     @Produces({MediaType.APPLICATION_XML})
@@ -237,6 +229,7 @@ public class ApplConfigRestService {
      * @return a list of service operations
      */
     @OPTIONS
+    @Path("/Options")
     @Produces({MediaType.TEXT_PLAIN})
     public String getSupportedOperations() {
         return "GET, DELETE, PUT, POST";
