@@ -22,8 +22,8 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import com.home.gftest.telemetryprovider.monitoring.entity.MonitoringRessource;
-import com.home.gftest.telemetryprovider.monitoring.entity.PerformanceAuditor;
+import com.home.gftest.telemetryprovider.monitoring.PerformanceAuditor;
+import com.home.gftest.telemetryprovider.monitoring.boundary.MonitoringResource;
 
 /**
  * On this topic two MDBs are listening. See the setObjectProperty("type", 0 or 1) for details.
@@ -43,7 +43,7 @@ public class InjectionTopicTest extends CommonJmsUtility {
 				.addClasses(MsgTopicConsumerEvenNumberBean.class,
 						MsgTopicConsumerOddNumberBean.class,
 						PerformanceAuditor.class,
-						MonitoringRessource.class
+						MonitoringResource.class
 						);
 
 		LOG.debug(archive.toString(true));

@@ -19,7 +19,7 @@ import com.home.gftest.ejb.refchange.FirstCallerSessionLocal;
 import com.home.gftest.ejb.refchange.SecondCallerSessionLocal;
 import com.home.gftest.ejb.samplesession.ControllerSession;
 import com.home.gftest.ejb.samplesession.ThirdSession;
-import com.home.gftest.telemetryprovider.monitoring.entity.GoodMorning;
+import com.home.gftest.telemetryprovider.requestcounter.GoodMorning;
 
 /**
  * Implementation of a timer controlled bean<br>

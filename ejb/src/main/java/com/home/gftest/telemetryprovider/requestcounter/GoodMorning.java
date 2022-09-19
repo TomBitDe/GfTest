@@ -1,10 +1,12 @@
-package com.home.gftest.telemetryprovider.monitoring.entity;
+package com.home.gftest.telemetryprovider.requestcounter;
 
 import javax.ejb.Stateless;
 import javax.interceptor.Interceptors;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import com.home.gftest.telemetryprovider.monitoring.PerformanceAuditor;
 
 /**
  * This is only a sample how to integrate the PerformanceAuditor.

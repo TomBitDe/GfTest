@@ -18,9 +18,9 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import com.home.gftest.telemetryprovider.monitoring.entity.GoodMorning;
-import com.home.gftest.telemetryprovider.monitoring.entity.MonitoringRessource;
-import com.home.gftest.telemetryprovider.monitoring.entity.PerformanceAuditor;
+import com.home.gftest.telemetryprovider.monitoring.PerformanceAuditor;
+import com.home.gftest.telemetryprovider.monitoring.boundary.MonitoringResource;
+import com.home.gftest.telemetryprovider.requestcounter.GoodMorning;
 
 /**
  * Test the GoodMorning in TelemetryProvider.
@@ -42,7 +42,7 @@ public class TelemetryProviderTest {
 				.addClasses(
 						GoodMorning.class,
 						PerformanceAuditor.class,
-						MonitoringRessource.class
+						MonitoringResource.class
 						);
 
 		LOG.debug(archive.toString(true));

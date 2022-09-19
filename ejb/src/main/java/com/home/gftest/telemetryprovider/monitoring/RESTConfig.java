@@ -1,4 +1,4 @@
-package com.home.gftest.configurator.jmxrestview;
+package com.home.gftest.telemetryprovider.monitoring;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;

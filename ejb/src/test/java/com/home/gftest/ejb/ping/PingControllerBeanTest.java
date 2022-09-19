@@ -17,8 +17,8 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import com.home.gftest.telemetryprovider.monitoring.entity.MonitoringRessource;
-import com.home.gftest.telemetryprovider.monitoring.entity.PerformanceAuditor;
+import com.home.gftest.telemetryprovider.monitoring.PerformanceAuditor;
+import com.home.gftest.telemetryprovider.monitoring.boundary.MonitoringResource;
 
 /**
  * Test the ping controller bean.
@@ -41,7 +41,7 @@ public class PingControllerBeanTest {
 						PingControllerBean.class,
 						PingWorkerBean.class,
 						PerformanceAuditor.class,
-						MonitoringRessource.class
+						MonitoringResource.class
 						);
 
 		LOG.debug(archive.toString(true));

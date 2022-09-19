@@ -8,7 +8,7 @@ import javax.interceptor.Interceptors;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.home.gftest.telemetryprovider.monitoring.entity.PerformanceAuditor;
+import com.home.gftest.telemetryprovider.monitoring.PerformanceAuditor;
 
 /**
  * Session Bean implementation class PingControllerBean<br>

@@ -22,8 +22,8 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import com.home.gftest.telemetryprovider.monitoring.entity.MonitoringRessource;
-import com.home.gftest.telemetryprovider.monitoring.entity.PerformanceAuditor;
+import com.home.gftest.telemetryprovider.monitoring.PerformanceAuditor;
+import com.home.gftest.telemetryprovider.monitoring.boundary.MonitoringResource;
 
 @RunWith(Arquillian.class)
 public class InjectionQueueTest extends CommonJmsUtility {
@@ -40,7 +40,7 @@ public class InjectionQueueTest extends CommonJmsUtility {
 				.addClasses(
 						MsgQueueConsumer1Bean.class,
 						PerformanceAuditor.class,
-						MonitoringRessource.class
+						MonitoringResource.class
 		                );
 
 		LOG.debug(archive.toString(true));
