@@ -92,4 +92,7 @@ public class CommonJmsUtility {
 	          .forEach(consumer);
 	    }
 	}
+
+	public static void main(String[] args){
+	}
 }
