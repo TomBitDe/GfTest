@@ -93,7 +93,7 @@ public class TimerJpaSessionsBean {
 
 		deliveryManager.create(delivery);
 
-		deliveryManager.getAll().forEach(elem -> { LOG.info(elem); });
+		deliveryManager.getAll().forEach( LOG::info );
 
 		deliveryManager.delete(delivery);
 
@@ -102,7 +102,7 @@ public class TimerJpaSessionsBean {
 		address.setUser(user);
 		userAddressManager.create(user);
 
-		userAddressManager.getAll().forEach(elem -> { LOG.info(elem); });
+		userAddressManager.getAll().forEach( LOG::info );
 
 		userAddressManager.delete(user);
 

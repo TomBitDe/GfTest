@@ -63,7 +63,7 @@ public class MsgTopicProducer1Bean implements MsgTopicProducer1 {
 
 			producer.send(message);
 
-			LOG.info("Message [" +  message.getBody(String.class) + "] send");
+			LOG.info("Message [{}] send", message.getBody(String.class));
 		}
 		catch (JMSException jmsEx) {
 			LOG.error(jmsEx.getMessage());
@@ -99,7 +99,7 @@ public class MsgTopicProducer1Bean implements MsgTopicProducer1 {
 
 				producer.send(message);
 
-				LOG.info("Message [" +  message.getBody(String.class) + "] send");
+				LOG.info("Message [{}] send", message.getBody(String.class));
 			}
 		}
 		catch (JMSException jmsEx) {
