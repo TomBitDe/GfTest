@@ -2,6 +2,7 @@ package com.home.gftest.jpa;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
@@ -125,7 +126,7 @@ public class DeliveryManagerTest {
 		deliveries.forEach(elem -> {
 			Delivery delivery = deliverManager.getById(elem.getDeliveryId());
 			if (delivery.getCustomer().equals("BASF")) {
-				assertTrue(delivery.getComponents().size() == 4);
+				assertEquals(4, delivery.getComponents().size());
 			}
 		});
 	}
@@ -143,8 +144,8 @@ public class DeliveryManagerTest {
 		assertFalse(orderItems.isEmpty());
 
 		orderItems.forEach(elem -> {
-			assertFalse(elem.getComponentId() == null);
-			assertFalse(elem.getComment() == null);
+			assertNotNull(elem.getComponentId());
+			assertNotNull(elem.getComment());
 
 			LOG.info(elem);
 		});

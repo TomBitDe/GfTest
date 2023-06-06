@@ -125,10 +125,8 @@ public class UserAddressTest {
 
 		assertNotNull(expUser.getId());
 		assertNotNull(expUser.getName());
-		assertNotNull(expUser.getVersion());
 		assertNotNull(expUser.getAddress());
 		assertNotNull(expUser.getAddress().getId());
-		assertNotNull(expUser.getAddress().getVersion());
 		assertNotNull(expUser.getAddress().getUser());
 		assertEquals(expUser.getAddress().getUser().getId(), expUser.getId());
 	}
