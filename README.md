@@ -2,6 +2,8 @@ Select gftest --> Run GfTest clean --> Run GfTest verify.
 
 All in ejb and war will be cleaned, compiled and than all tests will be executed.
 
+Check the PAYARA_HOME environment var (should point to payara5)
+
 If queue/topic needs to be created go to /ejb/src/test/java/com/home/gftest/jms/CommonJmsUtility.java
 and run it as 'Java Application'. It will create the needed queues and topics.
 
